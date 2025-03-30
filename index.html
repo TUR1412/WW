@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- 如果需要 Font Awesome 图标 -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> -->
+    <!-- 引入 Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- 全局重置与基础设定 --- */
@@ -56,6 +56,13 @@
             --dark-text: #34495e; /* 深蓝灰文本 */
             --light-text: #ecf0f1; /* 浅灰文本 (用于深色背景) */
             --muted-text: #bdc3c7; /* 更柔和的次要文本 */
+
+            /* RGB变量 */
+            --primary-rgb: 52, 152, 219;
+            --accent-color-rgb: 243, 156, 18;
+            --success-color-rgb: 46, 204, 113;
+            --danger-color-rgb: 231, 76, 60;
+            --light-text-rgb: 236, 240, 241;
 
             /* 字体 */
             --heading-font: 'Montserrat', 'Noto Sans SC', sans-serif; /* 标题字体 */
@@ -112,6 +119,7 @@
         .mt-3 { margin-top: 1.5rem !important; }
         .mt-4 { margin-top: 2.5rem !important; }
         .mt-5 { margin-top: 4rem !important; }
+        .ml-2 { margin-left: 1rem !important; }
 
         .section-padding {
             padding-top: var(--section-padding-y);
@@ -229,7 +237,6 @@
              box-shadow: var(--shadow-md);
          }
 
-
         .btn-lg {
             padding: 1rem 2.5rem;
             font-size: 1.1rem;
@@ -238,12 +245,34 @@
              padding: 0.5rem 1.2rem;
              font-size: 0.9rem;
         }
+        
+        .btn.disabled {
+            opacity: 0.65;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
 
         img {
             max-width: 100%;
             height: auto;
             display: block;
             border-radius: var(--border-radius-md); /* 图片默认加轻微圆角 */
+        }
+        
+        /* 图片加载中和错误状态 */
+        .img-loading {
+            position: relative;
+            min-height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .img-loading::before {
+            content: '加载中...';
+            color: var(--secondary-color);
+            font-size: 0.9rem;
         }
 
         a {
@@ -319,7 +348,7 @@
             transition: color var(--transition-fast);
             font-size: 1rem;
             text-transform: uppercase; /* 导航字母大写 */
-             letter-spacing: 1px;
+            letter-spacing: 1px;
         }
 
         .nav-link::after {
@@ -350,24 +379,44 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.8rem; /* 增大图标 */
             cursor: pointer;
             color: var(--dark-text);
             padding: 0.5rem;
             line-height: 1;
         }
-         .navbar-toggler:focus {
-             outline: none;
-             box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2); /* 点击时外发光 */
-         }
-          /* 为 primary color 创建 RGB 版本 */
-         :root { --primary-rgb: 52, 152, 219; }
-
+        
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2); /* 点击时外发光 */
+        }
+        
+        /* 汉堡菜单按钮样式 */
+        .navbar-toggler span.line {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-text);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+        
+        .navbar-toggler.active .line1 {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .navbar-toggler.active .line2 {
+            opacity: 0;
+        }
+        
+        .navbar-toggler.active .line3 {
+            transform: translateY(-8px) rotate(-45deg);
+        }
 
         /* --- 英雄区域样式 --- */
         .hero {
-            /* 更换为具体的 Unsplash 图片 URL */
-            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80'); /* 音乐主题背景 */
+            /* 使用稳定的高质量背景图 */
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('/api/placeholder/1920/1080');
             background-size: cover;
             background-position: center center;
             background-attachment: fixed; /* 背景固定效果 */
@@ -382,12 +431,9 @@
             overflow: hidden; /* 防止内容溢出 */
         }
 
-        /* 可选：添加微妙的粒子或波纹背景效果 (需要额外JS或纯CSS实现) */
-        /* .hero::before { ... } */
-
         .hero-content {
             max-width: 900px; /* 增加内容宽度 */
-             animation: heroFadeInUp 1s ease-out 0.5s backwards; /* 入场动画 */
+            animation: heroFadeInUp 1s ease-out 0.5s backwards; /* 入场动画 */
         }
 
         .hero h1 {
@@ -412,7 +458,7 @@
             margin: 0 0.5rem; /* 按钮间距 */
         }
 
-        /* 向下滚动提示箭头 (可选) */
+        /* 向下滚动提示箭头 */
         .scroll-down-indicator {
             position: absolute;
             bottom: 40px;
@@ -474,7 +520,6 @@
          }
 
         .about-image img {
-             /* 更换为人像照片 URL */
             width: 100%;
             max-width: 400px;
             height: auto;
@@ -483,7 +528,7 @@
             margin: 0 auto;
             position: relative; /* 确保图片在边框之上 */
             z-index: 1;
-             transition: transform var(--transition-medium);
+            transition: transform var(--transition-medium);
         }
         .about-image img:hover {
              transform: scale(1.03); /* 图片悬停放大 */
@@ -513,7 +558,7 @@
              margin-top: 1rem;
         }
 
-        /* --- 技术专长区域 (新增) --- */
+        /* --- 技术专长区域 --- */
         #skills {
             background-color: var(--light-bg);
         }
@@ -533,12 +578,11 @@
             transition: transform var(--transition-fast), box-shadow var(--transition-fast);
             border-top: 4px solid transparent; /* 顶部装饰线 */
             border-image: linear-gradient(to right, var(--primary-color), var(--accent-color)) 1;
-             border-image-slice: 1;
-             border-top-width: 4px; /* 仅应用到顶部 */
-             border-bottom: none;
-             border-left: none;
-             border-right: none;
-
+            border-image-slice: 1;
+            border-top-width: 4px; /* 仅应用到顶部 */
+            border-bottom: none;
+            border-left: none;
+            border-right: none;
         }
 
         .skill-item:hover {
@@ -547,23 +591,21 @@
         }
 
         .skill-icon {
-            font-size: 3rem; /* 图标大小 (需要图标库) */
+            font-size: 2.5rem; /* 图标大小 */
             color: var(--primary-color);
             margin-bottom: 1rem;
-            /* 示例：使用文字代替图标 */
             display: inline-block;
             width: 60px;
             height: 60px;
             line-height: 60px;
             background-color: rgba(var(--primary-rgb), 0.1);
             border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
-        /* 示例图标文字 */
-        .icon-music::before { content: "🎵"; }
-        .icon-settings::before { content: "⚙️"; }
-        .icon-speaker::before { content: "🔊"; }
-        .icon-code::before { content: "💻"; }
 
+        .skill-item:hover .skill-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
 
         .skill-item h4 {
             font-family: var(--heading-font);
@@ -594,7 +636,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-md); /* 默认有中等阴影 */
             transition: transform var(--transition-medium), box-shadow var(--transition-medium);
-             position: relative; /* 为悬停效果准备 */
+            position: relative; /* 为悬停效果准备 */
         }
 
         .music-card:hover {
@@ -602,55 +644,54 @@
             box-shadow: var(--shadow-lg);
         }
 
-         .music-card-image {
-             position: relative;
-             overflow: hidden; /* 隐藏图片溢出 */
-         }
+        .music-card-image {
+            position: relative;
+            overflow: hidden; /* 隐藏图片溢出 */
+        }
 
         .music-card img {
-             width: 100%;
-             height: 300px; /* 固定高度 */
-             object-fit: cover;
-             border-bottom: 1px solid #eee;
-             border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; /* 顶部圆角 */
-             transition: transform var(--transition-slow); /* 图片放大效果 */
+            width: 100%;
+            height: 300px; /* 固定高度 */
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; /* 顶部圆角 */
+            transition: transform var(--transition-slow); /* 图片放大效果 */
         }
         .music-card:hover img {
-             transform: scale(1.1); /* 悬停时图片放大 */
+            transform: scale(1.1); /* 悬停时图片放大 */
         }
 
         /* 图片上的播放按钮 (悬停显示) */
-         .play-button-overlay {
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background-color: rgba(var(--primary-rgb), 0.5); /* 半透明覆盖层 */
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             opacity: 0;
-             transition: opacity var(--transition-medium);
-         }
-         .music-card:hover .play-button-overlay {
-              opacity: 1;
-         }
-         .play-button-overlay::before { /* 播放按钮图标 (纯CSS) */
-              content: '';
-              display: block;
-              width: 0;
-              height: 0;
-              border-top: 20px solid transparent;
-              border-bottom: 20px solid transparent;
-              border-left: 30px solid var(--white-bg);
-              margin-left: 5px; /* 微调居中 */
-              transition: transform var(--transition-fast);
-         }
-         .music-card:hover .play-button-overlay::before {
-              transform: scale(1.1);
-         }
-
+        .play-button-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(var(--primary-rgb), 0.5); /* 半透明覆盖层 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+        }
+        .music-card:hover .play-button-overlay {
+            opacity: 1;
+        }
+        .play-button-overlay::before { /* 播放按钮图标 (纯CSS) */
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 30px solid var(--white-bg);
+            margin-left: 5px; /* 微调居中 */
+            transition: transform var(--transition-fast);
+        }
+        .music-card:hover .play-button-overlay::before {
+            transform: scale(1.1);
+        }
 
         .music-card-body {
             padding: 1.8rem; /* 增大内边距 */
@@ -661,9 +702,9 @@
             font-size: 1.5rem; /* 增大标题 */
             margin-bottom: 0.6rem;
             color: var(--dark-text);
-             white-space: nowrap; /* 防止标题换行 */
-             overflow: hidden;
-             text-overflow: ellipsis; /* 超出显示省略号 */
+            white-space: nowrap; /* 防止标题换行 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 超出显示省略号 */
         }
 
         .music-card p.date { /* 日期样式 */
@@ -684,60 +725,58 @@
             /* 样式已在全局 .btn 定义 */
             margin-right: 0.5rem; /* 按钮间距 */
         }
-         /* 可以添加不同平台的图标按钮 */
-         .platform-links a {
-             color: var(--secondary-color);
-             margin: 0 5px;
-             font-size: 1.2rem; /* 图标大小 */
-             transition: color var(--transition-fast);
-         }
-         .platform-links a:hover {
-              color: var(--primary-color);
-         }
+         /* 平台链接的图标按钮 */
+        .platform-links a {
+            color: var(--secondary-color);
+            margin: 0 5px;
+            font-size: 1.2rem; /* 图标大小 */
+            transition: color var(--transition-fast);
+        }
+        .platform-links a:hover {
+            color: var(--primary-color);
+        }
 
         /* --- 演出/动态区域 --- */
         #tour {
             background-color: var(--light-bg); /* 交替背景色 */
-             position: relative; /* 为装饰图形准备 */
-             overflow: hidden;
+            position: relative; /* 为装饰图形准备 */
+            overflow: hidden;
         }
         /* 添加背景装饰图形 */
         #tour::before {
-             content: '';
-             position: absolute;
-             top: 10%;
-             left: -10%;
-             width: 300px;
-             height: 300px;
-             background: radial-gradient(circle, rgba(var(--primary-rgb), 0.08) 20%, transparent 70%);
-             border-radius: 50%;
-             z-index: 0;
-             opacity: 0.5;
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(var(--primary-rgb), 0.08) 20%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.5;
         }
-         #tour::after {
-             content: '';
-             position: absolute;
-             bottom: 5%;
-             right: -15%;
-             width: 400px;
-             height: 400px;
-             background: radial-gradient(circle, rgba(var(--accent-color-rgb, 243, 156, 18), 0.06) 15%, transparent 60%);
-              border-radius: 50%;
-              z-index: 0;
-              opacity: 0.6;
-         }
-         :root { --accent-color-rgb: 243, 156, 18; }
-
+        #tour::after {
+            content: '';
+            position: absolute;
+            bottom: 5%;
+            right: -15%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(var(--accent-color-rgb), 0.06) 15%, transparent 60%);
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.6;
+        }
 
         .tour-list {
             max-width: 850px;
             margin: 0 auto;
-             position: relative; /* 确保内容在装饰图形之上 */
-             z-index: 1;
-             background-color: var(--white-bg); /* 列表背景 */
-             padding: 2rem;
-             border-radius: var(--border-radius-lg);
-             box-shadow: var(--shadow-lg);
+            position: relative; /* 确保内容在装饰图形之上 */
+            z-index: 1;
+            background-color: var(--white-bg); /* 列表背景 */
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
         }
 
         .tour-item {
@@ -747,11 +786,11 @@
             align-items: center;
             padding: 1.8rem 0;
             border-bottom: 1px dashed #e0e0e0; /* 虚线分隔 */
-             transition: background-color var(--transition-fast);
+            transition: background-color var(--transition-fast);
         }
-         .tour-item:hover {
-             background-color: rgba(var(--primary-rgb), 0.03); /* 悬停背景色 */
-         }
+        .tour-item:hover {
+            background-color: rgba(var(--primary-rgb), 0.03); /* 悬停背景色 */
+        }
 
         .tour-item:last-child {
             border-bottom: none;
@@ -765,7 +804,7 @@
             border-radius: var(--border-radius-md);
             font-weight: 700;
             line-height: 1.3;
-             box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.3);
+            box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.3);
         }
 
         .tour-date span.month {
@@ -774,11 +813,11 @@
             text-transform: uppercase;
             opacity: 0.8;
         }
-         .tour-date span.day {
+        .tour-date span.day {
             display: block;
             font-size: 2.5rem; /* 日期数字 */
-             font-weight: 700;
-         }
+            font-weight: 700;
+        }
 
         .tour-details h5 {
             font-family: var(--heading-font);
@@ -790,30 +829,28 @@
         .tour-details p {
             color: var(--secondary-color);
             font-size: 1rem;
-             margin-bottom: 0.2rem;
+            margin-bottom: 0.2rem;
         }
         .tour-details p i { /* 图标样式 */
-             margin-right: 0.5rem;
-             color: var(--primary-color);
-             width: 1em; /* 固定图标宽度 */
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+            width: 1em; /* 固定图标宽度 */
         }
 
         .tour-item .btn {
             /* 样式已全局定义 */
         }
         .tour-status { /* 演出状态标签 */
-             display: inline-block;
-             padding: 0.3rem 0.8rem;
-             border-radius: var(--border-radius-sm);
-             font-size: 0.8rem;
-             font-weight: bold;
-             margin-left: 1rem;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 1rem;
         }
-        .status-upcoming { background-color: rgba(var(--success-color-rgb, 46, 204, 113), 0.1); color: var(--success-color); }
-        .status-soldout { background-color: rgba(var(--danger-color-rgb, 231, 76, 60), 0.1); color: var(--danger-color); }
+        .status-upcoming { background-color: rgba(var(--success-color-rgb), 0.1); color: var(--success-color); }
+        .status-soldout { background-color: rgba(var(--danger-color-rgb), 0.1); color: var(--danger-color); }
         .status-past { background-color: rgba(149, 165, 166, 0.1); color: var(--secondary-color); }
-         :root { --success-color-rgb: 46, 204, 113; --danger-color-rgb: 231, 76, 60; }
-
 
         /* --- 联系我区域 --- */
         #contact {
@@ -821,7 +858,7 @@
             color: var(--light-text);
             position: relative; /* 为波浪形状准备 */
             overflow: hidden;
-             padding-bottom: calc(var(--section-padding-y) + 50px); /* 增加底部空间给波浪 */
+            padding-bottom: calc(var(--section-padding-y) + 50px); /* 增加底部空间给波浪 */
         }
         /* 添加顶部波浪形状分隔 */
         #contact::before {
@@ -834,20 +871,19 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,160L80,176C160,192,320,224,480,218.7C640,213,800,171,960,149.3C1120,128,1280,128,1360,128L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: cover;
-             transform: translateY(-1px); /* 消除缝隙 */
+            transform: translateY(-1px); /* 消除缝隙 */
         }
-
 
         #contact .section-title,
         #contact .section-subtitle {
-             color: var(--light-text);
+            color: var(--light-text);
         }
         #contact .section-title::after {
-             background-color: var(--accent-color); /* 装饰线用点缀色 */
+            background-color: var(--accent-color); /* 装饰线用点缀色 */
         }
-         #contact .section-subtitle {
-             color: var(--muted-text);
-         }
+        #contact .section-subtitle {
+            color: var(--muted-text);
+        }
 
         .contact-content {
             display: grid;
@@ -855,8 +891,8 @@
             gap: 4rem; /* 增大间距 */
             max-width: 1000px; /* 调整最大宽度 */
             margin: 0 auto;
-             position: relative; /* 确保在波浪之上 */
-             z-index: 1;
+            position: relative; /* 确保在波浪之上 */
+            z-index: 1;
         }
 
         .contact-info h4 {
@@ -870,10 +906,10 @@
             margin-bottom: 1.2rem;
             color: var(--muted-text);
             font-size: 1.05rem;
-             line-height: 1.8;
+            line-height: 1.8;
         }
 
-        .contact-info i { /* Font Awesome 图标 */
+        .contact-info i { /* 图标 */
             margin-right: 1rem;
             color: var(--primary-color);
             width: 25px;
@@ -881,21 +917,21 @@
             font-size: 1.2rem; /* 增大图标 */
             vertical-align: middle; /* 图标与文字对齐 */
         }
-         .contact-info a {
-              color: var(--light-text);
-              text-decoration: underline;
-              word-break: break-all; /* 防止长链接溢出 */
-         }
-         .contact-info a:hover {
-              color: var(--accent-color);
-         }
+        .contact-info a {
+            color: var(--light-text);
+            text-decoration: underline;
+            word-break: break-all; /* 防止长链接溢出 */
+        }
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
 
         .contact-form label {
             display: block;
             margin-bottom: 0.6rem;
             font-weight: 600; /* 加粗标签 */
             font-size: 0.95rem;
-             color: var(--light-text);
+            color: var(--light-text);
         }
 
         .contact-form .form-control {
@@ -909,7 +945,7 @@
             border-radius: var(--border-radius-md);
             transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
             margin-bottom: 1.5rem; /* 增大输入框间距 */
-             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .contact-form .form-control:focus {
@@ -919,11 +955,11 @@
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25), inset 0 1px 3px rgba(0,0,0,0.1);
         }
-         /* 输入框占位符样式 */
-         .contact-form .form-control::placeholder {
-             color: var(--muted-text);
-             opacity: 0.8;
-         }
+        /* 输入框占位符样式 */
+        .contact-form .form-control::placeholder {
+            color: var(--muted-text);
+            opacity: 0.8;
+        }
 
         .contact-form textarea.form-control {
             min-height: 150px;
@@ -934,20 +970,22 @@
             width: 100%;
             padding: 1rem 1.5rem;
             font-size: 1.1rem;
-             background-color: var(--accent-color); /* 提交按钮用点缀色 */
-             border-color: var(--accent-color);
-             color: var(--dark-bg); /* 点缀色配深色文字 */
+            background-color: var(--accent-color); /* 提交按钮用点缀色 */
+            border-color: var(--accent-color);
+            color: var(--dark-bg); /* 点缀色配深色文字 */
         }
         .contact-form .btn:hover {
             background-color: #e67e22; /* 点缀色加深 */
             border-color: #e67e22;
-             color: var(--white-bg);
+            color: var(--white-bg);
         }
 
-        #form-message {
+        #form-message-visual {
             margin-top: 1.5rem;
             font-weight: bold;
-             text-align: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         /* --- 页脚样式 --- */
@@ -959,22 +997,22 @@
         }
 
         .footer-content {
-             display: flex;
-             flex-direction: column;
-             align-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .footer-logo { /* 页脚 Logo 或名字 */
-             font-family: var(--heading-font);
-             font-size: 1.8rem;
-             font-weight: 700;
-             color: var(--light-text);
-             margin-bottom: 1.5rem;
-             text-decoration: none;
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            text-decoration: none;
         }
         .footer-logo:hover {
-             color: var(--primary-color);
-             text-decoration: none;
+            color: var(--primary-color);
+            text-decoration: none;
         }
 
         .social-links-footer a {
@@ -990,24 +1028,16 @@
             color: var(--primary-color);
             transform: translateY(-3px); /* 悬停图标上移 */
         }
-        /* 示例：使用文字图标 */
-        .icon-placeholder::before {
-             content: '🔗'; /* 替换为真实图标代码 */
-             display: inline-block;
-             font-style: normal;
-        }
 
         .footer p.copyright {
             margin-top: 2.5rem; /* 增加与上方间距 */
             font-size: 0.9rem;
-            color: rgba(var(--light-text-rgb, 236, 240, 241), 0.6); /* 更淡的版权文字 */
+            color: rgba(var(--light-text-rgb), 0.6); /* 更淡的版权文字 */
         }
-         :root { --light-text-rgb: 236, 240, 241; }
-
         .footer p.design-credit { /* 设计者信息 */
-             font-size: 0.85rem;
-             color: rgba(var(--light-text-rgb, 236, 240, 241), 0.4);
-             margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(var(--light-text-rgb), 0.4);
+            margin-top: 0.5rem;
         }
 
         /* --- 响应式设计 --- */
@@ -1019,7 +1049,7 @@
             }
             html { font-size: 15px; }
             .section-title { font-size: 2.4rem; }
-             .section-title::after { width: 70px; }
+            .section-title::after { width: 70px; }
             .hero h1 { font-size: 3.5rem; }
             .hero p.lead { font-size: 1.4rem; }
             .about-content { grid-template-columns: 1fr; gap: 3rem; }
@@ -1027,15 +1057,15 @@
             .about-image img { max-width: 350px; }
             .contact-content { grid-template-columns: 1fr; gap: 3rem; }
             .contact-info { margin-bottom: 2rem; text-align: center; }
-             .contact-info p { text-align: left; display: inline-block;} /* 让信息左对齐但整体居中 */
-             .tour-list { padding: 1.5rem; }
+            .contact-info p { text-align: left; display: inline-block;} /* 让信息左对齐但整体居中 */
+            .tour-list { padding: 1.5rem; }
         }
 
         @media (max-width: 768px) {
             /* 小型屏幕 (手机横屏或大手机) */
             :root {
-                 --section-padding-y: 4rem;
-                 --section-padding-x: 1rem;
+                --section-padding-y: 4rem;
+                --section-padding-x: 1rem;
             }
             .navbar { padding: 0 1rem; }
             .navbar-brand { font-size: 1.8rem; }
@@ -1050,14 +1080,14 @@
                 padding: 1rem 0;
                 border-top: 1px solid #eee;
                 box-shadow: var(--shadow-md);
-                 /* 动画效果 */
-                 max-height: 0;
-                 overflow: hidden;
-                 transition: max-height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 带回弹效果 */
+                /* 动画效果 */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 带回弹效果 */
             }
             .navbar-nav.active {
                 display: flex; /* JS 会添加这个类 */
-                 max-height: 500px; /* 足够大的高度 */
+                max-height: 500px; /* 足够大的高度 */
             }
             .nav-item {
                 margin: 0;
@@ -1080,40 +1110,40 @@
             .hero .btn { margin-bottom: 0.5rem; display: block; width: 80%; margin-left:auto; margin-right: auto;} /* 按钮堆叠 */
 
             .tour-item {
-                 grid-template-columns: 90px 1fr; /* 日期和详情 */
-                 gap: 1.5rem;
-                 padding: 1.5rem 0;
-             }
+                grid-template-columns: 90px 1fr; /* 日期和详情 */
+                gap: 1.5rem;
+                padding: 1.5rem 0;
+            }
             .tour-item .btn, .tour-item .tour-status {
-                 grid-column: 1 / -1; /* 按钮和状态独占一行 */
-                 margin-top: 1rem;
-                 text-align: center;
-                 display: inline-block; /* 防止按钮充满宽度 */
-             }
-             .tour-item .btn { margin-left: 0; } /* 移除按钮左边距 */
+                grid-column: 1 / -1; /* 按钮和状态独占一行 */
+                margin-top: 1rem;
+                text-align: center;
+                display: inline-block; /* 防止按钮充满宽度 */
+            }
+            .tour-item .btn { margin-left: 0; } /* 移除按钮左边距 */
             .tour-date span.day { font-size: 2rem; }
 
-             .skills-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem;} /* 技能项每行两个 */
-             .music-grid { grid-template-columns: 1fr; gap: 2rem; } /* 音乐卡片单列 */
+            .skills-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem;} /* 技能项每行两个 */
+            .music-grid { grid-template-columns: 1fr; gap: 2rem; } /* 音乐卡片单列 */
         }
 
         @media (max-width: 576px) {
             /* 超小型屏幕 (大部分手机竖屏) */
-             html { font-size: 14px; }
+            html { font-size: 14px; }
             .section-title { font-size: 2rem; }
-             .section-title::after { width: 60px; }
+            .section-title::after { width: 60px; }
             .section-subtitle { font-size: 1.1rem; margin-bottom: 3rem;}
             .hero h1 { font-size: 2.2rem; }
             .hero p.lead { font-size: 1.1rem; }
-             .hero .btn { width: 90%; padding: 0.8rem 1.5rem; font-size: 0.9rem;}
+            .hero .btn { width: 90%; padding: 0.8rem 1.5rem; font-size: 0.9rem;}
 
-             .about-text h3 { font-size: 1.8rem; }
-             .skills-grid { grid-template-columns: 1fr; } /* 技能项单列 */
-             .music-card img { height: 250px; }
-             .contact-content { gap: 2rem; }
-             .contact-form .form-control { padding: 0.8rem 1rem; }
-             .footer { padding: 3rem var(--section-padding-x) 1.5rem; }
-             .social-links-footer a { font-size: 1.4rem; margin: 0 0.8rem; }
+            .about-text h3 { font-size: 1.8rem; }
+            .skills-grid { grid-template-columns: 1fr; } /* 技能项单列 */
+            .music-card img { height: 250px; }
+            .contact-content { gap: 2rem; }
+            .contact-form .form-control { padding: 0.8rem 1rem; }
+            .footer { padding: 3rem var(--section-padding-x) 1.5rem; }
+            .social-links-footer a { font-size: 1.4rem; margin: 0 0.8rem; }
         }
 
         /* --- 动画 --- */
@@ -1162,8 +1192,7 @@
         }
         /* 可以为不同元素设置不同的延迟 (通过 JS 添加 style.transitionDelay) */
 
-
-        /* 预加载器样式 (可选) */
+        /* 预加载器样式 */
         .preloader {
             position: fixed;
             top: 0;
@@ -1178,8 +1207,8 @@
             transition: opacity 0.5s ease-out;
         }
         .preloader.hidden {
-             opacity: 0;
-             pointer-events: none; /* 隐藏后不可点击 */
+            opacity: 0;
+            pointer-events: none; /* 隐藏后不可点击 */
         }
         /* 简单的旋转加载动画 */
         .spinner {
@@ -1193,12 +1222,11 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- 可选: 页面预加载器 -->
+    <!-- 页面预加载器 -->
     <div class="preloader" id="preloader">
         <div class="spinner"></div>
     </div>
@@ -1208,11 +1236,9 @@
         <div class="container">
             <a href="#hero" class="navbar-brand">王子轩</a>
             <button class="navbar-toggler" id="navbar-toggler" aria-label="切换导航">
-                <!-- 使用三条横线图标 (纯 CSS 实现或 SVG) -->
-                <span></span>
-                <span></span>
-                <span></span>
-                <!-- 或者使用文字图标 &#9776; -->
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
             </button>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="nav-item"><a href="#hero" class="nav-link active">首页</a></li>
@@ -1237,8 +1263,7 @@
         </div>
         <!-- 向下滚动提示 -->
         <a href="#about" class="scroll-down-indicator" aria-label="滚动到下一部分">
-             <!-- 可以用 SVG 或 Font Awesome 替换 -->
-             &#8595;
+            <i class="fas fa-chevron-down"></i>
         </a>
     </header>
 
@@ -1246,13 +1271,11 @@
         <!-- ===== 关于我区域 ===== -->
         <section id="about" class="section-padding">
             <div class="container">
-                <!-- 标题不需要副标题时，可以移除 p.section-subtitle -->
                 <h2 class="section-title">认识我</h2>
                 <div class="about-content">
                     <div class="about-image-wrapper">
                         <div class="about-image">
-                            <!-- 更换为人像占位符 -->
-                            <img src="https://source.unsplash.com/400x500/?musician,portrait,creative" alt="王子轩">
+                            <img src="/api/placeholder/400/500" alt="王子轩">
                         </div>
                     </div>
                     <div class="about-text">
@@ -1267,7 +1290,7 @@
             </div>
         </section>
 
-         <!-- ===== 技术专长区域 (新增) ===== -->
+        <!-- ===== 技术专长区域 ===== -->
         <section id="skills" class="section-padding bg-light">
             <div class="container">
                 <h2 class="section-title">技艺与专长</h2>
@@ -1275,33 +1298,39 @@
                 <div class="skills-grid">
                     <!-- 技能项 1 -->
                     <div class="skill-item">
-                        <div class="skill-icon icon-music"></div> <!-- 音乐图标 -->
+                        <div class="skill-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
                         <h4>音乐制作 & 编曲</h4>
                         <p>精通多种音乐风格的制作流程，擅长旋律创作、和声编配与器乐编排。</p>
                     </div>
                     <!-- 技能项 2 -->
                     <div class="skill-item">
-                        <div class="skill-icon icon-settings"></div> <!-- 设置/齿轮图标 -->
+                        <div class="skill-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
                         <h4>混音 & 母带处理</h4>
                         <p>追求声音的清晰度、平衡感与冲击力，提供符合商业标准的音频后期处理。</p>
                     </div>
                     <!-- 技能项 3 -->
                     <div class="skill-item">
-                        <div class="skill-icon icon-speaker"></div> <!-- 扬声器图标 -->
+                        <div class="skill-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
                         <h4>声音设计 & 音效</h4>
                         <p>为影视、游戏、动画等项目创造独特的声音环境和效果，增强沉浸感。</p>
                     </div>
                     <!-- 技能项 4 -->
                     <div class="skill-item">
-                        <div class="skill-icon icon-code"></div> <!-- 代码/计算机图标 -->
+                        <div class="skill-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
                         <h4>DAW & 音乐技术</h4>
                         <p>熟练运用主流宿主软件 (如 Pro Tools, Logic Pro, Ableton Live) 及各类插件。</p>
                     </div>
-                    <!-- 可以添加更多技能项 -->
                 </div>
             </div>
         </section>
-
 
         <!-- ===== 音乐作品区域 ===== -->
         <section id="music" class="section-padding">
@@ -1312,8 +1341,7 @@
                     <!-- 作品卡片 1 -->
                     <div class="music-card">
                         <div class="music-card-image">
-                            <!-- 更换为抽象艺术或音乐相关占位符 -->
-                            <img src="https://source.unsplash.com/400x400/?abstract,art,soundwave" alt="专辑: 时光碎片">
+                            <img src="/api/placeholder/400/400" alt="专辑: 时光碎片">
                             <div class="play-button-overlay"></div> <!-- 播放按钮覆盖层 -->
                         </div>
                         <div class="music-card-body">
@@ -1322,58 +1350,58 @@
                             <p class="description">探索记忆与时间的概念，融合氛围电子与新古典元素，构建空灵梦境。</p>
                             <a href="#" class="btn btn-primary btn-sm">试听</a>
                             <span class="platform-links ml-2">
-                                <a href="#" title="网易云音乐"><i class="icon-placeholder">N</i></a> <!-- 替换为真实图标 -->
-                                <a href="#" title="QQ音乐"><i class="icon-placeholder">Q</i></a>
+                                <a href="#" title="网易云音乐"><i class="fab fa-soundcloud"></i></a>
+                                <a href="#" title="QQ音乐"><i class="fab fa-qq"></i></a>
                             </span>
                         </div>
                     </div>
                     <!-- 作品卡片 2 -->
                     <div class="music-card">
-                         <div class="music-card-image">
-                            <img src="https://source.unsplash.com/400x400/?cityscape,night,neon" alt="单曲: 霓虹低语">
-                             <div class="play-button-overlay"></div>
+                        <div class="music-card-image">
+                            <img src="/api/placeholder/400/400" alt="单曲: 霓虹低语">
+                            <div class="play-button-overlay"></div>
                         </div>
                         <div class="music-card-body">
                             <h4>单曲: 霓虹低语</h4>
                             <p class="date">发行日期: 2024年03月</p>
                             <p class="description">捕捉都市夜晚的迷离与悸动，以 Synthwave 节奏驱动的赛博朋克情歌。</p>
-                             <a href="#" class="btn btn-primary btn-sm">试听</a>
-                             <span class="platform-links ml-2">
-                                 <a href="#" title="Spotify"><i class="icon-placeholder">S</i></a>
-                                 <a href="#" title="Apple Music"><i class="icon-placeholder">A</i></a>
-                             </span>
+                            <a href="#" class="btn btn-primary btn-sm">试听</a>
+                            <span class="platform-links ml-2">
+                                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                                <a href="#" title="Apple Music"><i class="fab fa-apple"></i></a>
+                            </span>
                         </div>
                     </div>
                     <!-- 作品卡片 3 -->
                     <div class="music-card">
-                         <div class="music-card-image">
-                            <img src="https://source.unsplash.com/400x400/?nature,forest,serene" alt="配乐: 迷雾森林">
-                             <div class="play-button-overlay"></div>
+                        <div class="music-card-image">
+                            <img src="/api/placeholder/400/400" alt="配乐: 迷雾森林">
+                            <div class="play-button-overlay"></div>
                         </div>
                         <div class="music-card-body">
                             <h4>电影配乐: 迷雾森林</h4>
                             <p class="date">项目时间: 2024年</p>
                             <p class="description">为独立电影《迷雾森林》创作的原声配乐节选，营造神秘、悬疑的氛围。</p>
-                             <a href="#" class="btn btn-outline-primary btn-sm">了解项目</a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">了解项目</a>
                         </div>
                     </div>
-                     <!-- 作品卡片 4 (示例) -->
+                    <!-- 作品卡片 4 -->
                     <div class="music-card">
-                         <div class="music-card-image">
-                            <img src="https://source.unsplash.com/400x400/?minimalism,geometry,white" alt="EP: 无垠">
-                             <div class="play-button-overlay"></div>
+                        <div class="music-card-image">
+                            <img src="/api/placeholder/400/400" alt="EP: 无垠">
+                            <div class="play-button-overlay"></div>
                         </div>
                         <div class="music-card-body">
                             <h4>EP: 无垠</h4>
                             <p class="date">发行日期: 2022年08月</p>
                             <p class="description">早期实验性电子音乐作品，探索极简主义音景与氛围声响。</p>
-                             <a href="#" class="btn btn-primary btn-sm">试听</a>
+                            <a href="#" class="btn btn-primary btn-sm">试听</a>
                         </div>
                     </div>
                 </div>
-                 <div class="text-center mt-5">
-                     <a href="#" class="btn btn-secondary">查看所有作品</a>
-                 </div>
+                <div class="text-center mt-5">
+                    <a href="#" class="btn btn-secondary">查看所有作品</a>
+                </div>
             </div>
         </section>
 
@@ -1386,13 +1414,13 @@
                     <!-- 演出条目 1 -->
                     <div class="tour-item">
                         <div class="tour-date">
-                             <span class="month">九月</span>
-                             <span class="day">28</span>
+                            <span class="month">九月</span>
+                            <span class="day">28</span>
                         </div>
                         <div class="tour-details">
                             <h5>「时光碎片」新专巡演 - 上海站</h5>
-                            <p><i class="icon-placeholder">📍</i>地点: MAO Livehouse Shanghai</p>
-                            <p><i class="icon-placeholder">⏰</i>时间: 20:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i>地点: MAO Livehouse Shanghai</p>
+                            <p><i class="fas fa-clock"></i>时间: 20:00 PM</p>
                         </div>
                         <div>
                             <a href="#" class="btn btn-primary btn-sm">购票</a>
@@ -1403,56 +1431,56 @@
                     <div class="tour-item">
                         <div class="tour-date">
                             <span class="month">十月</span>
-                             <span class="day">12</span>
+                            <span class="day">12</span>
                         </div>
                         <div class="tour-details">
                             <h5>草莓音乐节 - 成都</h5>
-                            <p><i class="icon-placeholder">📍</i>地点: 成都非物质文化遗产博览园</p>
-                            <p><i class="icon-placeholder">⏰</i>时间: 待定 (下午场)</p>
+                            <p><i class="fas fa-map-marker-alt"></i>地点: 成都非物质文化遗产博览园</p>
+                            <p><i class="fas fa-clock"></i>时间: 待定 (下午场)</p>
                         </div>
                         <div>
-                             <a href="#" class="btn btn-outline-primary btn-sm">查看阵容</a>
-                             <span class="tour-status status-upcoming">即将开始</span>
-                         </div>
+                            <a href="#" class="btn btn-outline-primary btn-sm">查看阵容</a>
+                            <span class="tour-status status-upcoming">即将开始</span>
+                        </div>
                     </div>
-                     <!-- 动态条目 (非演出) -->
-                     <div class="tour-item">
+                    <!-- 动态条目 (非演出) -->
+                    <div class="tour-item">
                         <div class="tour-date" style="background: linear-gradient(135deg, var(--accent-color), #f1c40f);">
-                             <span class="month">八月</span>
-                             <span class="day">15</span>
+                            <span class="month">八月</span>
+                            <span class="day">15</span>
                         </div>
                         <div class="tour-details">
                             <h5>工作室访谈 & 直播</h5>
-                            <p><i class="icon-placeholder">💻</i>平台: Bilibili 直播间</p>
+                            <p><i class="fas fa-laptop"></i>平台: Bilibili 直播间</p>
                             <p>分享新专辑幕后故事和制作技巧。</p>
                         </div>
-                         <div>
+                        <div>
                             <span class="tour-status status-past">已结束</span>
                             <!-- <a href="#" class="btn btn-secondary btn-sm">观看回放</a> -->
-                         </div>
+                        </div>
                     </div>
                     <!-- 已售罄示例 -->
-                     <div class="tour-item">
+                    <div class="tour-item">
                         <div class="tour-date" style="background: linear-gradient(135deg, var(--secondary-color), #bdc3c7);">
                             <span class="month">七月</span>
                             <span class="day">20</span>
                         </div>
                         <div class="tour-details">
                             <h5>「霓虹低语」单曲发布专场 - 北京</h5>
-                             <p><i class="icon-placeholder">📍</i>地点: 疆进酒 OMNI SPACE</p>
-                             <p><i class="icon-placeholder">⏰</i>时间: 19:30 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i>地点: 疆进酒 OMNI SPACE</p>
+                            <p><i class="fas fa-clock"></i>时间: 19:30 PM</p>
                         </div>
-                         <div>
-                             <a href="#" class="btn btn-secondary btn-sm disabled" aria-disabled="true">查看详情</a> <!-- 按钮禁用 -->
-                             <span class="tour-status status-soldout">已售罄</span>
-                         </div>
+                        <div>
+                            <a href="#" class="btn btn-secondary btn-sm disabled" aria-disabled="true">查看详情</a> <!-- 按钮禁用 -->
+                            <span class="tour-status status-soldout">已售罄</span>
+                        </div>
                     </div>
                 </div>
-                 <div class="text-center mt-5">
+                <div class="text-center mt-5">
                     <p class="text-muted">更多演出和动态正在筹备中，敬请期待！</p>
                     <!-- 可以放一个订阅邮件列表的入口 -->
                     <!-- <a href="#contact" class="btn btn-link">订阅更新？</a> -->
-                 </div>
+                </div>
             </div>
         </section>
 
@@ -1466,23 +1494,23 @@
                         <h4>联系方式</h4>
                         <p>期待听到你的声音。可以通过以下方式找到我，或者使用右侧的表单快速留言。</p>
                         <p>
-                            <i class="icon-placeholder">✉️</i> <!-- 替换为真实图标 -->
+                            <i class="fas fa-envelope"></i>
                             <strong>邮箱:</strong> <a href="mailto:zixuan.placeholder@email.com">zixuan.placeholder@email.com</a>
                         </p>
                         <p>
-                             <i class="icon-placeholder">📱</i> <!-- 替换为真实图标 -->
-                             <strong>业务合作 (微信/电话):</strong> <a href="#">+86 139 1234 5678</a> (请注明来意)
-                         </p>
+                            <i class="fas fa-mobile-alt"></i>
+                            <strong>业务合作 (微信/电话):</strong> <a href="#">+86 139 1234 5678</a> (请注明来意)
+                        </p>
                         <p>
-                            <i class="icon-placeholder">📍</i> <!-- 替换为真实图标 -->
+                            <i class="fas fa-map-marker-alt"></i>
                             <strong>工作室:</strong> [城市名称], [区域] (仅限预约访问)
                         </p>
-                         <div class="social-links-footer mt-4">
-                            <a href="#" target="_blank" title="微博"><i class="icon-placeholder">Wb</i></a>
-                            <a href="#" target="_blank" title="网易云音乐"><i class="icon-placeholder">Ne</i></a>
-                            <a href="#" target="_blank" title="Bilibili"><i class="icon-placeholder">Bi</i></a>
-                            <a href="#" target="_blank" title="Instagram"><i class="icon-placeholder">In</i></a>
-                         </div>
+                        <div class="social-links-footer mt-4">
+                            <a href="#" target="_blank" title="微博"><i class="fab fa-weibo"></i></a>
+                            <a href="#" target="_blank" title="网易云音乐"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#" target="_blank" title="Bilibili"><i class="fab fa-youtube"></i></a>
+                            <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                     <div class="contact-form">
                         <form action="#" method="post" id="contact-form-visual"> <!-- 修改ID避免与JS冲突 -->
@@ -1516,21 +1544,18 @@
     <!-- ===== 页脚 ===== -->
     <footer class="footer">
         <div class="container footer-content">
-             <a href="#hero" class="footer-logo">王子轩</a>
+            <a href="#hero" class="footer-logo">王子轩</a>
             <div class="social-links-footer mb-4">
-                 <a href="#" target="_blank" title="微博"><i class="icon-placeholder">Wb</i></a>
-                 <a href="#" target="_blank" title="网易云音乐"><i class="icon-placeholder">Ne</i></a>
-                 <a href="#" target="_blank" title="Bilibili"><i class="icon-placeholder">Bi</i></a>
-                 <a href="#" target="_blank" title="Instagram"><i class="icon-placeholder">In</i></a>
-                 <a href="#" target="_blank" title="GitHub (如果适用)"><i class="icon-placeholder">Gh</i></a>
+                <a href="#" target="_blank" title="微博"><i class="fab fa-weibo"></i></a>
+                <a href="#" target="_blank" title="网易云音乐"><i class="fab fa-soundcloud"></i></a>
+                <a href="#" target="_blank" title="Bilibili"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
             </div>
             <p class="copyright">&copy; <span id="current-year"></span> 王子轩. 保留所有权利.</p>
-            <p class="design-credit">页面设计灵感 & 代码实现 by Gemini</p>
+            <p class="design-credit">页面设计灵感 & 代码实现</p>
         </div>
     </footer>
-
-    <!-- ===== JavaScript ===== -->
-    // ... (之前的 HTML 和 CSS 代码) ...
 
     <!-- ===== JavaScript ===== -->
     <script>
@@ -1567,40 +1592,6 @@
 
         // 移动端菜单切换
         if (navbarToggler && navMenu) {
-             // 汉堡按钮动画样式切换
-             const setupTogglerAnimation = () => {
-                 if (!navbarToggler.querySelector('.line1')) { // 防止重复添加
-                     navbarToggler.innerHTML = `
-                         <span class="line line1"></span>
-                         <span class="line line2"></span>
-                         <span class="line line3"></span>
-                     `;
-                     const style = document.createElement('style');
-                     style.textContent = `
-                         .navbar-toggler span.line {
-                             display: block;
-                             width: 25px;
-                             height: 3px;
-                             background-color: var(--dark-text);
-                             margin: 5px 0;
-                             transition: all 0.3s ease-in-out;
-                             border-radius: 2px;
-                         }
-                         .navbar-toggler.active .line1 {
-                             transform: translateY(8px) rotate(45deg);
-                         }
-                         .navbar-toggler.active .line2 {
-                             opacity: 0;
-                         }
-                         .navbar-toggler.active .line3 {
-                             transform: translateY(-8px) rotate(-45deg);
-                         }
-                     `;
-                     document.head.appendChild(style);
-                 }
-             };
-             setupTogglerAnimation();
-
             navbarToggler.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
                 navbarToggler.classList.toggle('active');
@@ -1644,7 +1635,7 @@
                             navMenu.classList.remove('active');
                             if(navbarToggler) navbarToggler.classList.remove('active');
                         }
-                         // 手动更新一次激活状态（可选，因为滚动监听也会处理）
+                         // 手动更新一次激活状态
                          updateActiveLinkManual(hash);
                     }
                 }
@@ -1755,8 +1746,6 @@
 
                  }, 1000); // 模拟1秒延迟
             });
-        } else {
-            // console.warn("Contact form or message element not found.");
         }
 
         // --- 元素滚动进入视口动画 ---
@@ -1794,11 +1783,10 @@
         } else {
             // 不支持 IntersectionObserver 的备用方案 (例如，直接显示)
             animatedElements.forEach(el => el.classList.add('visible'));
-            console.log("IntersectionObserver not supported, animations might not work as intended.");
         }
 
 
-        // --- 可选: 简单的视差滚动效果 ---
+        // --- 视差滚动效果 ---
         // 对英雄区域背景应用轻微的垂直位移
         const hero = document.getElementById('hero');
         if (hero) {
@@ -1809,30 +1797,41 @@
              });
         }
 
-        // --- 可选: 鼠标悬停在技能卡片上时图标轻微旋转 ---
-        const skillItems = document.querySelectorAll('.skill-item');
-         skillItems.forEach(item => {
-             const icon = item.querySelector('.skill-icon');
-             if (icon) {
-                 item.addEventListener('mouseenter', () => {
-                     icon.style.transform = 'rotate(15deg) scale(1.1)';
-                     icon.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
-                 });
-                 item.addEventListener('mouseleave', () => {
-                      icon.style.transform = 'rotate(0deg) scale(1)';
-                 });
-             }
-         });
+        // --- 图片加载错误处理 ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            
+            images.forEach(img => {
+                // 添加加载中状态
+                img.classList.add('img-loading');
+                
+                // 图片加载完成
+                img.addEventListener('load', function() {
+                    img.classList.remove('img-loading');
+                });
+                
+                // 图片加载失败
+                img.addEventListener('error', function() {
+                    // 如果图片加载失败，使用占位符
+                    if (!img.src.includes('/api/placeholder/')) {
+                        let width = img.width || 400;
+                        let height = img.height || 400;
+                        // 如果宽高为0，使用默认值
+                        if (width < 10) width = 400;
+                        if (height < 10) height = 400;
+                        
+                        img.src = `/api/placeholder/${width}/${height}`;
+                    }
+                    img.classList.remove('img-loading');
+                });
+            });
+        });
 
-          // --- 页面加载完成后的额外初始化 ---
-         window.addEventListener('load', () => {
-             // 可以在这里执行任何需要在DOM完全加载且资源（如图片）下载完成后执行的代码
-             console.log("Landing page fully loaded and initialized.");
-             // 触发一次滚动事件，确保初始视口的元素动画被正确应用（如果需要）
-             window.dispatchEvent(new Event('scroll'));
-         });
-
-
+        // --- 页面加载完成后的额外初始化 ---
+        window.addEventListener('load', () => {
+            // 触发一次滚动事件，确保初始视口的元素动画被正确应用
+            window.dispatchEvent(new Event('scroll'));
+        });
     </script>
 
 </body>
