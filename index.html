@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="王子轩官方网站 - 音乐人、制作人">
+    <meta name="keywords" content="王子轩, 音乐, 制作人, 专辑, 单曲, 演出">
+    <title>王子轩 | 官方网站</title>
+    <style>
+        /* --- 全局重置和基础样式 --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 平滑滚动效果 */
+            font-size: 16px; /* 设置根字体大小 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden; /* 防止水平溢出 */
+        }
+
+        /* --- 变量定义 --- */
+        :root {
+            --primary-color: #007bff; /* 主题色 - 蓝色 */
+            --secondary-color: #6c757d; /* 次要色 - 灰色 */
+            --light-color: #f8f9fa; /* 亮色 - 近白 */
+            --dark-color: #343a40; /* 暗色 - 深灰 */
+            --accent-color: #ffc107; /* 点缀色 - 黄色 */
+            --text-color: #212529; /* 主要文字颜色 */
+            --link-color: var(--primary-color);
+            --link-hover-color: #0056b3;
+            --section-padding: 6rem 1rem; /* 区块上下内边距 */
+            --container-max-width: 1140px; /* 内容最大宽度 */
+            --navbar-height: 70px; /* 导航栏高度 */
+            --border-radius: 0.25rem; /* 圆角大小 */
+        }
+
+        /* --- 通用工具类 --- */
+        .container {
+            max-width: var(--container-max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-primary {
+            color: var(--primary-color);
+        }
+
+        .text-secondary {
+            color: var(--secondary-color);
+        }
+
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mb-5 { margin-bottom: 3rem; }
+
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mt-5 { margin-top: 3rem; }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: var(--light-color);
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: var(--border-radius);
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            text-decoration: none; /* 移除链接下划线 */
+        }
+
+        .btn:hover {
+            background-color: var(--link-hover-color);
+            border-color: var(--link-hover-color);
+            color: var(--light-color);
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        .btn-outline-primary {
+             color: var(--primary-color);
+             background-color: transparent;
+             background-image: none;
+             border-color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            color: var(--light-color);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* 消除图片底部空隙 */
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none; /* 默认无下划线 */
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline; /* 悬停时显示下划线 */
+        }
+
+        ul {
+            list-style: none; /* 移除列表默认样式 */
+        }
+
+        /* --- 导航栏样式 --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            backdrop-filter: blur(10px); /* 毛玻璃效果 */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: fixed; /* 固定在顶部 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--navbar-height);
+            z-index: 1000; /* 确保在最上层 */
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+             background-color: rgba(255, 255, 255, 1); /* 滚动后变为不透明 */
+             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        .navbar-brand:hover {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative; /* 为下划线动画准备 */
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active /* 可以用 JS 添加 active 类 */
+        {
+            color: var(--primary-color);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* 移动端导航菜单按钮 */
+        .navbar-toggler {
+            display: none; /* 默认隐藏 */
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* --- 英雄区域样式 --- */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080/aaa/ffffff?text=Placeholder+Background+Image'); /* 替换为王子轩的背景图 */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            color: var(--light-color);
+            height: 100vh; /* 视口高度 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: var(--navbar-height); /* 避免内容被导航栏遮挡 */
+            position: relative; /* 为可能的覆盖层或动画准备 */
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem; /* 大标题 */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 文字阴影增加可读性 */
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hero .btn {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+        }
+
+        /* --- 关于我区域 --- */
+        #about {
+            background-color: #fff;
+            padding: var(--section-padding);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 两列布局 */
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 450px; /* 控制图片最大宽度 */
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 图片阴影 */
+            margin: 0 auto; /* 居中显示 */
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            line-height: 1.8; /* 增加行高提升阅读体验 */
+        }
+
+        /* --- 音乐作品区域 --- */
+        #music {
+            padding: var(--section-padding);
+            background-color: var(--light-color);
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 响应式网格布局 */
+            gap: 2rem;
+        }
+
+        .music-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            overflow: hidden; /* 确保圆角生效 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .music-card:hover {
+            transform: translateY(-5px); /* 悬停时轻微上移 */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .music-card img {
+            width: 100%;
+            height: 250px; /* 固定图片高度 */
+            object-fit: cover; /* 保持图片比例填充 */
+            border-bottom: 1px solid #eee;
+        }
+
+        .music-card-body {
+            padding: 1.5rem;
+        }
+
+        .music-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .music-card p {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .music-card .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- 演出/动态区域 --- */
+        #tour {
+            padding: var(--section-padding);
+            background-color: #fff;
+        }
+
+        .tour-list {
+            max-width: 800px;
+            margin: 0 auto; /* 居中列表 */
+        }
+
+        .tour-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto; /* 日期 | 地点/描述 | 按钮 */
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tour-item:last-child {
+            border-bottom: none;
+        }
+
+        .tour-date {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 0.5rem;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .tour-date span {
+            display: block;
+            font-size: 1.5rem; /* 月份 */
+        }
+
+        .tour-details h5 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark-color);
+        }
+
+        .tour-details p {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+        }
+
+        .tour-item .btn {
+            white-space: nowrap; /* 防止按钮文字换行 */
+        }
+
+        /* --- 联系我区域 --- */
+        #contact {
+            padding: var(--section-padding);
+            background-color: var(--dark-color);
+            color: var(--light-color);
+        }
+
+        #contact .section-title,
+        #contact .section-subtitle {
+             color: var(--light-color);
+        }
+         #contact .section-subtitle {
+             color: rgba(255, 255, 255, 0.7);
+         }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-info h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info i { /* Font Awesome 图标 (如果使用) */
+            margin-right: 0.8rem;
+            color: var(--primary-color);
+            width: 20px; /* 固定图标宽度 */
+            text-align: center;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .contact-form .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            margin-bottom: 1rem; /* 输入框间距 */
+        }
+
+        .contact-form .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .contact-form textarea.form-control {
+            min-height: 120px; /* 文本域最小高度 */
+            resize: vertical; /* 允许垂直调整大小 */
+        }
+
+        .contact-form .btn {
+            width: 100%; /* 按钮宽度充满容器 */
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- 页脚样式 --- */
+        .footer {
+            background-color: #212529; /* 更深的背景色 */
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem; /* 图标大小 */
+            margin: 0 0.75rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer p {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- 响应式设计 --- */
+        @media (max-width: 992px) {
+            /* 中等屏幕 */
+            :root {
+                --section-padding: 4rem 1rem;
+            }
+            .section-title { font-size: 2.2rem; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.3rem; }
+            .about-content { grid-template-columns: 1fr; } /* 关于我改为单列 */
+            .about-image { margin-bottom: 2rem; max-width: 400px;} /* 图片置顶 */
+            .contact-content { grid-template-columns: 1fr; } /* 联系方式改为单列 */
+            .contact-info { margin-bottom: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* 小型屏幕 */
+            html { font-size: 15px; }
+            .navbar { padding: 0 1rem; /* 调整导航栏内边距 */ }
+            .navbar-nav {
+                display: none; /* 隐藏桌面导航 */
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 1rem 0;
+                border-top: 1px solid #eee;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .navbar-nav.active {
+                display: flex; /* 显示移动端菜单 */
+            }
+            .nav-item {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-link {
+                padding: 0.8rem 1rem;
+                display: block; /* 让链接充满宽度 */
+                border-bottom: 1px solid #f1f1f1;
+            }
+             .nav-link::after { display: none; /* 移除移动端下划线动画 */ }
+             .nav-link:hover, .nav-link.active { background-color: #f8f8f8; color: var(--primary-color); }
+            .navbar-toggler { display: block; /* 显示汉堡菜单按钮 */ }
+
+            .hero { height: 80vh; } /* 减少移动端高度 */
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .tour-item { grid-template-columns: 80px 1fr; gap: 1rem; } /* 调整巡演布局 */
+            .tour-item .btn { grid-column: 1 / -1; margin-top: 1rem; text-align: center; display:block; } /* 按钮独占一行 */
+            .tour-date span { font-size: 1.3rem; }
+
+        }
+
+        @media (max-width: 576px) {
+            /* 超小型屏幕 */
+             html { font-size: 14px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
+             .section-subtitle { font-size: 1rem; margin-bottom: 2rem;}
+             .music-card img { height: 200px; }
+        }
+
+        /* --- 简单的动画（可选） --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 为每个section应用动画，延迟不同 */
+        #about, #music, #tour, #contact {
+            /* 可以用 JS 在元素进入视口时添加 fade-in 类 */
+            /* 默认先隐藏，用JS控制 */
+             opacity: 0;
+        }
+    </style>
+    <!-- 如果需要引入图标库，可以在这里添加链接，例如 Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+</head>
+<body>
+
+    <!-- ===== 导航栏 ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">王子轩</a>
+            <button class="navbar-toggler" id="navbar-toggler" aria-label="切换导航">
+                <span>&#9776;</span> <!-- 汉堡菜单图标 -->
+            </button>
+            <ul class="navbar-nav" id="navbar-nav">
+                <li class="nav-item"><a href="#hero" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">关于我</a></li>
+                <li class="nav-item"><a href="#music" class="nav-link">音乐作品</a></li>
+                <li class="nav-item"><a href="#tour" class="nav-link">演出动态</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">联系我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== 英雄区域 ===== -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <h1>王子轩</h1>
+            <p class="mb-4">探索声音的界限 | 音乐人 & 制作人</p>
+            <a href="#music" class="btn btn-lg">聆听我的音乐</a>
+            <!-- 可以添加第二个按钮, e.g., <a href="#contact" class="btn btn-lg btn-outline-primary ml-2">联系合作</a> -->
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== 关于我区域 ===== -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">关于我</h2>
+                <p class="section-subtitle">一段音乐塑造的旅程</p>
+                <div class="about-content">
+                    <div class="about-image">
+                        <!-- 替换为王子轩的真实照片 -->
+                        <img src="https://via.placeholder.com/450x550/ccc/ffffff?text=王子轩+照片" alt="王子轩">
+                    </div>
+                    <div class="about-text">
+                        <h3>你好，我是王子轩</h3>
+                        <p>欢迎来到我的个人空间。我是一位热衷于探索声音可能性的音乐人与制作人。从小就对旋律和节奏充满好奇，音乐成为了我表达情感、讲述故事的方式。</p>
+                        <p>我的创作深受多种风格的影响，从古典到电子，从爵士到流行。我相信音乐是无界的语言，能够连接不同的文化和心灵。我致力于创作触动人心、引发共鸣的音乐作品。</p>
+                        <p>在这里，你可以找到我的最新作品、了解我的创作理念，以及获取我的演出信息。希望我的音乐能为你带来片刻的宁静或激情。</p>
+                        <a href="#contact" class="btn btn-outline-primary">了解更多 & 合作</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 音乐作品区域 ===== -->
+        <section id="music">
+            <div class="container">
+                <h2 class="section-title">音乐作品</h2>
+                <p class="section-subtitle">精选专辑与单曲</p>
+                <div class="music-grid">
+                    <!-- 作品卡片 1 -->
+                    <div class="music-card">
+                        <!-- 替换为专辑封面 -->
+                        <img src="https://via.placeholder.com/300x300/ddd/ffffff?text=专辑封面+1" alt="专辑 1">
+                        <div class="music-card-body">
+                            <h4>专辑名称 1</h4>
+                            <p class="text-secondary">发行日期: 2023年10月</p>
+                            <p>这是一段关于这张专辑的简短描述，突出其风格和主题。</p>
+                            <a href="#" class="btn btn-sm">立即收听</a>
+                            <!-- 可以链接到音乐平台 -->
+                        </div>
+                    </div>
+                    <!-- 作品卡片 2 -->
+                    <div class="music-card">
+                        <img src="https://via.placeholder.com/300x300/ddd/ffffff?text=专辑封面+2" alt="专辑 2">
+                        <div class="music-card-body">
+                            <h4>单曲：心之旋律</h4>
+                            <p class="text-secondary">发行日期: 2024年02月</p>
+                            <p>探索内心世界的动人旋律，融合了电子与原声元素。</p>
+                            <a href="#" class="btn btn-sm">立即收听</a>
+                        </div>
+                    </div>
+                    <!-- 作品卡片 3 -->
+                    <div class="music-card">
+                        <img src="https://via.placeholder.com/300x300/ddd/ffffff?text=专辑封面+3" alt="专辑 3">
+                        <div class="music-card-body">
+                            <h4>合作项目：城市回响</h4>
+                            <p class="text-secondary">合作艺人: XXX</p>
+                            <p>与知名艺术家 XXX 合作，捕捉现代都市的节奏与情感。</p>
+                            <a href="#" class="btn btn-sm">立即收听</a>
+                        </div>
+                    </div>
+                     <!-- 更多作品卡片... -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 演出/动态区域 ===== -->
+        <section id="tour">
+            <div class="container">
+                <h2 class="section-title">演出与动态</h2>
+                <p class="section-subtitle">和我现场见，或关注最新消息</p>
+                <div class="tour-list">
+                    <!-- 演出条目 1 -->
+                    <div class="tour-item">
+                        <div class="tour-date">
+                            <span>15</span>
+                            八月
+                        </div>
+                        <div class="tour-details">
+                            <h5>城市音乐节</h5>
+                            <p>地点：[城市名称], [具体场馆]</p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary btn-sm">查看详情</a>
+                    </div>
+                    <!-- 演出条目 2 -->
+                    <div class="tour-item">
+                        <div class="tour-date">
+                            <span>28</span>
+                            九月
+                        </div>
+                        <div class="tour-details">
+                            <h5>新专辑发布演出</h5>
+                            <p>地点：[城市名称], Livehouse</p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary btn-sm">购票</a>
+                    </div>
+                     <!-- 演出条目 3 (已结束或只是动态) -->
+                     <div class="tour-item">
+                        <div class="tour-date" style="background-color: var(--secondary-color);">
+                            <span>10</span>
+                            七月
+                        </div>
+                        <div class="tour-details">
+                            <h5>工作室直播</h5>
+                            <p>平台：[直播平台名称]</p>
+                        </div>
+                        <span class="text-secondary">已结束</span>
+                    </div>
+                    <!-- 更多演出条目... -->
+                </div>
+                 <div class="text-center mt-4">
+                    <p>目前没有更多公开演出计划，敬请期待！</p>
+                    <!-- 或者可以放一个订阅邮件列表的入口 -->
+                 </div>
+            </div>
+        </section>
+
+        <!-- ===== 联系我区域 ===== -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">联系我</h2>
+                <p class="section-subtitle">期待与你交流合作</p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h4>保持联系</h4>
+                        <p>如果你对我的音乐感兴趣，或者有任何合作意向（演出、制作、授权等），欢迎通过以下方式联系我，或者直接填写右侧的表单。</p>
+                        <p>
+                            <!-- 使用 Font Awesome 图标示例, 需要引入库 -->
+                            <!-- <i class="fas fa-envelope"></i> -->
+                            <strong>邮箱:</strong> <a href="mailto:zixuan.wang@email.com" style="color: var(--light-color);">zixuan.wang@email.com</a>
+                        </p>
+                        <p>
+                            <!-- <i class="fas fa-phone"></i> -->
+                            <strong>电话:</strong> (仅限业务合作) +86 138 0000 0000
+                        </p>
+                        <p>
+                            <!-- <i class="fas fa-map-marker-alt"></i> -->
+                            <strong>工作室:</strong> [城市名称], [区], [街道地址] (预约访问)
+                        </p>
+                         <!-- 社交媒体链接也可以放在这里 -->
+                         <div class="social-links mt-3">
+                            <a href="#" target="_blank" title="微博"><i class="fab fa-weibo">Weibo</i></a> <!-- 替换为真实图标 -->
+                            <a href="#" target="_blank" title="网易云音乐"><i class="fab fa-soundcloud">Netease</i></a>
+                            <a href="#" target="_blank" title="Bilibili"><i class="fab fa-youtube">Bilibili</i></a>
+                         </div>
+                    </div>
+                    <div class="contact-form">
+                        <form action="#" method="post" id="contact-form">
+                             <!-- 可以添加后端处理地址到 action -->
+                            <div class="mb-3">
+                                <label for="name">姓名:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">邮箱:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                             <div class="mb-3">
+                                <label for="subject">主题:</label>
+                                <input type="text" class="form-control" id="subject" name="subject">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message">内容:</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">发送消息</button>
+                        </form>
+                        <div id="form-message" class="mt-3" style="color: var(--light-color);"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <!-- 在页脚再次放置社交链接，或使用不同样式 -->
+                 <a href="#" target="_blank" title="微博"><i class="fab fa-weibo">Weibo Icon</i></a>
+                 <a href="#" target="_blank" title="网易云音乐"><i class="fab fa-soundcloud">Netease Icon</i></a>
+                 <a href="#" target="_blank" title="Bilibili"><i class="fab fa-youtube">Bili Icon</i></a>
+                 <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram">Insta Icon</i></a>
+                 <!-- 提示：实际使用时请替换为真实的图标库代码，如 Font Awesome <i class="fab fa-weibo"></i> -->
+            </div>
+            <p>&copy; <span id="current-year"></span> 王子轩. 版权所有.</p>
+            <p>网站设计与开发 by Gemini</p> <!-- 可以移除或修改 -->
+        </div>
+    </footer>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        // --- 动态设置当前年份 ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- 导航栏滚动效果 ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // 向下滚动超过 50px 时
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- 移动端导航菜单切换 ---
+        const toggler = document.getElementById('navbar-toggler');
+        const navMenu = document.getElementById('navbar-nav');
+
+        toggler.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // --- 点击移动端导航链接后关闭菜单 ---
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // --- 简单的表单提交处理 (前端示例) ---
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // 阻止表单默认提交行为
+
+                // 在这里可以添加 AJAX 请求将数据发送到后端
+                // ...
+
+                // 显示一个简单的成功消息 (仅作示例)
+                formMessage.textContent = '消息已发送！感谢您的联系。';
+                formMessage.style.color = 'var(--accent-color)'; // 使用点缀色显示成功
+
+                // 可选：清空表单
+                // contactForm.reset();
+
+                // 可选：几秒后隐藏消息
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000); // 5秒后清除消息
+            });
+        }
+
+        // --- Section 淡入动画 (基于滚动位置) ---
+        // 使用 Intersection Observer API 实现更优化的效果
+        const sections = document.querySelectorAll('section[id]'); // 获取所有带 ID 的 section
+
+        const observerOptions = {
+            root: null, // 相对于视口
+            rootMargin: '0px',
+            threshold: 0.1 // 当元素 10% 进入视口时触发
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                    // 可选：触发一次后停止观察
+                    // observer.unobserve(entry.target);
+                } else {
+                     // 可选：如果希望元素离开视口时再次隐藏
+                     // entry.target.style.opacity = '0';
+                     // entry.target.style.transform = 'translateY(20px)';
+                }
+            });
+        };
+
+        const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach(section => {
+            // 初始化样式以便动画生效
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            sectionObserver.observe(section);
+        });
+
+        // --- 平滑滚动到锚点 & 更新导航激活状态 ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // 对导航链接应用平滑滚动
+                if (this.hash !== "" && this.closest('.navbar-nav')) {
+                     e.preventDefault();
+                    const hash = this.hash;
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) {
+                        const navbarHeight = document.getElementById('navbar').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+
+                        // 更新激活状态 (简单版，点击时立即更新)
+                        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+
+         // 监听滚动事件以实时更新导航激活状态 (更健壮的方法)
+         const updateActiveNav = () => {
+            let currentSection = '';
+            const navbarHeight = navbar.offsetHeight;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navbarHeight - 50; // 减去导航高度和一点偏移
+                if (window.pageYOffset >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            // 特殊处理Hero区域
+            if (window.pageYOffset < document.getElementById('about').offsetTop - navbarHeight - 50) {
+                 currentSection = 'hero';
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+         };
+
+         window.addEventListener('scroll', updateActiveNav);
+         window.addEventListener('load', updateActiveNav); // 页面加载时也执行一次
+
+    </script>
+
+</body>
+</html> 
