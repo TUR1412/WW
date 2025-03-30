@@ -9,10 +9,7 @@
     <!-- 引入 Google Fonts (示例) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- 引入 Font Awesome 图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         /* --- 全局重置与基础设定 --- */
         *,
@@ -26,122 +23,76 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            /* 强制显示滚动条，防止页面切换时宽度跳动 */
             overflow-y: scroll;
         }
 
         body {
-            font-family: 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif; /* 优先使用思源黑体 */
             line-height: 1.7;
-            color: #495057;
-            background-color: #ffffff;
+            color: #495057; /* 更柔和的文本色 */
+            background-color: #ffffff; /* 基础背景改为白色 */
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased; /* 抗锯齿 */
             -moz-osx-font-smoothing: grayscale;
         }
 
         /* --- CSS 变量定义 --- */
         :root {
-            /* 基础色板 - 高级现代配色 */
-            --primary-color: #3a86ff; /* 清新蓝 */
-            --primary-dark: #2667cc; /* 主色加深 */
-            --primary-light: #72a8ff; /* 主色变浅 */
-            --secondary-color: #8d99ae; /* 高级灰 */
-            --accent-color: #ff9f1c; /* 橙色强调 */
-            --accent-dark: #e67e00; /* 点缀色加深 */
-            --success-color: #2dd4bf; /* 绿松石绿 */
-            --danger-color: #ef476f; /* 珊瑚红 */
-            
+            /* 基础色板 */
+            --primary-color: #2c6bed; /* 更深沉的蓝色 */
+            --secondary-color: #7a8c9e; /* 更高级的灰色 */
+            --accent-color: #ffa726; /* 温暖的橙色 */
+            --success-color: #26a69a; /* 更优雅的绿色 */
+            --danger-color: #ef5350; /* 柔和的红色 */
+
             /* 背景与文本色 */
-            --light-bg: #f8fafc; /* 超浅灰背景 */
+            --light-bg: #f9fafb; /* 更细腻的浅灰背景 */
             --white-bg: #ffffff;
             --dark-bg: #1e293b; /* 深蓝灰背景 */
-            --dark-bg-light: #334155; /* 比深背景稍浅 */
             --dark-text: #334155; /* 深蓝灰文本 */
-            --light-text: #f1f5f9; /* 浅灰文本 (用于深色背景) */
-            --muted-text: #94a3b8; /* 柔和的次要文本 */
-
-            /* RGB变量 */
-            --primary-rgb: 58, 134, 255;
-            --accent-rgb: 255, 159, 28;
-            --success-rgb: 45, 212, 191;
-            --danger-rgb: 239, 71, 111;
-            --light-rgb: 241, 245, 249;
-            --dark-rgb: 30, 41, 59;
+            --light-text: #f8fafc; /* 浅灰文本 (用于深色背景) */
+            --muted-text: #94a3b8; /* 更柔和的次要文本 */
 
             /* 字体 */
-            --heading-font: 'Montserrat', 'Noto Sans SC', sans-serif;
-            --body-font: 'Noto Sans SC', sans-serif;
+            --heading-font: 'Montserrat', 'Noto Sans SC', sans-serif; /* 标题字体 */
+            --body-font: 'Noto Sans SC', sans-serif; /* 正文字体 */
 
             /* 尺寸与间距 */
-            --navbar-height: 80px;
-            --container-max-width: 1280px;
-            --section-padding-y: 8rem;
-            --section-padding-x: 2rem;
+            --navbar-height: 80px; /* 增加导航栏高度 */
+            --container-max-width: 1280px; /* 稍微增加容器宽度 */
+            --section-padding-y: 8rem; /* 增加垂直内边距 */
+            --section-padding-x: 2rem; /* 增加水平内边距 */
             --border-radius-sm: 0.25rem;
             --border-radius-md: 0.5rem;
-            --border-radius-lg: 1rem;
-            --border-radius-xl: 1.5rem;
+            --border-radius-lg: 1rem; /* 增加圆角半径 */
 
-            /* 阴影 - 更加现代的立体阴影 */
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-            
-            /* 玻璃态效果 */
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-bg-dark: rgba(30, 41, 59, 0.8);
-            --glass-blur: 10px;
-            --glass-border: 1px solid rgba(255, 255, 255, 0.18);
-            
+            /* 阴影 */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
             /* 过渡 */
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             
-            /* 动效曲线 */
-            --ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-            --ease-out: cubic-bezier(0, 0, 0.2, 1);
+            /* 为 primary color 创建 RGB 版本 */
+            --primary-rgb: 44, 107, 237;
+            --accent-color-rgb: 255, 167, 38;
+            --success-color-rgb: 38, 166, 154;
+            --danger-color-rgb: 239, 83, 80;
+            --light-text-rgb: 248, 250, 252;
         }
 
-        /* --- 通用工具类 --- */
+        /* --- 通用样式 --- */
         .container {
             max-width: var(--container-max-width);
             margin-left: auto;
             margin-right: auto;
             padding-left: var(--section-padding-x);
             padding-right: var(--section-padding-x);
-            position: relative;
-            z-index: 1;
         }
-
-        .text-center { text-align: center; }
-        .text-primary { color: var(--primary-color); }
-        .text-secondary { color: var(--secondary-color); }
-        .text-accent { color: var(--accent-color); }
-        .text-light { color: var(--light-text); }
-        .text-dark { color: var(--dark-text); }
-        .text-muted { color: var(--muted-text); }
-
-        .bg-light { background-color: var(--light-bg); }
-        .bg-dark { background-color: var(--dark-bg); }
-        .bg-primary { background-color: var(--primary-color); }
-        .bg-gradient { 
-            background: linear-gradient(120deg, var(--primary-color), var(--primary-dark));
-        }
-
-        .mb-1 { margin-bottom: 0.5rem !important; }
-        .mb-2 { margin-bottom: 1rem !important; }
-        .mb-3 { margin-bottom: 1.5rem !important; }
-        .mb-4 { margin-bottom: 2.5rem !important; }
-        .mb-5 { margin-bottom: 4rem !important; }
-        .mt-1 { margin-top: 0.5rem !important; }
-        .mt-2 { margin-top: 1rem !important; }
-        .mt-3 { margin-top: 1.5rem !important; }
-        .mt-4 { margin-top: 2.5rem !important; }
-        .mt-5 { margin-top: 4rem !important; }
-        .ml-2 { margin-left: 1rem !important; }
 
         .section-padding {
             padding-top: var(--section-padding-y);
@@ -150,31 +101,36 @@
 
         .section-title {
             font-family: var(--heading-font);
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             color: var(--dark-text);
             text-align: center;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
+            letter-spacing: -1px;
             position: relative;
             padding-bottom: 1.2rem;
+            display: inline-block;
         }
-        
-        /* 更现代的标题下划线 */
+
         .section-title::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 100px;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             border-radius: 4px;
         }
 
+        .section-title-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
         .section-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--secondary-color);
             margin-bottom: 4rem;
             text-align: center;
@@ -182,10 +138,9 @@
             margin-left: auto;
             margin-right: auto;
             font-weight: 300;
-            line-height: 1.6;
         }
 
-        /* --- 按钮样式增强 --- */
+        /* --- 按钮样式 --- */
         .btn {
             display: inline-block;
             font-family: var(--heading-font);
@@ -195,52 +150,48 @@
             cursor: pointer;
             user-select: none;
             border: 2px solid transparent;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.2rem;
             font-size: 1rem;
             line-height: 1.5;
             border-radius: var(--border-radius-md);
             transition: all var(--transition-fast);
             text-decoration: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
             z-index: 1;
         }
-        
-        /* 按钮波纹动画效果 */
+
         .btn::after {
             content: '';
             position: absolute;
-            background: rgba(255, 255, 255, 0.2);
-            width: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             height: 0;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            top: var(--y, 50%);
-            left: var(--x, 50%);
-            transition: width 0.6s, height 0.6s;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: height 0.3s ease;
             z-index: -1;
         }
-        
+
         .btn:hover::after {
-            width: 300%;
-            height: 300%;
+            height: 100%;
         }
 
         .btn-primary {
             color: var(--white-bg);
             background-color: var(--primary-color);
             border-color: var(--primary-color);
-            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
+            background-color: #1e56cb; /* 深一点的蓝色 */
+            border-color: #1e56cb;
             color: var(--white-bg);
             transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.35);
+            box-shadow: var(--shadow-md);
             text-decoration: none;
         }
 
@@ -248,30 +199,11 @@
             color: var(--white-bg);
             background-color: var(--secondary-color);
             border-color: var(--secondary-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #7b8699;
-            border-color: #7b8699;
-            color: var(--white-bg);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-accent {
-            color: var(--white-bg);
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.25);
-        }
-        
-        .btn-accent:hover {
-            background-color: var(--accent-dark);
-            border-color: var(--accent-dark);
-            color: var(--white-bg);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(var(--accent-rgb), 0.35);
+        .btn-sm {
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
         }
 
         .btn-outline-primary {
@@ -280,191 +212,24 @@
             border-color: var(--primary-color);
         }
 
-        .btn-outline-primary:hover {
-            color: var(--white-bg);
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.25);
-        }
-
-        .btn-outline-light {
-            color: var(--light-text);
-            background-color: transparent;
-            border-color: var(--light-text);
-        }
-        
-        .btn-outline-light:hover {
-            color: var(--dark-bg);
-            background-color: var(--light-text);
-            border-color: var(--light-text);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(var(--light-rgb), 0.25);
-        }
-        
-        /* 高级玻璃态按钮 */
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--light-text);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-lg {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .btn-sm {
-            padding: 0.5rem 1.2rem;
-            font-size: 0.9rem;
-        }
-        
-        .btn.disabled {
-            opacity: 0.65;
-            pointer-events: none;
-            cursor: not-allowed;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: var(--border-radius-md);
-        }
-        
-        /* 高级图片悬停效果 */
-        .img-hover {
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .img-hover img {
-            transition: transform var(--transition-medium);
-        }
-        
-        .img-hover:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* 图片蒙层渐变效果 */
-        .img-overlay {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .img-overlay::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%);
-            border-radius: var(--border-radius-md);
-            opacity: 0.8;
-            transition: opacity var(--transition-medium);
-        }
-        
-        .img-overlay:hover::after {
-            opacity: 0.6;
-        }
-        
-        /* 图片加载中和错误状态 */
-        .img-loading {
-            position: relative;
-            min-height: 200px;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: shimmer 1.5s infinite linear;
-            background: linear-gradient(90deg, #f0f0f0 0%, #f8f8f8 50%, #f0f0f0 100%);
-            background-size: 200% 100%;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        .img-loading::before {
-            content: '加载中...';
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color var(--transition-fast), transform var(--transition-fast);
-        }
-
-        a:hover {
-            color: var(--primary-dark);
-        }
-
-        ul { list-style: none; }
-
-        /* --- 玻璃态效果卡片 --- */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border-radius: var(--border-radius-lg);
-            border: var(--glass-border);
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* 暗色玻璃态 */
-        .glass-card-dark {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--light-text);
-        }
-
-        /* --- 导航栏样式 --- */
+        /* --- 导航栏 --- */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
+            z-index: 1000;
             height: var(--navbar-height);
-            z-index: 1030;
             display: flex;
             align-items: center;
             transition: all var(--transition-medium);
+            background-color: rgba(255, 255, 255, 0.97);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .navbar.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: var(--shadow-md);
-            height: calc(var(--navbar-height) - 10px);
-        }
-
-        .navbar .container {
+        .navbar-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -472,2507 +237,1772 @@
         }
 
         .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .navbar-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar-brand h1 {
             font-family: var(--heading-font);
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 0;
             color: var(--dark-text);
-            text-decoration: none;
-            transition: all var(--transition-fast);
-            display: flex;
-            align-items: center;
-        }
-        
-        .navbar-brand:hover {
-            text-decoration: none;
-            color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-        
-        /* 品牌标志动画 */
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            transition: transform var(--transition-fast);
-        }
-        
-        .navbar-brand:hover .brand-logo {
-            transform: rotate(10deg);
+            letter-spacing: -1px;
+            line-height: 1.2;
+            font-weight: 700;
         }
 
-        .navbar-nav {
-            display: flex;
-            align-items: center;
+        .navbar-brand .tagline {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .nav-item {
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-menu li {
             margin-left: 2.5rem;
         }
 
-        .nav-link {
+        .navbar-menu a {
             font-family: var(--heading-font);
-            color: var(--secondary-color);
+            color: var(--dark-text);
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            position: relative;
-            transition: all var(--transition-fast);
             font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* 导航链接动画下划线 */
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            transition: width var(--transition-medium);
-            border-radius: 2px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 0;
+            position: relative;
+            transition: color var(--transition-fast);
         }
 
-        .nav-link:hover,
-        .nav-link.active {
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-fast);
+        }
+
+        .navbar-menu a:hover,
+        .navbar-menu a.active {
             color: var(--primary-color);
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
+        .navbar-menu a:hover::after,
+        .navbar-menu a.active::after {
             width: 100%;
         }
 
-        /* 导航菜单按钮 */
-        .navbar-toggler {
+        .navbar-toggle {
             display: none;
-            background: none;
-            border: none;
             cursor: pointer;
-            padding: 0.5rem;
-            line-height: 1;
-            border-radius: var(--border-radius-sm);
-            transition: background-color var(--transition-fast);
-        }
-        
-        .navbar-toggler:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2);
-        }
-        
-        .navbar-toggler:hover {
-            background-color: rgba(var(--primary-rgb), 0.05);
-        }
-        
-        /* 汉堡菜单按钮样式 */
-        .navbar-toggler span.line {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--dark-text);
-            margin: 5px 0;
-            transition: all 0.3s ease-in-out;
-            border-radius: 2px;
-        }
-        
-        .navbar-toggler.active .line1 {
-            transform: translateY(8px) rotate(45deg);
-        }
-        
-        .navbar-toggler.active .line2 {
-            opacity: 0;
-        }
-        
-        .navbar-toggler.active .line3 {
-            transform: translateY(-8px) rotate(-45deg);
+            border: none;
+            background: transparent;
+            width: 35px;
+            height: 25px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* --- 英雄区域样式 --- */
-        .hero {
-            background-image: linear-gradient(rgba(30, 41, 59, 0.8), rgba(30, 41, 59, 0.8)), url('https://www.tooopen.com/img/87_1200.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            color: var(--light-text);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: var(--navbar-height);
-            position: relative;
-            overflow: hidden;
-            padding-bottom: 3rem;
+        .navbar-toggle span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--dark-text);
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
-        
-        /* 粒子背景动画 */
-        .hero::before {
-            content: '';
+
+        .navbar-toggle span:nth-child(1) {
+            top: 0px;
+        }
+
+        .navbar-toggle span:nth-child(2),
+        .navbar-toggle span:nth-child(3) {
+            top: 10px;
+        }
+
+        .navbar-toggle span:nth-child(4) {
+            top: 20px;
+        }
+
+        .navbar-toggle.active span:nth-child(1),
+        .navbar-toggle.active span:nth-child(4) {
+            opacity: 0;
+        }
+
+        .navbar-toggle.active span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .navbar-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        /* --- 英雄区域 --- */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: calc(-1 * var(--navbar-height));
+        }
+
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(58, 134, 255, 0.1) 0%, transparent 15%),
-                radial-gradient(circle at 80% 70%, rgba(255, 159, 28, 0.1) 0%, transparent 15%);
-            z-index: 0;
+            z-index: -1;
+            background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1920&q=90');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.65) saturate(1.3) contrast(1.1);
+            transform: scale(1.05);
+            transition: transform 3s ease-out;
         }
 
         .hero-content {
-            max-width: 900px;
-            animation: heroFadeInUp 1s ease-out 0.5s backwards;
+            text-align: center;
+            color: var(--light-text);
+            max-width: 850px;
+            padding: 3rem;
             position: relative;
             z-index: 1;
+            animation: fadeInUp 1.2s ease-out;
+            backdrop-filter: blur(3px);
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hero h1 {
             font-family: var(--heading-font);
             font-size: 5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
             line-height: 1.1;
-            color: var(--white-bg);
-            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-            letter-spacing: -0.03em;
-            background: linear-gradient(120deg, #ffffff, #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            letter-spacing: -1px;
         }
 
-        .hero p.lead {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
+        .hero h2 {
+            font-size: 1.6rem;
             font-weight: 300;
-            color: var(--muted-text);
-            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-            max-width: 80%;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons {
+            margin-top: 2rem;
         }
 
         .hero .btn {
-            margin: 0 0.5rem 1rem;
-            min-width: 180px;
-        }
-        
-        /* 英雄区按钮容器 */
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            margin: 0 0.8rem 1rem 0.8rem;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-width: 2px;
         }
 
-        /* 向下滚动指示器 */
-        .scroll-down-indicator {
+        .hero .btn-outline-light {
+            border-color: var(--light-text);
+            color: var(--light-text);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero .btn-outline-light:hover {
+            background-color: var(--light-text);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        .animated-gradient {
             position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            text-decoration: none;
-            transition: color var(--transition-fast);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
-        
-        .scroll-down-indicator:hover {
-            color: var(--white-bg);
-            background: rgba(255, 255, 255, 0.2);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(52, 152, 219, 0.3) 0%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(243, 156, 18, 0.3) 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-15px); }
-            60% { transform: translateX(-50%) translateY(-8px); }
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
-        @keyframes heroFadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
 
-        /* --- 关于我区域 --- */
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .float {
+            animation: floatAnimation 6s ease-in-out infinite;
+        }
+
+        .pulse {
+            animation: pulseAnimation 3s ease-in-out infinite;
+        }
+
+        /* 延迟动画类 */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* --- 关于部分 --- */
         #about {
-            background-color: var(--white-bg);
+            background-color: var(--light-bg);
             position: relative;
             overflow: hidden;
         }
-        
-        /* 背景装饰 */
-        #about::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(var(--primary-rgb), 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
 
-        .about-content {
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
-        .about-image-wrapper {
-            position: relative;
-            padding: 20px;
-        }
-        
-        /* 照片装饰边框 */
-        .about-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 85%;
-            height: 85%;
-            border: 10px solid rgba(var(--primary-rgb), 0.1);
-            border-radius: var(--border-radius-lg);
-            z-index: -1;
-            transform: translate(20px, 20px);
-            transition: transform var(--transition-medium);
-        }
-        
-        .about-image-wrapper:hover::before {
-            transform: translate(10px, 10px);
-        }
-        
-        /* 照片悬浮卡片效果 */
         .about-image {
             position: relative;
             border-radius: var(--border-radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
-            transition: transform var(--transition-medium);
-        }
-        
-        .about-image img {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            border-radius: var(--border-radius-lg);
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            transform: translateZ(20px);
-            transition: transform var(--transition-medium);
-        }
-        
-        .about-image:hover {
-            transform: perspective(1000px) rotateY(5deg);
+            height: 100%;
         }
 
-        .about-text h3 {
-            font-family: var(--heading-font);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-text);
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
         }
-        
-        /* 标题下划线动画 */
-        .about-text h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 40%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), transparent);
-            border-radius: 3px;
-            transition: width var(--transition-medium);
+
+        .about-image:hover img {
+            transform: scale(1.04);
         }
-        
-        .about-text:hover h3::after {
-            width: 70%;
-        }
-        
-        .about-text h3 span {
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-        }
-        
-        /* 名字闪光效果 */
-        .about-text h3 span::before {
+
+        .about-image::after {
             content: '';
             position: absolute;
             top: 0;
-            left: -10%;
-            width: 120%;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
-                transparent);
-            transform: skewX(-30deg);
-            animation: nameShinning 6s ease-in-out infinite;
-            opacity: 0;
-        }
-        
-        @keyframes nameShinning {
-            0% { opacity: 0; left: -10%; }
-            10% { opacity: 1; }
-            20% { left: 120%; }
-            100% { opacity: 0; left: 120%; }
+            background: linear-gradient(
+                135deg,
+                rgba(var(--primary-rgb), 0.3) 0%,
+                rgba(var(--accent-color-rgb), 0.3) 100%
+            );
+            opacity: 0.2;
+            transition: opacity var(--transition-medium);
         }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-            line-height: 1.8;
-            font-size: 1.05rem;
+        .about-image:hover::after {
+            opacity: 0.5;
         }
-        
-        /* 引言样式 */
-        .about-text p:first-of-type {
-            font-size: 1.2rem;
-            font-weight: 500;
+
+        .about-content h2 {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
             color: var(--dark-text);
-            border-left: 3px solid var(--primary-color);
-            padding-left: 1rem;
-        }
-        
-        .about-text .signature {
-            font-family: 'cursive', 'Comic Sans MS', sans-serif;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
             display: inline-block;
-            transform: rotate(-5deg);
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-        }
-        
-        /* 技能标签 */
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .skill-tag {
-            background-color: rgba(var(--primary-rgb), 0.1);
-            color: var(--primary-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: var(--border-radius-md);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-        }
-        
-        .skill-tag:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.3);
+            text-align: left;
         }
 
-        /* --- 技术专长区域 --- */
-        #skills {
-            background-color: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* 背景装饰图形 */
-        #skills::before, #skills::after {
+        .about-content h2::after {
             content: '';
             position: absolute;
-            border-radius: 50%;
-            z-index: 0;
+            left: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
         }
-        
-        #skills::before {
-            bottom: -150px;
-            right: -150px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(var(--primary-rgb), 0.05) 0%, transparent 70%);
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--secondary-color);
+            font-size: 1.05rem;
         }
-        
-        #skills::after {
-            top: -100px;
-            left: -100px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
+
+        .about-signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: var(--dark-text);
+            margin-top: 2rem;
+            display: block;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--heading-font);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--secondary-color);
+        }
+
+        /* --- 技能部分 --- */
+        #skills {
+            background-color: var(--white-bg);
+            position: relative;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 5rem;
         }
 
         .skill-item {
-            background-color: var(--white-bg);
-            padding: 2.5rem 2rem;
-            text-align: center;
+            background-color: var(--light-bg);
             border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            text-align: center;
             box-shadow: var(--shadow-md);
-            transition: all var(--transition-medium);
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
             position: relative;
             overflow: hidden;
-            z-index: 1;
-        }
-        
-        /* 技能卡片渐变边框 */
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            z-index: 0;
-            transition: height 0.3s ease;
         }
 
         .skill-item:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
         }
-        
-        .skill-item:hover::before {
-            height: 6px;
-        }
 
         .skill-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            display: inline-block;
             width: 80px;
             height: 80px;
-            line-height: 80px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: rgba(var(--primary-rgb), 0.1);
             border-radius: 50%;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
-        
-        /* 图标3D悬浮效果 */
-        .skill-item:hover .skill-icon {
-            transform: translateY(-5px) rotateY(15deg) scale(1.1);
-            box-shadow: 0 15px 25px -10px rgba(var(--primary-rgb), 0.4);
-            background-color: var(--primary-color);
-            color: white;
+            transition: transform var(--transition-medium);
         }
 
-        .skill-item h4 {
+        .skill-item:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .skill-icon img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .skill-item h3 {
             font-family: var(--heading-font);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--dark-text);
-            transition: color var(--transition-fast);
-        }
-        
-        .skill-item:hover h4 {
-            color: var(--primary-color);
         }
 
         .skill-item p {
             color: var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .software-skills {
+            margin-top: 5rem;
+        }
+
+        .software-skills h3 {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            color: var(--dark-text);
+        }
+
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .software-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .software-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
             font-size: 1rem;
-            line-height: 1.6;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* 通用工具类 */
+        .text-center {
+            text-align: center;
+        }
+        .mt-5 {
+            margin-top: 4rem !important;
+        }
+        .mb-4 {
+            margin-bottom: 2.5rem !important;
         }
 
         /* --- 音乐作品区域 --- */
         #music {
             background-color: var(--white-bg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* 背景波浪装饰 */
-        #music::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f8fafc' fill-opacity='1' d='M0,96L80,85.3C160,75,320,53,480,64C640,75,800,117,960,138.7C1120,160,1280,160,1360,160L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-            z-index: 0;
-            opacity: 0.5;
         }
 
         .music-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            position: relative;
-            z-index: 1;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
         }
 
         .music-card {
             background-color: var(--white-bg);
-            border-radius: var(--border-radius-xl);
+            border-radius: var(--border-radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-md);
             transition: all var(--transition-medium);
             position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
-        
-        /* 卡片悬浮效果增强 */
+
         .music-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-            z-index: 2;
-        }
-        
-        /* 卡片边框特效 */
-        .music-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent 50%, rgba(var(--primary-rgb), 0.1) 50%);
-            z-index: -1;
-            border-radius: calc(var(--border-radius-xl) + 2px);
-            opacity: 0;
-            transition: opacity var(--transition-medium);
-        }
-        
-        .music-card:hover::after {
-            opacity: 1;
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-lg);
         }
 
         .music-card-image {
             position: relative;
             overflow: hidden;
-            padding-top: 100%; /* 1:1 宽高比 */
         }
 
         .music-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
+            height: 300px;
             object-fit: cover;
-            border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
-            transition: transform var(--transition-medium);
+            border-bottom: 1px solid #eee;
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+            transition: transform var(--transition-slow);
         }
-        
+
         .music-card:hover img {
             transform: scale(1.1);
         }
 
-        /* 图片上的播放按钮覆盖层 */
         .play-button-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(45deg, rgba(var(--primary-rgb), 0.7), rgba(var(--accent-color-rgb), 0.7));
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transition: opacity var(--transition-medium);
         }
-        
+
         .music-card:hover .play-button-overlay {
             opacity: 1;
         }
-        
-        /* 播放按钮动画效果 */
-        .play-button {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all var(--transition-medium);
-            transform: scale(0.8);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+
+        .play-button-overlay::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 30px solid var(--white-bg);
+            margin-left: 5px;
+            transition: transform var(--transition-fast);
         }
-        
-        .music-card:hover .play-button {
-            transform: scale(1);
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .play-button i {
-            color: white;
-            font-size: 1.5rem;
-            margin-left: 3px;
-        }
-        
-        /* 专辑标签 */
-        .album-tag {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.3rem 0.7rem;
-            border-radius: var(--border-radius-md);
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-            box-shadow: 0 3px 10px rgba(var(--primary-rgb), 0.4);
-            transform: translateY(-5px);
-            opacity: 0;
-            transition: all var(--transition-medium);
-        }
-        
-        .music-card:hover .album-tag {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* 单曲标签 */
-        .single-tag {
-            background-color: var(--accent-color);
-            box-shadow: 0 3px 10px rgba(var(--accent-rgb), 0.4);
-        }
-        
-        /* 配乐标签 */
-        .soundtrack-tag {
-            background-color: var(--success-color);
-            box-shadow: 0 3px 10px rgba(var(--success-rgb), 0.4);
+
+        .music-card:hover .play-button-overlay::before {
+            transform: scale(1.1);
         }
 
         .music-card-body {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 1.8rem;
         }
 
         .music-card h4 {
             font-family: var(--heading-font);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 0.6rem;
             color: var(--dark-text);
-            transition: color var(--transition-fast);
-            line-height: 1.3;
-        }
-        
-        .music-card:hover h4 {
-            color: var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .music-card p.date {
             color: var(--muted-text);
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
             font-style: italic;
         }
 
         .music-card p.description {
             color: var(--secondary-color);
-            margin-bottom: 2rem;
-            font-size: 1rem;
-            line-height: 1.7;
-            flex-grow: 1;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            min-height: 50px;
         }
 
-        .music-card-actions {
-            display: flex;
-            align-items: center;
-            margin-top: auto;
-        }
-        
         .music-card .btn {
             margin-right: 0.5rem;
-            padding: 0.7rem 1.4rem;
         }
-        
-        /* 平台链接的图标按钮 */
-        .platform-links {
-            display: flex;
-            margin-left: auto;
-        }
-        
+
         .platform-links a {
             color: var(--secondary-color);
             margin: 0 5px;
             font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgba(var(--secondary-color), 0.1);
-            transition: all var(--transition-fast);
-        }
-        
-        .platform-links a:hover {
-            color: var(--white-bg);
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.3);
+            transition: color var(--transition-fast);
         }
 
-        /* --- 演出/动态区域 --- */
+        .platform-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .icon-placeholder::before {
+            content: '🔗';
+            display: inline-block;
+            font-style: normal;
+        }
+
+        /* --- 巡演部分 --- */
         #tour {
             background-color: var(--light-bg);
             position: relative;
-            overflow: hidden;
-        }
-        
-        /* 背景装饰图形 */
-        #tour::before, #tour::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            z-index: 0;
-        }
-        
-        #tour::before {
-            top: 10%;
-            left: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(var(--primary-rgb), 0.08) 20%, transparent 70%);
-            animation: floatBubble 20s infinite alternate ease-in-out;
-        }
-        
-        #tour::after {
-            bottom: 5%;
-            right: -15%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.06) 15%, transparent 60%);
-            animation: floatBubble 25s infinite alternate-reverse ease-in-out;
-        }
-        
-        @keyframes floatBubble {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(5%, 5%); }
         }
 
-        .tour-list {
-            max-width: 900px;
-            margin: 0 auto;
+        .tour-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+
+        .tour-tab {
+            background: none;
+            border: none;
+            font-family: var(--heading-font);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            padding: 0.5rem 2rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
             position: relative;
-            z-index: 1;
-            background-color: var(--white-bg);
-            padding: 3rem;
-            border-radius: var(--border-radius-xl);
-            box-shadow: var(--shadow-lg);
+            transition: color var(--transition-fast);
+        }
+
+        .tour-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-medium);
+        }
+
+        .tour-tab.active {
+            color: var(--primary-color);
+        }
+
+        .tour-tab.active::after {
+            width: 100%;
+        }
+
+        .tour-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tour-content.active {
+            display: block;
         }
 
         .tour-item {
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: 2rem;
+            display: flex;
             align-items: center;
-            padding: 2rem 0;
-            border-bottom: 1px dashed #e2e8f0;
-            transition: all var(--transition-medium);
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* 鼠标悬停效果 */
-        .tour-item:hover {
-            background-color: rgba(var(--primary-rgb), 0.02);
-            transform: translateX(5px);
+            margin-bottom: 2.5rem;
+            background-color: var(--white-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
         }
 
-        .tour-item:last-child {
-            border-bottom: none;
+        .tour-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .tour-date {
+            background: linear-gradient(135deg, var(--primary-color), #4e7ef5);
+            color: var(--white-bg);
+            padding: 2rem;
+            min-width: 120px;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            padding: 1.5rem 0.7rem;
-            border-radius: var(--border-radius-lg);
-            font-weight: 700;
-            line-height: 1.3;
-            box-shadow: 0 10px 20px -5px rgba(var(--primary-rgb), 0.4);
-            transition: all var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
-        
-        /* 日期卡片发光效果 */
+
         .tour-date::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity var(--transition-medium);
-        }
-        
-        .tour-item:hover .tour-date {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px -10px rgba(var(--primary-rgb), 0.5);
-        }
-        
-        .tour-item:hover .tour-date::before {
-            opacity: 1;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
         }
 
-        .tour-date span.month {
-            display: block;
-            font-size: 1rem;
+        .tour-date::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .tour-month {
+            font-size: 0.9rem;
             text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .tour-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0.2rem 0;
+        }
+
+        .tour-year {
+            font-size: 0.9rem;
             opacity: 0.9;
         }
-        
-        .tour-date span.day {
-            display: block;
-            font-size: 2.8rem;
-            font-weight: 800;
-            line-height: 1;
-            margin: 5px 0;
+
+        .tour-info {
+            flex: 1;
+            padding: 1.5rem 2rem;
         }
 
-        .tour-details h5 {
+        .tour-info h3 {
             font-family: var(--heading-font);
             font-size: 1.4rem;
-            margin-bottom: 0.8rem;
             color: var(--dark-text);
-            transition: color var(--transition-fast);
-        }
-        
-        .tour-item:hover .tour-details h5 {
-            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
 
-        .tour-details p {
+        .tour-location {
+            font-size: 0.95rem;
             color: var(--secondary-color);
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.7rem;
             display: flex;
             align-items: center;
         }
-        
-        .tour-details p i {
-            margin-right: 0.8rem;
-            color: var(--primary-color);
+
+        .tour-location::before {
+            content: '📍';
+            margin-right: 0.5rem;
             font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-        
-        /* 演出信息悬浮卡片 */
-        .tour-info-card {
-            max-width: 100%;
-            transition: all var(--transition-medium);
-            opacity: 0;
-            visibility: hidden;
-            position: absolute;
-            left: 150px;
-            top: 100%;
-            z-index: 100;
-            width: 300px;
-            background: var(--white-bg);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-xl);
-            padding: 1.5rem;
-            border-top: 3px solid var(--primary-color);
-            transform: translateY(10px);
-            pointer-events: none;
-        }
-        
-        .tour-item:hover .tour-info-card {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(5px);
         }
 
-        .tour-actions {
+        .tour-description {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .tour-action {
+            padding: 0 2rem;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .tour-status {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: var(--border-radius-md);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .status-upcoming { 
-            background-color: rgba(var(--success-rgb), 0.1); 
-            color: var(--success-color); 
-        }
-        
-        .status-soldout { 
-            background-color: rgba(var(--danger-rgb), 0.1); 
-            color: var(--danger-color); 
-        }
-        
-        .status-past { 
-            background-color: rgba(149, 165, 166, 0.1); 
-            color: var(--secondary-color); 
         }
 
-        /* --- 联系我区域 --- */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- 联系部分 --- */
         #contact {
-            background-color: var(--dark-bg);
-            color: var(--light-text);
+            background-color: var(--white-bg);
             position: relative;
-            overflow: hidden;
-        }
-        
-        /* 波浪背景装饰 */
-        #contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f8fafc' fill-opacity='1' d='M0,160L80,176C160,192,320,224,480,218.7C640,213,800,171,960,149.3C1120,128,1280,128,1360,128L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: cover;
-            z-index: 0;
-        }
-        
-        /* 粒子背景效果 */
-        #contact::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(58, 134, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(255, 159, 28, 0.05) 0%, transparent 20%);
-            z-index: 0;
         }
 
-        #contact .section-title,
-        #contact .section-subtitle {
-            color: var(--light-text);
-            position: relative;
-            z-index: 1;
-        }
-        
-        #contact .section-title::after {
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-dark));
-        }
-        
-        #contact .section-subtitle {
-            color: var(--muted-text);
-        }
-
-        .contact-content {
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 4rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* 联系信息卡片 */
-        .contact-info {
-            background: rgba(51, 65, 85, 0.5);
-            backdrop-filter: blur(var(--glass-blur));
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .contact-info h4 {
-            font-family: var(--heading-font);
-            font-size: 2rem;
-            margin-bottom: 1.8rem;
-            color: var(--accent-color);
-            position: relative;
-            display: inline-block;
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
-        
-        /* 标题下划线 */
-        .contact-info h4::after {
+
+        .contact-card {
+            background-color: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-medium);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-card::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), transparent);
-            border-radius: 3px;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 50%, rgba(var(--primary-rgb), 0.05) 50%);
+            border-radius: 0 0 0 100px;
         }
 
-        .contact-info p {
-            margin-bottom: 1.5rem;
-            color: var(--muted-text);
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-        
-        /* 联系方式项目 */
-        .contact-item {
-            display: flex;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all var(--transition-fast);
-        }
-        
-        .contact-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .contact-item:hover {
-            transform: translateX(5px);
-        }
-        
-        /* 图标容器 */
         .contact-icon {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            background: rgba(var(--primary-rgb), 0.1);
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            background-color: rgba(var(--primary-rgb), 0.1);
             border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin-right: 1rem;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            transition: all var(--transition-medium);
-        }
-        
-        .contact-item:hover .contact-icon {
-            background: var(--primary-color);
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.4);
-        }
-        
-        .contact-text {
-            flex-grow: 1;
-        }
-        
-        .contact-text h5 {
-            color: var(--light-text);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .contact-text p {
-            margin-bottom: 0;
+            align-items: center;
         }
 
-        .contact-info a {
-            color: var(--light-text);
-            text-decoration: none;
-            transition: all var(--transition-fast);
-            display: inline-block;
+        .contact-icon img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
         }
-        
-        .contact-info a:hover {
-            color: var(--accent-color);
-            transform: translateY(-2px);
+
+        .contact-card h3 {
+            font-family: var(--heading-font);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
         }
-        
-        /* 社交媒体链接 */
+
+        .contact-card p {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
         .social-links {
             display: flex;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 1rem;
+            margin-top: 1rem;
         }
-        
+
         .social-link {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background-color: var(--white-bg);
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--light-text);
-            font-size: 1.3rem;
-            transition: all var(--transition-medium);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
         }
-        
+
         .social-link:hover {
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .social-link.weibo:hover {
-            background-color: #e6162d;
-            border-color: #e6162d;
-        }
-        
-        .social-link.neteasemusic:hover {
-            background-color: #c20c0c;
-            border-color: #c20c0c;
-        }
-        
-        .social-link.bilibili:hover {
-            background-color: #00a1d6;
-            border-color: #00a1d6;
-        }
-        
-        .social-link.instagram:hover {
-            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-            border-color: #833ab4;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
 
-        /* 联系表单 */
-        .contact-form {
-            background: rgba(51, 65, 85, 0.5);
-            backdrop-filter: blur(var(--glass-blur));
+        .social-link img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .contact-form form {
+            background-color: var(--light-bg);
+            padding: 3.5rem;
             border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .contact-form-header {
-            margin-bottom: 2rem;
-        }
-        
-        .contact-form-header h4 {
-            font-family: var(--heading-font);
-            font-size: 2rem;
-            color: var(--light-text);
-            margin-bottom: 0.8rem;
-        }
-        
-        .contact-form-header p {
-            color: var(--muted-text);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
-        .contact-form label {
+
+        .form-group label {
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--light-text);
+            color: var(--dark-text);
         }
 
-        .form-control {
+        .form-group input, 
+        .form-group textarea {
             width: 100%;
-            padding: 1.2rem 1.5rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: var(--dark-text);
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid transparent;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e2e8f0;
             border-radius: var(--border-radius-md);
-            transition: all var(--transition-fast);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .form-control:focus {
-            color: var(--dark-text);
             background-color: var(--white-bg);
+            font-family: var(--body-font);
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
             border-color: var(--primary-color);
-            outline: 0;
-            box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.25), inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        /* 输入框占位符样式 */
-        .form-control::placeholder {
-            color: var(--muted-text);
-            opacity: 0.8;
-        }
-
-        textarea.form-control {
-            min-height: 180px;
-            resize: vertical;
-        }
-        
-        /* 表单行 */
-        .form-row {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-col {
-            flex: 1;
-        }
-        
-        /* 提交按钮 */
-        .submit-button {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            background: linear-gradient(45deg, var(--accent-color), var(--accent-dark));
-            border: none;
-            color: white;
-            border-radius: var(--border-radius-md);
-            cursor: pointer;
-            transition: all var(--transition-medium);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 15px rgba(var(--accent-rgb), 0.3);
-        }
-        
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 20px rgba(var(--accent-rgb), 0.4);
-        }
-        
-        /* 按钮加载效果 */
-        .submit-button.loading {
-            color: transparent;
-        }
-        
-        .submit-button.loading::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            margin-top: -10px;
-            margin-left: -10px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s infinite linear;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        #form-message-visual {
-            margin-top: 1.5rem;
-            font-weight: 500;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            padding: 0.8rem;
-            border-radius: var(--border-radius-md);
-        }
-        
-        /* 表单成功消息 */
-        .form-message-success {
-            background-color: rgba(var(--success-rgb), 0.1);
-            color: var(--success-color);
-        }
-        
-        /* 表单错误消息 */
-        .form-message-error {
-            background-color: rgba(var(--danger-rgb), 0.1);
-            color: var(--danger-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
         }
 
         /* --- 页脚 --- */
         .footer {
-            background-color: #111827;
-            color: var(--muted-text);
-            padding: 5rem var(--section-padding-x) 2rem;
-            text-align: center;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 5rem 0 2rem 0;
             position: relative;
             overflow: hidden;
         }
-        
-        /* 页脚背景装饰 */
+
         .footer::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 1)),
-                url('https://www.tooopen.com/img/87_700.jpg');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: multiply;
-            opacity: 0.2;
-            z-index: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         }
 
         .footer-content {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-logo {
-            font-family: var(--heading-font);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--light-text);
-            margin-bottom: 2rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-logo:hover {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        /* 页脚导航 */
-        .footer-nav {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .footer-nav a {
-            color: var(--muted-text);
-            text-decoration: none;
-            transition: all var(--transition-fast);
-            font-weight: 500;
-        }
-        
-        .footer-nav a:hover {
-            color: var(--light-text);
-            transform: translateY(-3px);
-        }
-
-        .social-links-footer {
-            display: flex;
-            gap: 1rem;
+            justify-content: space-between;
             margin-bottom: 3rem;
         }
 
-        .social-links-footer a {
-            color: var(--muted-text);
-            font-size: 1.6rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all var(--transition-medium);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        .social-links-footer a:hover {
+        .footer-brand h2 {
+            font-family: var(--heading-font);
+            font-size: 2rem;
+            margin-bottom: 1rem;
             color: var(--white-bg);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* 社交媒体图标特效 */
-        .social-links-footer a.weibo:hover {
-            background-color: #e6162d;
-            border-color: #e6162d;
-        }
-        
-        .social-links-footer a.neteasemusic:hover {
-            background-color: #c20c0c;
-            border-color: #c20c0c;
-        }
-        
-        .social-links-footer a.bilibili:hover {
-            background-color: #00a1d6;
-            border-color: #00a1d6;
-        }
-        
-        .social-links-footer a.instagram:hover {
-            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-            border-color: #833ab4;
-        }
-        
-        .social-links-footer a.github:hover {
-            background-color: #333;
-            border-color: #333;
         }
 
-        .footer p.copyright {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: rgba(var(--light-rgb), 0.6);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .footer p.design-credit {
-            font-size: 0.85rem;
-            color: rgba(var(--light-rgb), 0.4);
-            margin-top: 0.5rem;
-        }
-        
-        /* 页脚分隔线 */
-        .footer-divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            margin: 2rem auto;
-            border-radius: 3px;
+        .footer-brand p {
+            color: var(--muted-text);
+            max-width: 300px;
         }
 
-        /* --- 响应式设计 --- */
-        @media (max-width: 1200px) {
-            :root {
-                --section-padding-y: 7rem;
-            }
-            
-            .hero h1 {
-                font-size: 4.5rem;
-            }
-            
-            .about-content {
-                gap: 4rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            :root {
-                --section-padding-y: 6rem;
-                --navbar-height: 70px;
-            }
-            
-            html { font-size: 15px; }
-            .section-title { font-size: 2.6rem; }
-            .section-title::after { width: 60px; }
-            
-            .hero h1 { font-size: 3.8rem; }
-            .hero p.lead { font-size: 1.5rem; }
-            
-            .about-content { grid-template-columns: 1fr; gap: 3rem; }
-            .about-image-wrapper { margin-bottom: 1rem; max-width: 450px; margin-left: auto; margin-right: auto; }
-            
-            .contact-content { grid-template-columns: 1fr; gap: 3rem; }
-            .contact-info { margin-bottom: 0; }
-            
-            .tour-list { padding: 2rem; }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --section-padding-y: 5rem;
-                --section-padding-x: 1.5rem;
-            }
-            
-            .navbar { padding: 0 1.5rem; }
-            .navbar-brand { font-size: 1.8rem; }
-            
-            .navbar-nav {
-                display: none;
-                position: absolute;
-                top: var(--navbar-height);
-                left: 0;
-                width: 100%;
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(var(--glass-blur));
-                flex-direction: column;
-                padding: 1.5rem 0;
-                border-top: 1px solid rgba(0, 0, 0, 0.05);
-                box-shadow: var(--shadow-md);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.5s var(--ease-bounce);
-            }
-            
-            .navbar-nav.active {
-                display: flex;
-                max-height: 500px;
-            }
-            
-            .nav-item {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav-link {
-                padding: 1rem 1.5rem;
-                display: block;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-                font-size: 1.1rem;
-            }
-            
-            .nav-link::after { display: none; }
-            
-            .nav-link:hover, .nav-link.active { 
-                background-color: rgba(var(--primary-rgb), 0.05);
-                color: var(--primary-color);
-            }
-            
-            .navbar-toggler { display: block; }
-
-            .hero { min-height: 100vh; height: auto; padding-top: calc(var(--navbar-height) + 3rem); padding-bottom: 6rem; }
-            .hero h1 { font-size: 3.2rem; }
-            .hero p.lead { font-size: 1.3rem; max-width: 100%; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .hero .btn { margin-bottom: 1rem; min-width: 220px; }
-
-            .tour-item {
-                grid-template-columns: 90px 1fr;
-                gap: 1.5rem;
-                padding: 1.5rem 0;
-            }
-            
-            .tour-actions {
-                grid-column: 1 / -1;
-                margin-top: 1.5rem;
-                justify-content: flex-start;
-            }
-            
-            .tour-date span.day { font-size: 2.2rem; }
-
-            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-            .music-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 1.5rem;
-                margin-bottom: 0;
-            }
-        }
-
-        @media (max-width: 576px) {
-            html { font-size: 14px; }
-            :root {
-                --section-padding-y: 4rem;
-                --section-padding-x: 1.2rem;
-            }
-            
-            .section-title { font-size: 2.2rem; }
-            .section-title::after { width: 50px; }
-            .section-subtitle { font-size: 1.1rem; margin-bottom: 3rem; }
-            
-            .hero h1 { font-size: 2.8rem; }
-            .hero p.lead { font-size: 1.2rem; }
-            .hero .btn { min-width: 200px; }
-
-            .about-text h3 { font-size: 2rem; }
-            .about-image-wrapper::before { display: none; }
-            
-            .skills-grid { grid-template-columns: 1fr; gap: 1.8rem; }
-            .contact-content { gap: 2rem; }
-            
-            .contact-form, .contact-info { padding: 1.8rem; }
-            
-            .social-links, .social-links-footer { justify-content: center; }
-            
-            .footer { padding: 3.5rem var(--section-padding-x) 2rem; }
-            .footer-nav { gap: 1.5rem; }
-            .social-links-footer a { font-size: 1.4rem; width: 45px; height: 45px; }
-        }
-
-        /* --- 动画 --- */
-        /* 通用淡入效果 */
-        .fade-in {
-            opacity: 0;
-            transition: opacity var(--transition-slow) ease-out;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-        }
-
-        /* 通用上滑淡入效果 */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity var(--transition-medium) ease-out, transform var(--transition-medium) ease-out;
-        }
-        
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 为每个 section 添加动画类 */
-        #about .about-image,
-        #about .about-text,
-        .skill-item,
-        .music-card,
-        .tour-item,
-        #contact .contact-info,
-        #contact .contact-form {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        #about .about-image.visible,
-        #about .about-text.visible,
-        .skill-item.visible,
-        .music-card.visible,
-        .tour-item.visible,
-        #contact .contact-info.visible,
-        #contact .contact-form.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 预加载器样式 */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--white-bg);
-            z-index: 9999;
+        .footer-links {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+            gap: 4rem;
         }
-        
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        /* 加载动画 */
-        .loader {
-            position: relative;
-            width: 80px;
-            height: 80px;
-        }
-        
-        .loader div {
-            position: absolute;
-            top: 33px;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            animation-timing-function: cubic-bezier(0, 1, 1, 0);
-        }
-        
-        .loader div:nth-child(1) {
-            left: 8px;
-            animation: loader1 0.6s infinite;
-        }
-        
-        .loader div:nth-child(2) {
-            left: 8px;
-            animation: loader2 0.6s infinite;
-        }
-        
-        .loader div:nth-child(3) {
-            left: 32px;
-            animation: loader2 0.6s infinite;
-        }
-        
-        .loader div:nth-child(4) {
-            left: 56px;
-            animation: loader3 0.6s infinite;
-        }
-        
-        @keyframes loader1 {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes loader2 {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(24px, 0); }
-        }
-        
-        @keyframes loader3 {
-            0% { transform: scale(1); }
-            100% { transform: scale(0); }
-        }
-        
-        .loading-text {
-            margin-top: 2rem;
+
+        .footer-links-column h3 {
             font-family: var(--heading-font);
             font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white-bg);
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-links-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links-column ul {
+            list-style: none;
+        }
+
+        .footer-links-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links-column a {
+            color: var(--muted-text);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links-column a:hover {
             color: var(--primary-color);
-            letter-spacing: 0.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        /* --- 视差背景元素 --- */
+        .parallax-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-circle-1 {
+            background-color: var(--primary-color);
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            left: -200px;
+        }
+
+        .bg-circle-2 {
+            background-color: var(--accent-color);
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            right: -100px;
+        }
+
+        .bg-circle-3 {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            width: 350px;
+            height: 350px;
+            top: 60%;
+            left: 10%;
+        }
+
+        #tour .bg-circle-1 {
+            background-color: var(--primary-color);
+            top: 20%;
+            right: -150px;
+            left: auto;
+        }
+
+        #contact .bg-circle-2 {
+            background-color: var(--accent-color);
+            top: -150px;
+            right: 10%;
+            bottom: auto;
         }
     </style>
 </head>
 <body>
-
-    <!-- 预加载器 -->
-    <div class="preloader" id="preloader">
-        <div class="loader">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="loading-text">加载中...</div>
+    <!-- ===== 预加载动画 ===== -->
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
 
     <!-- ===== 导航栏 ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#hero" class="navbar-brand">
-                <div class="brand-logo">王</div>
-                王子轩
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-brand-text">
+                    <h1>王子轩</h1>
+                    <span class="tagline">音乐制作人 / 声音设计师</span>
+                </div>
             </a>
-            <button class="navbar-toggler" id="navbar-toggler" aria-label="切换导航">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
+            <button class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <ul class="navbar-nav" id="navbar-nav">
-                <li class="nav-item"><a href="#hero" class="nav-link active">首页</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">关于我</a></li>
-                <li class="nav-item"><a href="#skills" class="nav-link">技艺</a></li>
-                <li class="nav-item"><a href="#music" class="nav-link">作品</a></li>
-                <li class="nav-item"><a href="#tour" class="nav-link">动态</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">联系</a></li>
+            <ul class="navbar-menu">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#music">音乐</a></li>
+                <li><a href="#tour">演出</a></li>
+                <li><a href="#contact">联系</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- ===== 英雄区域 ===== -->
-    <header class="hero" id="hero">
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="animated-gradient"></div>
         <div class="hero-content">
             <h1>王子轩</h1>
-            <p class="lead mb-4">音乐制作人 / 声音设计师 / 旋律编织者</p>
+            <h2>通过声音探索情感与时空的边界</h2>
             <div class="hero-buttons">
-                <a href="#music" class="btn btn-primary btn-lg">探索音乐</a>
-                <a href="#contact" class="btn btn-glass btn-lg">联系合作</a>
+                <a href="#music" class="btn btn-primary">探索作品</a>
+                <a href="#tour" class="btn btn-outline-light">近期演出</a>
             </div>
         </div>
-        <!-- 向下滚动提示 -->
-        <a href="#about" class="scroll-down-indicator" aria-label="滚动到下一部分">
-            <i class="fas fa-chevron-down"></i>
-        </a>
-    </header>
+    </section>
 
-    <main>
-        <!-- ===== 关于我区域 ===== -->
-        <section id="about" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">认识我</h2>
+    <!-- ===== 关于部分 ===== -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80" alt="王子轩个人照片">
+                </div>
                 <div class="about-content">
-                    <div class="about-image-wrapper">
-                        <div class="about-image">
-                            <img src="https://www.tooopen.com/view/1439603.html" alt="王子轩" onerror="this.onerror=null; this.src='/api/placeholder/450/550';">
+                    <h2>关于我</h2>
+                    <p>我是一名音乐制作人和声音设计师，专注于创造融合电子元素与传统乐器的沉浸式音乐体验。在过去的10年里，我致力于探索音频技术与情感表达的边界，打造出独特的声音标识。</p>
+                    <p>我的创作横跨多个领域，从电子音乐专辑到电影配乐、互动媒体声音设计，不断尝试将听觉体验与视觉、空间相结合，创造多维感官享受。</p>
+                    <p>作为一名音频工程师，我同时为独立音乐人提供混音与母带处理服务，帮助艺术家将他们的声音愿景转化为现实。</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">发行作品</div>
                         </div>
-                    </div>
-                    <div class="about-text">
-                        <h3>你好，我是 <span class="text-primary">王子轩</span></h3>
-                        <p>一位沉浸在声音世界里的探索者。音乐于我，不仅是职业，更是呼吸与存在的证明。从指尖流淌的第一个音符开始，我就踏上了一条用旋律和节奏描绘世界的旅程。</p>
-                        <p>我的工作室是我的炼金坊，融合传统乐器的温暖质感与现代电子音色的无限可能，创造出既熟悉又新颖的听觉体验。无论是为独立电影谱写动人配乐，还是为新锐歌手打造个性单曲，我都力求在每一个项目中注入独特的艺术灵魂。</p>
-                        <p>我相信好的音乐能够跨越语言和文化的障碍，直抵人心最柔软的地方。期待与你一同探索声音的奥秘。</p>
-                        
-                        <div class="skill-tags">
-                            <span class="skill-tag">电子音乐</span>
-                            <span class="skill-tag">配乐制作</span>
-                            <span class="skill-tag">混音</span>
-                            <span class="skill-tag">声音设计</span>
-                            <span class="skill-tag">作曲</span>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">合作项目</div>
                         </div>
-                        
-                        <a href="#skills" class="btn btn-outline-primary">了解我的技能</a>
+                        <div class="stat-item">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">专业年限</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-         <!-- ===== 技术专长区域 ===== -->
-        <section id="skills" class="section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title">技艺与专长</h2>
-                <p class="section-subtitle">将创意转化为声音艺术的核心能力</p>
-                <div class="skills-grid">
-                    <!-- 技能项 1 -->
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <h4>音乐制作 & 编曲</h4>
-                        <p>精通多种音乐风格的制作流程，擅长旋律创作、和声编配与器乐编排，打造富有情感和层次感的作品。</p>
+    <!-- ===== 技能部分 ===== -->
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">专业技能</h2>
+            </div>
+            <p class="section-subtitle">多年经验累积的专业能力，为每个项目带来独特价值</p>
+            
+            <div class="skills-grid">
+                <!-- 技能项目 1 -->
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1716/1716894.png" alt="电子音乐制作">
                     </div>
-                    <!-- 技能项 2 -->
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-sliders-h"></i>
-                        </div>
-                        <h4>混音 & 母带处理</h4>
-                        <p>追求声音的清晰度、平衡感与冲击力，提供符合商业标准的音频后期处理，让音乐作品更具表现力。</p>
+                    <h3>电子音乐制作</h3>
+                    <p>熟练掌握各类电子音乐风格创作，包括环境音乐、舞曲、实验电子音乐等多种风格，富有个人特色。</p>
+                </div>
+                
+                <!-- 技能项目 2 -->
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2699/2699194.png" alt="混音与母带处理">
                     </div>
-                    <!-- 技能项 3 -->
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-volume-up"></i>
-                        </div>
-                        <h4>声音设计 & 音效</h4>
-                        <p>为影视、游戏、动画等项目创造独特的声音环境和效果，增强沉浸感，让故事和情感更具说服力。</p>
+                    <h3>混音与母带处理</h3>
+                    <p>提供专业的混音与母带处理服务，确保音频质量达到行业标准，呈现最佳听感体验。</p>
+                </div>
+                
+                <!-- 技能项目 3 -->
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4498/4498587.png" alt="声音设计">
                     </div>
-                    <!-- 技能项 4 -->
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-laptop-code"></i>
+                    <h3>声音设计</h3>
+                    <p>为电影、游戏、多媒体项目创造沉浸式声音体验，从环境音效到角色配音的全方位设计。</p>
+                </div>
+                
+                <!-- 技能项目 4 -->
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2907/2907198.png" alt="现场演出">
+                    </div>
+                    <h3>现场演出</h3>
+                    <p>丰富的现场表演经验，能够呈现引人入胜的视听体验，为观众带来难忘的沉浸式现场演出。</p>
+                </div>
+                
+                <!-- 技能项目 5 -->
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8088/8088308.png" alt="音频编程">
+                    </div>
+                    <h3>音频编程</h3>
+                    <p>熟练使用Max/MSP、Supercollider等工具进行互动声音编程，创造独特的生成式音频体验。</p>
+                </div>
+                
+                <!-- 技能项目 6 -->
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2318/2318736.png" alt="跨媒体合作">
+                    </div>
+                    <h3>跨媒体合作</h3>
+                    <p>与视觉艺术家、舞者、建筑师等各领域创作者合作，创造融合多种感官的艺术体验。</p>
+                </div>
+            </div>
+            
+            <!-- 软件技能展示 -->
+            <div class="software-skills">
+                <h3 class="text-center mb-4">专业软件掌握程度</h3>
+                
+                <div class="software-grid">
+                    <div class="software-item">
+                        <div class="software-info">
+                            <span>Ableton Live</span>
+                            <span>95%</span>
                         </div>
-                        <h4>DAW & 音乐技术</h4>
-                        <p>熟练运用主流宿主软件（如Pro Tools, Logic Pro, Ableton Live）及各类专业插件，实现创意从构思到成品的完美转化。</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="software-item">
+                        <div class="software-info">
+                            <span>Logic Pro</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="software-item">
+                        <div class="software-info">
+                            <span>Pro Tools</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="software-item">
+                        <div class="software-info">
+                            <span>MAX/MSP</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-
-        <!-- ===== 音乐作品区域 ===== -->
-        <section id="music" class="section-padding">
-            <div class="container">
+    <!-- ===== 音乐作品区域 ===== -->
+    <section id="music" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
                 <h2 class="section-title">音乐作品集</h2>
-                <p class="section-subtitle">聆听我的声音世界，感受旋律的情感</p>
-                <div class="music-grid">
-                    <!-- 作品卡片 1 -->
-                    <div class="music-card">
-                        <div class="music-card-image">
-                            <img src="https://www.tooopen.com/view/2287797.html" alt="专辑: 时光碎片" onerror="this.onerror=null; this.src='/api/placeholder/400/400';">
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                            <div class="album-tag">专辑</div>
-                        </div>
-                        <div class="music-card-body">
-                            <h4>时光碎片</h4>
-                            <p class="date">发行日期: 2023年11月</p>
-                            <p class="description">探索记忆与时间的概念，融合氛围电子与新古典元素，构建空灵梦境，带你穿梭于情感的不同维度。</p>
-                            <div class="music-card-actions">
-                                <a href="#" class="btn btn-primary btn-sm">试听</a>
-                                <div class="platform-links">
-                                    <a href="#" title="网易云音乐" class="neteasemusic"><i class="fab fa-soundcloud"></i></a>
-                                    <a href="#" title="QQ音乐"><i class="fab fa-qq"></i></a>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+            <p class="section-subtitle">聆听我的声音世界，感受旋律的情感</p>
+            <div class="music-grid">
+                <!-- 作品卡片 1 -->
+                <div class="music-card">
+                    <div class="music-card-image">
+                        <img src="https://images.unsplash.com/photo-1446057032654-9d8885db76c6?auto=format&fit=crop&w=400&h=400&q=80" alt="专辑: 时光碎片">
+                        <div class="play-button-overlay"></div>
                     </div>
-                    <!-- 作品卡片 2 -->
-                    <div class="music-card">
-                        <div class="music-card-image">
-                            <img src="https://www.tooopen.com/view/2287696.html" alt="单曲: 霓虹低语" onerror="this.onerror=null; this.src='/api/placeholder/400/400';">
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                            <div class="album-tag single-tag">单曲</div>
-                        </div>
-                        <div class="music-card-body">
-                            <h4>霓虹低语</h4>
-                            <p class="date">发行日期: 2024年03月</p>
-                            <p class="description">捕捉都市夜晚的迷离与悸动，以 Synthwave 节奏驱动的赛博朋克情歌，将电子与情感巧妙融合。</p>
-                            <div class="music-card-actions">
-                                <a href="#" class="btn btn-primary btn-sm">试听</a>
-                                <div class="platform-links">
-                                    <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
-                                    <a href="#" title="Apple Music"><i class="fab fa-apple"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 作品卡片 3 -->
-                    <div class="music-card">
-                        <div class="music-card-image">
-                            <img src="https://www.tooopen.com/view/2254611.html" alt="配乐: 迷雾森林" onerror="this.onerror=null; this.src='/api/placeholder/400/400';">
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                            <div class="album-tag soundtrack-tag">配乐</div>
-                        </div>
-                        <div class="music-card-body">
-                            <h4>迷雾森林</h4>
-                            <p class="date">项目时间: 2024年</p>
-                            <p class="description">为独立电影《迷雾森林》创作的原声配乐节选，营造神秘、悬疑的氛围，让观众沉浸于故事的情感世界。</p>
-                            <div class="music-card-actions">
-                                <a href="#" class="btn btn-outline-primary btn-sm">了解项目</a>
-                                <div class="platform-links">
-                                    <a href="#" title="查看更多"><i class="fas fa-external-link-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 作品卡片 4 -->
-                    <div class="music-card">
-                        <div class="music-card-image">
-                            <img src="https://www.tooopen.com/view/2289072.html" alt="EP: 无垠" onerror="this.onerror=null; this.src='/api/placeholder/400/400';">
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                            <div class="album-tag">EP</div>
-                        </div>
-                        <div class="music-card-body">
-                            <h4>无垠</h4>
-                            <p class="date">发行日期: 2022年08月</p>
-                            <p class="description">早期实验性电子音乐作品，探索极简主义音景与氛围声响，以抽象的声音语言描绘内心的无边宇宙。</p>
-                            <div class="music-card-actions">
-                                <a href="#" class="btn btn-primary btn-sm">试听</a>
-                                <div class="platform-links">
-                                    <a href="#" title="Bandcamp"><i class="fab fa-bandcamp"></i></a>
-                                    <a href="#" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="music-card-body">
+                        <h4>专辑: 时光碎片</h4>
+                        <p class="date">发行日期: 2023年11月</p>
+                        <p class="description">探索记忆与时间的概念，融合氛围电子与新古典元素，构建空灵梦境。</p>
+                        <a href="#" class="btn btn-primary btn-sm">试听</a>
+                        <span class="platform-links ml-2">
+                            <a href="#" title="网易云音乐"><i class="icon-placeholder">N</i></a>
+                            <a href="#" title="QQ音乐"><i class="icon-placeholder">Q</i></a>
+                        </span>
                     </div>
                 </div>
-                <div class="text-center mt-5">
-                    <a href="#" class="btn btn-accent">查看所有作品</a>
+                <!-- 作品卡片 2 -->
+                <div class="music-card">
+                    <div class="music-card-image">
+                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=400&h=400&q=80" alt="单曲: 霓虹低语">
+                        <div class="play-button-overlay"></div>
+                    </div>
+                    <div class="music-card-body">
+                        <h4>单曲: 霓虹低语</h4>
+                        <p class="date">发行日期: 2024年03月</p>
+                        <p class="description">捕捉都市夜晚的迷离与悸动，以 Synthwave 节奏驱动的赛博朋克情歌。</p>
+                        <a href="#" class="btn btn-primary btn-sm">试听</a>
+                        <span class="platform-links ml-2">
+                            <a href="#" title="Spotify"><i class="icon-placeholder">S</i></a>
+                            <a href="#" title="Apple Music"><i class="icon-placeholder">A</i></a>
+                        </span>
+                    </div>
+                </div>
+                <!-- 作品卡片 3 -->
+                <div class="music-card">
+                    <div class="music-card-image">
+                        <img src="https://images.unsplash.com/photo-1506268452458-bfb3757ed859?auto=format&fit=crop&w=400&h=400&q=80" alt="配乐: 迷雾森林">
+                        <div class="play-button-overlay"></div>
+                    </div>
+                    <div class="music-card-body">
+                        <h4>电影配乐: 迷雾森林</h4>
+                        <p class="date">项目时间: 2024年</p>
+                        <p class="description">为独立电影《迷雾森林》创作的原声配乐节选，营造神秘、悬疑的氛围。</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">了解项目</a>
+                    </div>
+                </div>
+                <!-- 作品卡片 4 -->
+                <div class="music-card">
+                    <div class="music-card-image">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&h=400&q=80" alt="EP: 无垠">
+                        <div class="play-button-overlay"></div>
+                    </div>
+                    <div class="music-card-body">
+                        <h4>EP: 无垠</h4>
+                        <p class="date">发行日期: 2022年08月</p>
+                        <p class="description">早期实验性电子音乐作品，探索极简主义音景与氛围声响。</p>
+                        <a href="#" class="btn btn-primary btn-sm">试听</a>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-secondary">查看所有作品</a>
+            </div>
+        </div>
+    </section>
 
-        <!-- ===== 演出/动态区域 ===== -->
-        <section id="tour" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">近期动态 & 演出</h2>
-                <p class="section-subtitle">现场感受音乐的力量，或关注我的最新进展</p>
-                <div class="tour-list">
-                    <!-- 演出条目 1 -->
-                    <div class="tour-item">
-                        <div class="tour-date">
-                            <span class="month">九月</span>
-                            <span class="day">28</span>
-                        </div>
-                        <div class="tour-details">
-                            <h5>「时光碎片」新专巡演 - 上海站</h5>
-                            <p><i class="fas fa-map-marker-alt"></i>地点: MAO Livehouse Shanghai</p>
-                            <p><i class="fas fa-clock"></i>时间: 20:00 PM</p>
-                        </div>
-                        <div class="tour-actions">
-                            <a href="#" class="btn btn-primary btn-sm">购票</a>
-                            <span class="tour-status status-upcoming">即将开始</span>
+    <!-- ===== 巡演部分 ===== -->
+    <section id="tour" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">演出信息</h2>
+            </div>
+            <p class="section-subtitle">在现场感受音乐的律动与能量</p>
+            
+            <div class="tour-container">
+                <div class="tour-tabs">
+                    <button class="tour-tab active" data-tab="upcoming">即将到来</button>
+                    <button class="tour-tab" data-tab="past">过往演出</button>
+                </div>
+                
+                <div class="tour-content active" id="upcoming">
+                    <div class="tour-list">
+                        <!-- 演出项目 1 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">四月</div>
+                                <div class="tour-day">15</div>
+                                <div class="tour-year">2025</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>《空间回声》个人音乐会</h3>
+                                <p class="tour-location">上海市 黄浦区 艺术中心 (具体地址待公布)</p>
+                                <p class="tour-description">一场沉浸式的多媒体音乐体验，结合现场电子音乐演奏与视觉投影，探索声音与空间的互动关系。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-primary">购票</a>
+                            </div>
                         </div>
                         
-                        <!-- 隐藏信息卡片 -->
-                        <div class="tour-info-card">
-                            <h5>演出详情</h5>
-                            <p>专辑《时光碎片》全国巡演上海站，将带来全专辑完整呈现及特别改编曲目。</p>
-                            <p><strong>嘉宾:</strong> 电子音乐人小洲, VJ艺术家明月</p>
-                            <p><strong>票价:</strong> ¥120-280</p>
+                        <!-- 演出项目 2 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">五月</div>
+                                <div class="tour-day">22</div>
+                                <div class="tour-year">2025</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>「声光交织」艺术节演出</h3>
+                                <p class="tour-location">北京市 朝阳区 国际设计中心</p>
+                                <p class="tour-description">受邀参加年度声光艺术节，与视觉艺术家合作呈现跨媒体互动装置与现场表演。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-primary">购票</a>
+                            </div>
                         </div>
-                    </div>
-                    <!-- 演出条目 2 -->
-                    <div class="tour-item">
-                        <div class="tour-date">
-                            <span class="month">十月</span>
-                            <span class="day">12</span>
+                        
+                        <!-- 演出项目 3 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">六月</div>
+                                <div class="tour-day">05</div>
+                                <div class="tour-year">2025</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>线上直播演出：深夜电台</h3>
+                                <p class="tour-location">Bilibili 直播 (房间号: 123456)</p>
+                                <p class="tour-description">特别线上演出，将呈现新作品与即兴创作，并与观众互动交流创作经历与音乐理念。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-outline-primary">提醒我</a>
+                            </div>
                         </div>
-                        <div class="tour-details">
-                            <h5>草莓音乐节 - 成都</h5>
-                            <p><i class="fas fa-map-marker-alt"></i>地点: 成都非物质文化遗产博览园</p>
-                            <p><i class="fas fa-clock"></i>时间: 待定 (下午场)</p>
-                        </div>
-                        <div class="tour-actions">
-                            <a href="#" class="btn btn-outline-primary btn-sm">查看阵容</a>
-                            <span class="tour-status status-upcoming">即将开始</span>
-                        </div>
-                    </div>
-                    <!-- 动态条目 (非演出) -->
-                    <div class="tour-item">
-                        <div class="tour-date" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));">
-                            <span class="month">八月</span>
-                            <span class="day">15</span>
-                        </div>
-                        <div class="tour-details">
-                            <h5>工作室访谈 & 直播</h5>
-                            <p><i class="fas fa-laptop"></i>平台: Bilibili 直播间</p>
-                            <p><i class="fas fa-microphone-alt"></i>分享新专辑幕后故事和制作技巧</p>
-                        </div>
-                        <div class="tour-actions">
-                            <a href="#" class="btn btn-secondary btn-sm">观看回放</a>
-                            <span class="tour-status status-past">已结束</span>
-                        </div>
-                    </div>
-                    <!-- 已售罄示例 -->
-                    <div class="tour-item">
-                        <div class="tour-date" style="background: linear-gradient(135deg, var(--secondary-color), #7b8699);">
-                            <span class="month">七月</span>
-                            <span class="day">20</span>
-                        </div>
-                        <div class="tour-details">
-                            <h5>「霓虹低语」单曲发布专场 - 北京</h5>
-                            <p><i class="fas fa-map-marker-alt"></i>地点: 疆进酒 OMNI SPACE</p>
-                            <p><i class="fas fa-clock"></i>时间: 19:30 PM</p>
-                        </div>
-                        <div class="tour-actions">
-                            <a href="#" class="btn btn-secondary btn-sm disabled" aria-disabled="true">查看详情</a>
-                            <span class="tour-status status-soldout">已售罄</span>
+                        
+                        <!-- 演出项目 4 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">七月</div>
+                                <div class="tour-day">18</div>
+                                <div class="tour-year">2025</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>《时光碎片》专辑巡演</h3>
+                                <p class="tour-location">广州市 天河区 LiveHouse</p>
+                                <p class="tour-description">《时光碎片》专辑巡演广州站，完整呈现专辑作品，并有特别嘉宾加盟。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-primary">购票</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-5">
-                    <p class="text-muted">更多演出和动态正在筹备中，敬请期待！</p>
-                    <a href="#contact" class="btn btn-outline-primary mt-3">订阅动态</a>
+                
+                <div class="tour-content" id="past">
+                    <div class="tour-list">
+                        <!-- 过往演出 1 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">五月</div>
+                                <div class="tour-day">27</div>
+                                <div class="tour-year">2024</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>电子音乐节演出</h3>
+                                <p class="tour-location">深圳市 南山区 海上世界文化艺术中心</p>
+                                <p class="tour-description">参与年度电子音乐节，与多位国内外艺术家同台演出，展示实验电子音乐作品。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-secondary btn-sm">回顾</a>
+                            </div>
+                        </div>
+                        
+                        <!-- 过往演出 2 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">四月</div>
+                                <div class="tour-day">12</div>
+                                <div class="tour-year">2024</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>「声音实验室」讲座与表演</h3>
+                                <p class="tour-location">成都市 锦江区 当代艺术中心</p>
+                                <p class="tour-description">举办声音设计工作坊与现场表演，分享创作理念与技术，探讨声音艺术的未来发展。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-secondary btn-sm">回顾</a>
+                            </div>
+                        </div>
+                        
+                        <!-- 过往演出 3 -->
+                        <div class="tour-item">
+                            <div class="tour-date">
+                                <div class="tour-month">二月</div>
+                                <div class="tour-day">18</div>
+                                <div class="tour-year">2024</div>
+                            </div>
+                            <div class="tour-info">
+                                <h3>跨年电子音乐派对</h3>
+                                <p class="tour-location">重庆市 江北区 CHILL俱乐部</p>
+                                <p class="tour-description">新年特别演出，呈现电子舞曲与氛围音乐结合的沉浸式音乐体验。</p>
+                            </div>
+                            <div class="tour-action">
+                                <a href="#" class="btn btn-secondary btn-sm">回顾</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ===== 联系我区域 ===== -->
-        <section id="contact" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">取得联系</h2>
-                <p class="section-subtitle">无论是合作邀约、项目咨询还是音乐交流，都欢迎与我联系</p>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h4>联系方式</h4>
-                        <p>期待听到你的声音。可以通过以下方式找到我，或者使用右侧的表单快速留言。</p>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>邮箱</h5>
-                                <p><a href="mailto:zixuan.music@email.com">zixuan.music@email.com</a></p>
-                            </div>
+    <!-- ===== 联系部分 ===== -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">联系我</h2>
+            </div>
+            <p class="section-subtitle">对于合作、演出或其他询问，欢迎随时联系</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3178/3178158.png" alt="电子邮件图标">
                         </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>业务合作</h5>
-                                <p><a href="#">+86 139 1234 5678</a> (请注明来意)</p>
-                            </div>
+                        <h3>电子邮件</h3>
+                        <p>contact@wangzixuan-music.com</p>
+                        <a href="mailto:contact@wangzixuan-music.com" class="btn btn-outline-primary btn-sm">发送邮件</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2875/2875433.png" alt="社交媒体图标">
                         </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>工作室</h5>
-                                <p>北京市朝阳区，仅限预约访问</p>
-                            </div>
-                        </div>
-                        
+                        <h3>社交媒体</h3>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="微博" class="social-link weibo"><i class="fab fa-weibo"></i></a>
-                            <a href="#" target="_blank" title="网易云音乐" class="social-link neteasemusic"><i class="fab fa-soundcloud"></i></a>
-                            <a href="#" target="_blank" title="Bilibili" class="social-link bilibili"><i class="fab fa-youtube"></i></a>
-                            <a href="#" target="_blank" title="Instagram" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" title="微博">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968898.png" alt="微博">
+                            </a>
+                            <a href="#" class="social-link" title="微信">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="微信">
+                            </a>
+                            <a href="#" class="social-link" title="抖音">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="抖音">
+                            </a>
+                            <a href="#" class="social-link" title="网易云音乐">
+                                <img src="https://cdn-icons-png.flaticon.com/512/10148/10148230.png" alt="网易云">
+                            </a>
                         </div>
                     </div>
-                    <div class="contact-form">
-                        <div class="contact-form-header">
-                            <h4>发送消息</h4>
-                            <p>填写下方表单，我会尽快回复您</p>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/8066/8066959.png" alt="工作室图标">
                         </div>
-                        <form action="#" method="post" id="contact-form-visual">
-                            <div class="form-row">
-                                <div class="form-col">
-                                    <div class="form-group">
-                                        <label for="name">您的称呼</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="如何称呼您？" required>
-                                    </div>
-                                </div>
-                                <div class="form-col">
-                                    <div class="form-group">
-                                        <label for="email">您的邮箱</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="方便我回复您" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">主题</label>
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder="例如：合作咨询、项目建议...">
-                            </div>
-                            <div class="form-group">
-                                <label for="message">留言内容</label>
-                                <textarea class="form-control" id="message" name="message" rows="6" placeholder="请在此输入您的详细信息..." required></textarea>
-                            </div>
-                            <button type="submit" class="submit-button" id="submitButton">发送消息</button>
-                        </form>
-                        <div id="form-message-visual" class="mt-3"></div>
+                        <h3>工作室</h3>
+                        <p>王子轩音乐工作室<br>上海市徐汇区</p>
                     </div>
                 </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" name="email" placeholder="请输入您的电子邮箱" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">主题</label>
+                            <input type="text" id="subject" name="subject" placeholder="请输入消息主题" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">消息内容</label>
+                            <textarea id="message" name="message" rows="5" placeholder="请输入您的消息内容" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">发送消息</button>
+                    </form>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- ===== 页脚 ===== -->
     <footer class="footer">
-        <div class="container footer-content">
-            <a href="#hero" class="footer-logo">
-                <div class="brand-logo">王</div>
-                王子轩
-            </a>
-            
-            <nav class="footer-nav">
-                <a href="#about">关于我</a>
-                <a href="#skills">技艺</a>
-                <a href="#music">作品</a>
-                <a href="#tour">动态</a>
-                <a href="#contact">联系</a>
-            </nav>
-            
-            <div class="social-links-footer">
-                <a href="#" target="_blank" title="微博" class="weibo"><i class="fab fa-weibo"></i></a>
-                <a href="#" target="_blank" title="网易云音乐" class="neteasemusic"><i class="fab fa-soundcloud"></i></a>
-                <a href="#" target="_blank" title="Bilibili" class="bilibili"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank" title="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" title="GitHub" class="github"><i class="fab fa-github"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>王子轩</h2>
+                    <p>探索声音的无限可能</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>导航</h3>
+                        <ul>
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#about">关于</a></li>
+                            <li><a href="#music">音乐</a></li>
+                            <li><a href="#tour">演出</a></li>
+                            <li><a href="#contact">联系</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h3>资源</h3>
+                        <ul>
+                            <li><a href="#">媒体资料</a></li>
+                            <li><a href="#">演出技术要求</a></li>
+                            <li><a href="#">版权信息</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h3>关注</h3>
+                        <ul>
+                            <li><a href="#">微博</a></li>
+                            <li><a href="#">微信公众号</a></li>
+                            <li><a href="#">抖音</a></li>
+                            <li><a href="#">网易云音乐</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             
-            <div class="footer-divider"></div>
-            
-            <p class="copyright">&copy; <span id="current-year"></span> 王子轩. 保留所有权利.</p>
-            <p class="design-credit">音乐赋予生活以热情，设计赋予网站以灵魂</p>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> 王子轩工作室 | 版权所有</p>
+            </div>
         </div>
     </footer>
 
-    <!-- ===== JavaScript ===== -->
+    <!-- ===== JavaScript 代码 ===== -->
     <script>
-        // --- 预加载器 ---
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                setTimeout(() => {
-                    preloader.classList.add('hidden');
-                }, 500);
-            }
-        });
-
-        // --- 动态设置当前年份 ---
-        const currentYearElement = document.getElementById('current-year');
-        if(currentYearElement) {
-            currentYearElement.textContent = new Date().getFullYear();
-        }
-
-        // --- 导航栏效果 ---
-        const navbar = document.getElementById('navbar');
-        const navbarHeight = navbar ? navbar.offsetHeight : 80; // 获取导航栏高度
-        const navbarToggler = document.getElementById('navbar-toggler');
-        const navMenu = document.getElementById('navbar-nav');
-
-        // 滚动时添加背景和阴影
-        window.addEventListener('scroll', () => {
-            if (navbar && window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else if (navbar) {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // 移动端菜单切换
-        if (navbarToggler && navMenu) {
-            navbarToggler.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                navbarToggler.classList.toggle('active');
-            });
-        }
-
-        // 点击移动端链接后关闭菜单
-        const navLinks = navMenu ? navMenu.querySelectorAll('.nav-link') : [];
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    if(navbarToggler) navbarToggler.classList.remove('active');
-                }
-            });
-        });
-
-        // --- 按钮波纹效果 ---
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            button.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                this.style.setProperty('--x', x + 'px');
-                this.style.setProperty('--y', y + 'px');
-            });
-        });
-
-        // --- 平滑滚动到锚点 & 更新导航激活状态 ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const hash = this.hash;
-                // 检查链接是否确实指向页面内 ID，并且目标 ID 存在
-                if (hash !== "" && hash !== "#" && document.querySelector(hash)) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(hash);
-                    if (targetElement) {
-                        // 考虑导航栏高度的偏移量
-                        // 对于 Hero section (#hero), 不减去导航栏高度
-                        const offset = (hash === '#hero') ? 0 : navbarHeight;
-                        // 计算目标位置，稍微向上偏移一点点，确保标题完全可见
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - offset - 10; // 减 10px 偏移
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-
-                        // 如果是移动端菜单中的链接，点击后关闭菜单
-                        if (navMenu && navMenu.classList.contains('active') && this.closest('.navbar-nav')) {
-                            navMenu.classList.remove('active');
-                            if(navbarToggler) navbarToggler.classList.remove('active');
-                        }
-                        // 手动更新一次激活状态
-                        updateActiveLinkManual(hash);
-                    }
-                }
-            });
-        });
-
-        // 手动更新导航链接激活状态的辅助函数
-        const updateActiveLinkManual = (targetHash) => {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === targetHash) {
-                    link.classList.add('active');
-                }
-            });
-        };
-
-        // 监听滚动，实时更新激活的导航链接
-        const sections = document.querySelectorAll('main section[id], header[id]'); // 选择带id的header和section
-        const heroSection = document.getElementById('hero');
-
-        const updateActiveNavOnScroll = () => {
-            let currentSectionId = '';
-            const scrollPosition = window.pageYOffset + navbarHeight + 50; // 激活区域稍微提前一点
-
-            // 特殊处理 Hero 区
-            if (heroSection && scrollPosition < heroSection.offsetHeight) {
-                currentSectionId = 'hero';
-            } else {
-                // 遍历所有section，检查当前滚动位置
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionBottom = sectionTop + section.offsetHeight;
-
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                        currentSectionId = section.getAttribute('id');
-                    }
-                });
-                
-                // 如果滚动到底部，且最后一个 section 不够高，可能无法触发，需要特殊处理
-                if (!currentSectionId && (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 50) {
-                    // 激活最后一个 section
-                    if (sections.length > 0) {
-                        currentSectionId = sections[sections.length - 1].getAttribute('id');
-                    }
-                }
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkHref = link.getAttribute('href');
-                if (linkHref === `#${currentSectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        };
-
-        // 使用节流优化滚动事件监听
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
-            scrollTimeout = setTimeout(updateActiveNavOnScroll, 50); // 每 50ms 检查一次
-        });
-        
-        // 页面加载时也执行一次，确保初始状态正确
-        window.addEventListener('load', updateActiveNavOnScroll);
-
-        // --- 表单提交处理 ---
-        const contactForm = document.getElementById('contact-form-visual');
-        const formMessage = document.getElementById('form-message-visual');
-        const submitButton = document.getElementById('submitButton');
-
-        if (contactForm && formMessage) {
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // 阻止表单默认提交
-
-                // 禁用按钮并显示加载状态
-                submitButton.disabled = true;
-                submitButton.classList.add('loading');
-
-                // 模拟网络延迟
-                setTimeout(() => {
-                    // 显示成功消息
-                    formMessage.textContent = '✓ 消息已收到！感谢您的联系，我会尽快回复您。';
-                    formMessage.className = 'form-message-success';
-                    formMessage.style.opacity = '1';
-
-                    // 清空表单
-                    contactForm.reset();
-
-                    // 恢复按钮状态
-                    submitButton.disabled = false;
-                    submitButton.classList.remove('loading');
-
-                    // 几秒后自动隐藏成功消息
-                    setTimeout(() => {
-                        formMessage.style.opacity = '0';
-                        setTimeout(() => formMessage.textContent = '', 500); // 淡出后清空
-                    }, 6000); // 6秒后清除消息
-
-                }, 1500); // 模拟1.5秒延迟
-            });
-        }
-
-        // --- 图片加载错误处理 ---
         document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            
-            images.forEach(img => {
-                // 添加加载中状态
-                img.classList.add('img-loading');
-                
-                // 图片加载完成
-                img.addEventListener('load', function() {
-                    img.classList.remove('img-loading');
-                });
-                
-                // 图片加载错误 - 已在HTML的onerror属性中处理
+            // 设置当前年份
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 导航栏滚动效果
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+                    navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+                }
             });
-        });
 
-        // --- 滚动动画 ---
-        const animatedElements = document.querySelectorAll(`
-            #about .about-image, #about .about-text,
-            .skill-item, .music-card, .tour-item,
-            #contact .contact-info, #contact .contact-form
-        `);
+            // 移动端菜单
+            const navbarToggle = document.querySelector('.navbar-toggle');
+            const navbarMenu = document.querySelector('.navbar-menu');
+            
+            if (navbarToggle) {
+                navbarToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navbarMenu.classList.toggle('active');
+                });
+            }
 
-        if ("IntersectionObserver" in window) {
-            const observerOptions = {
-                root: null, // 观察视口
-                rootMargin: '0px',
-                threshold: 0.1 // 元素可见 10% 时触发
+            // 演出选项卡切换
+            const tourTabs = document.querySelectorAll('.tour-tab');
+            const tourContents = document.querySelectorAll('.tour-content');
+            
+            tourTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有tabs的active类
+                    tourTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // 添加当前tab的active类
+                    this.classList.add('active');
+                    
+                    // 获取对应的内容区域
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // 隐藏所有内容区域
+                    tourContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 显示当前内容区域
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // 表单提交
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    // 模拟提交
+                    submitBtn.textContent = '发送中...';
+                    submitBtn.disabled = true;
+                    
+                    // 模拟网络延迟
+                    setTimeout(function() {
+                        submitBtn.textContent = '消息已发送 ✓';
+                        submitBtn.classList.add('success');
+                        
+                        // 清空表单
+                        contactForm.reset();
+                        
+                        // 恢复按钮状态
+                        setTimeout(function() {
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                            submitBtn.classList.remove('success');
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // 添加滚动监听，实现元素进入视图时的动画
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.skill-item, .music-card, .tour-item, .contact-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add('fade-in-up');
+                    }
+                });
             };
 
-            const animationObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // 添加不同的延迟效果
-                        const delay = (index % 4) * 120; // 每行最多4个元素，制造交错感
-                        entry.target.style.transitionDelay = `${delay}ms`;
-                        entry.target.classList.add('visible');
+            // 初始调用一次
+            document.addEventListener('DOMContentLoaded', animateOnScroll);
+            // 滚动时调用
+            window.addEventListener('scroll', animateOnScroll);
 
-                        // 动画只触发一次，取消观察
-                        observer.unobserve(entry.target);
+            // 实现平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('.navbar').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
                     }
                 });
-            }, observerOptions);
-
-            animatedElements.forEach(el => {
-                animationObserver.observe(el);
             });
-        } else {
-            // 不支持 IntersectionObserver 的备用方案
-            animatedElements.forEach(el => el.classList.add('visible'));
-        }
-
-        // --- 3D卡片悬浮效果 ---
-        const aboutImage = document.querySelector('.about-image');
-        if (aboutImage) {
-            aboutImage.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // 计算鼠标相对位置 (0-1)
-                const xPercent = x / rect.width;
-                const yPercent = y / rect.height;
-                
-                // 将相对位置转换为旋转角度，最大±5度
-                const rotateX = (0.5 - yPercent) * 10; // 上负下正
-                const rotateY = (xPercent - 0.5) * 10; // 左负右正
-                
-                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-            
-            aboutImage.addEventListener('mouseleave', function() {
-                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            });
-        }
-
-        // --- 视差滚动效果 ---
-        const hero = document.getElementById('hero');
-        if (hero) {
-            window.addEventListener('scroll', () => {
-                const scrollOffset = window.pageYOffset;
-                // 调整系数控制视差强度
-                hero.style.backgroundPositionY = `calc(50% + ${scrollOffset * 0.4}px)`;
-            });
-        }
+        });
     </script>
 
+    <!-- 添加视差背景 -->
+    <div class="parallax-bg-element bg-circle-1 float"></div>
+    <div class="parallax-bg-element bg-circle-2 float delay-300"></div>
+    <div class="parallax-bg-element bg-circle-3 float delay-200"></div>
 </body>
 </html>
