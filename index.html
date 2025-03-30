@@ -35,6 +35,22 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased; /* 抗锯齿 */
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
+        }
+
+        /* 背景粒子装饰 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
         }
 
         /* --- CSS 变量定义 --- */
@@ -54,18 +70,28 @@
             --light-text: #f8fafc; /* 浅灰文本 (用于深色背景) */
             --muted-text: #94a3b8; /* 更柔和的次要文本 */
 
+            /* 霓虹效果颜色 */
+            --neon-blue: #18f0f0;
+            --neon-purple: #9d4edd;
+            --neon-pink: #ff2a6d;
+            
+            /* 动画相关 */
+            --animation-speed-slow: 15s;
+            --animation-speed-normal: 8s;
+            --animation-speed-fast: 4s;
+
             /* 字体 */
             --heading-font: 'Montserrat', 'Noto Sans SC', sans-serif; /* 标题字体 */
             --body-font: 'Noto Sans SC', sans-serif; /* 正文字体 */
 
             /* 尺寸与间距 */
             --navbar-height: 80px; /* 增加导航栏高度 */
-            --container-max-width: 1280px; /* 稍微增加容器宽度 */
-            --section-padding-y: 8rem; /* 增加垂直内边距 */
+            --container-max-width: 1320px; /* 进一步增加容器宽度，更宽阔 */
+            --section-padding-y: 9rem; /* 增加垂直内边距 */
             --section-padding-x: 2rem; /* 增加水平内边距 */
             --border-radius-sm: 0.25rem;
             --border-radius-md: 0.5rem;
-            --border-radius-lg: 1rem; /* 增加圆角半径 */
+            --border-radius-lg: 1.2rem; /* 增加圆角半径，更现代 */
 
             /* 阴影 */
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -99,9 +125,10 @@
             padding-bottom: var(--section-padding-y);
         }
 
+        /* --- 标题样式 --- */
         .section-title {
             font-family: var(--heading-font);
-            font-size: 2.8rem;
+            font-size: 3.2rem; /* 增大标题尺寸 */
             font-weight: 700;
             color: var(--dark-text);
             text-align: center;
@@ -118,8 +145,8 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
+            width: 120px; /* 增加下划线宽度 */
+            height: 5px; /* 增加下划线高度 */
             background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             border-radius: 4px;
         }
@@ -130,11 +157,11 @@
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem; /* 增大副标题尺寸 */
             color: var(--secondary-color);
-            margin-bottom: 4rem;
+            margin-bottom: 4.5rem; /* 增加与内容的间距 */
             text-align: center;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 300;
@@ -193,6 +220,20 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
             text-decoration: none;
+            animation: btnPulse 1.5s infinite;
+        }
+
+        /* 按钮脉冲动画 */
+        @keyframes btnPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+            }
         }
 
         .btn-secondary {
@@ -280,10 +321,10 @@
             font-family: var(--heading-font);
             color: var(--dark-text);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.05rem; /* 略微增大菜单文字 */
             font-weight: 500;
             letter-spacing: 0.5px;
-            padding: 0.3rem 0;
+            padding: 0.8rem 0;
             position: relative;
             transition: color var(--transition-fast);
         }
@@ -386,6 +427,32 @@
             transition: transform 3s ease-out;
         }
 
+        /* 添加动态背景网格 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+            z-index: -1;
+            animation: backgroundGridMove 20s linear infinite;
+        }
+
+        @keyframes backgroundGridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 40px 40px;
+            }
+        }
+
         .hero-content {
             text-align: center;
             color: var(--light-text);
@@ -398,6 +465,35 @@
             background-color: rgba(0, 0, 0, 0.25);
             border-radius: var(--border-radius-lg);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shineEffect 6s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shineEffect {
+            0% {
+                transform: rotate(30deg) translateX(-100%);
+            }
+            20%, 100% {
+                transform: rotate(30deg) translateX(100%);
+            }
         }
 
         .hero h1 {
@@ -570,22 +666,18 @@
             height: 100%;
             background: linear-gradient(
                 135deg,
-                rgba(var(--primary-rgb), 0.3) 0%,
-                rgba(var(--accent-color-rgb), 0.3) 100%
+                rgba(var(--primary-rgb), 0.2) 0%,
+                rgba(var(--accent-color-rgb), 0.2) 100%
             );
-            opacity: 0.2;
+            opacity: 0.3;
             transition: opacity var(--transition-medium);
-        }
-
-        .about-image:hover::after {
-            opacity: 0.5;
         }
 
         .about-content h2 {
             font-family: var(--heading-font);
-            font-size: 2.5rem;
+            font-size: 2.7rem;
             color: var(--dark-text);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             position: relative;
             display: inline-block;
             text-align: left;
@@ -597,15 +689,16 @@
             left: 0;
             bottom: -10px;
             width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
         }
 
         .about-content p {
             margin-bottom: 1.5rem;
             line-height: 1.8;
             color: var(--secondary-color);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
 
         .about-signature {
@@ -621,6 +714,10 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
+            background-color: var(--white-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
         }
 
         .stat-item {
@@ -629,14 +726,14 @@
 
         .stat-number {
             font-family: var(--heading-font);
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--secondary-color);
@@ -664,11 +761,17 @@
             transition: transform var(--transition-medium), box-shadow var(--transition-medium);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .skill-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                0 15px 35px -5px rgba(0, 0, 0, 0.15), 
+                0 5px 15px rgba(0, 0, 0, 0.07),
+                0 0 40px rgba(var(--primary-rgb), 0.2);
         }
 
         .skill-icon {
@@ -768,8 +871,8 @@
 
         .music-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
         }
 
         .music-card {
@@ -783,26 +886,75 @@
         }
 
         .music-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                0 15px 35px -5px rgba(0, 0, 0, 0.15), 
+                0 5px 15px rgba(0, 0, 0, 0.07),
+                0 0 40px rgba(var(--primary-rgb), 0.2);
         }
 
         .music-card-image {
             position: relative;
             overflow: hidden;
+            height: 320px;
         }
 
         .music-card img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
             border-bottom: 1px solid #eee;
             border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-            transition: transform var(--transition-slow);
+            transition: transform var(--transition-slow), filter var(--transition-medium);
         }
 
         .music-card:hover img {
             transform: scale(1.1);
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        /* 添加音乐视觉效果元素 */
+        .music-visualizer {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+        }
+
+        .music-card:hover .music-visualizer {
+            opacity: 1;
+        }
+
+        .visualizer-bar {
+            width: 4px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 2px;
+            animation: musicBars var(--animation-speed-fast) infinite;
+        }
+
+        .visualizer-bar:nth-child(1) { height: 15px; animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(2) { height: 25px; animation-delay: 0.2s; }
+        .visualizer-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(4) { height: 20px; animation-delay: 0.4s; }
+        .visualizer-bar:nth-child(5) { height: 30px; animation-delay: 0.5s; }
+        .visualizer-bar:nth-child(6) { height: 15px; animation-delay: 0.6s; }
+        .visualizer-bar:nth-child(7) { height: 25px; animation-delay: 0.7s; }
+        .visualizer-bar:nth-child(8) { height: 10px; animation-delay: 0.8s; }
+
+        @keyframes musicBars {
+            0%, 100% {
+                transform: scaleY(0.5);
+            }
+            50% {
+                transform: scaleY(1);
+            }
         }
 
         .play-button-overlay {
@@ -840,13 +992,13 @@
         }
 
         .music-card-body {
-            padding: 1.8rem;
+            padding: 2rem;
         }
 
         .music-card h4 {
             font-family: var(--heading-font);
-            font-size: 1.5rem;
-            margin-bottom: 0.6rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
             color: var(--dark-text);
             white-space: nowrap;
             overflow: hidden;
@@ -855,16 +1007,17 @@
 
         .music-card p.date {
             color: var(--muted-text);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
             font-style: italic;
         }
 
         .music-card p.description {
             color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
             min-height: 50px;
+            line-height: 1.6;
         }
 
         .music-card .btn {
@@ -886,6 +1039,48 @@
             content: '🔗';
             display: inline-block;
             font-style: normal;
+        }
+
+        /* 霓虹效果 */
+        .neon-border {
+            position: relative;
+        }
+
+        .neon-border::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            z-index: -1;
+            border-radius: calc(var(--border-radius-lg) + 3px);
+            background: linear-gradient(45deg, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-pink), 
+                var(--neon-blue));
+            background-size: 400% 400%;
+            animation: neonGlow var(--animation-speed-normal) infinite, 
+                       gradientAnimation var(--animation-speed-normal) infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .music-card:hover .neon-border::after {
+            opacity: 1;
+        }
+
+        @keyframes neonGlow {
+            0% {
+                filter: blur(10px);
+            }
+            50% {
+                filter: blur(15px);
+            }
+            100% {
+                filter: blur(10px);
+            }
         }
 
         /* --- 巡演部分 --- */
@@ -956,8 +1151,11 @@
         }
 
         .tour-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                0 15px 35px -5px rgba(0, 0, 0, 0.15), 
+                0 5px 15px rgba(0, 0, 0, 0.07),
+                0 0 40px rgba(var(--primary-rgb), 0.2);
         }
 
         .tour-date {
@@ -971,28 +1169,24 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            position: relative;
         }
 
+        /* 添加日期块动态边框 */
         .tour-date::before {
             content: '';
             position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-        }
-
-        .tour-date::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: -15px;
-            width: 30px;
-            height: 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            z-index: -1;
+            background: linear-gradient(135deg, 
+                var(--primary-color), 
+                var(--neon-blue), 
+                var(--primary-color));
+            background-size: 200% 200%;
+            animation: gradientAnimation 3s ease infinite;
         }
 
         .tour-month {
@@ -1081,18 +1275,24 @@
 
         .contact-card {
             background-color: var(--light-bg);
-            padding: 2.5rem;
+            padding: 3rem; /* 增加内部空间 */
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-md);
             transition: all var(--transition-medium);
             border: 1px solid rgba(0, 0, 0, 0.03);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                0 15px 35px -5px rgba(0, 0, 0, 0.15), 
+                0 5px 15px rgba(0, 0, 0, 0.07),
+                0 0 40px rgba(var(--primary-rgb), 0.2);
         }
 
         .contact-card::after {
@@ -1390,7 +1590,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80" alt="王子轩个人照片">
+                    <img src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?auto=format&fit=crop&w=600&q=80" alt="王子轩个人照片">
                 </div>
                 <div class="about-content">
                     <h2>关于我</h2>
@@ -1538,10 +1738,20 @@
             <p class="section-subtitle">聆听我的声音世界，感受旋律的情感</p>
             <div class="music-grid">
                 <!-- 作品卡片 1 -->
-                <div class="music-card">
+                <div class="music-card neon-border">
                     <div class="music-card-image">
                         <img src="https://images.unsplash.com/photo-1446057032654-9d8885db76c6?auto=format&fit=crop&w=400&h=400&q=80" alt="专辑: 时光碎片">
                         <div class="play-button-overlay"></div>
+                        <div class="music-visualizer">
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                        </div>
                     </div>
                     <div class="music-card-body">
                         <h4>专辑: 时光碎片</h4>
@@ -1555,10 +1765,20 @@
                     </div>
                 </div>
                 <!-- 作品卡片 2 -->
-                <div class="music-card">
+                <div class="music-card neon-border">
                     <div class="music-card-image">
                         <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=400&h=400&q=80" alt="单曲: 霓虹低语">
                         <div class="play-button-overlay"></div>
+                        <div class="music-visualizer">
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                        </div>
                     </div>
                     <div class="music-card-body">
                         <h4>单曲: 霓虹低语</h4>
@@ -1572,10 +1792,20 @@
                     </div>
                 </div>
                 <!-- 作品卡片 3 -->
-                <div class="music-card">
+                <div class="music-card neon-border">
                     <div class="music-card-image">
                         <img src="https://images.unsplash.com/photo-1506268452458-bfb3757ed859?auto=format&fit=crop&w=400&h=400&q=80" alt="配乐: 迷雾森林">
                         <div class="play-button-overlay"></div>
+                        <div class="music-visualizer">
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                        </div>
                     </div>
                     <div class="music-card-body">
                         <h4>电影配乐: 迷雾森林</h4>
@@ -1585,15 +1815,76 @@
                     </div>
                 </div>
                 <!-- 作品卡片 4 -->
-                <div class="music-card">
+                <div class="music-card neon-border">
                     <div class="music-card-image">
                         <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&h=400&q=80" alt="EP: 无垠">
                         <div class="play-button-overlay"></div>
+                        <div class="music-visualizer">
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                        </div>
                     </div>
                     <div class="music-card-body">
                         <h4>EP: 无垠</h4>
                         <p class="date">发行日期: 2022年08月</p>
                         <p class="description">早期实验性电子音乐作品，探索极简主义音景与氛围声响。</p>
+                        <a href="#" class="btn btn-primary btn-sm">试听</a>
+                    </div>
+                </div>
+                <!-- 新增作品卡片 5 -->
+                <div class="music-card neon-border">
+                    <div class="music-card-image">
+                        <img src="https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?auto=format&fit=crop&w=400&h=400&q=80" alt="合作单曲: 星河浮梦">
+                        <div class="play-button-overlay"></div>
+                        <div class="music-visualizer">
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                        </div>
+                    </div>
+                    <div class="music-card-body">
+                        <h4>合作单曲: 星河浮梦</h4>
+                        <p class="date">发行日期: 2024年07月</p>
+                        <p class="description">与著名声乐艺术家林小雨合作，将传统民乐元素与现代电子音乐融合的跨界作品。</p>
+                        <a href="#" class="btn btn-primary btn-sm">试听</a>
+                        <span class="platform-links ml-2">
+                            <a href="#" title="网易云音乐"><i class="icon-placeholder">N</i></a>
+                            <a href="#" title="Spotify"><i class="icon-placeholder">S</i></a>
+                        </span>
+                    </div>
+                </div>
+                <!-- 新增作品卡片 6 -->
+                <div class="music-card neon-border">
+                    <div class="music-card-image">
+                        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=400&h=400&q=80" alt="游戏配乐: 量子迷宫">
+                        <div class="play-button-overlay"></div>
+                        <div class="music-visualizer">
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                            <div class="visualizer-bar"></div>
+                        </div>
+                    </div>
+                    <div class="music-card-body">
+                        <h4>游戏配乐: 量子迷宫</h4>
+                        <p class="date">项目时间: 2025年01月</p>
+                        <p class="description">为科幻解谜游戏《量子迷宫》创作的原声音乐，使用生成式音频技术打造互动式音景。</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">了解项目</a>
                         <a href="#" class="btn btn-primary btn-sm">试听</a>
                     </div>
                 </div>
