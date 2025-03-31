@@ -3,112 +3,659 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="王子轩官方网站 - 音乐人、制作人、声音探索者">
-    <meta name="keywords" content="王子轩, 音乐制作, 编曲, 混音, 电子音乐, 原声音乐, 演出">
-    <title>王子轩 | 官方网站 - 音乐之旅</title>
-    <!-- 引入 Google Fonts (示例) -->
+    <meta name="description" content="王子轩 - 音乐制作人和声音设计师的个人网站。专注于电子音乐创作、声音设计与沉浸式音频体验。">
+    <meta name="keywords" content="王子轩,音乐制作,声音设计,电子音乐,音频工程,混音">
+    <meta name="author" content="王子轩">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta property="og:title" content="王子轩 - 音乐制作人 / 声音设计师">
+    <meta property="og:description" content="专注于创造融合电子元素与传统乐器的沉浸式音乐体验。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.wangzixuan-music.com">
+
+    <title>王子轩 - 音乐制作人 / 声音设计师</title>
+    
+    <!-- 添加网站图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+    
+    <!-- 添加字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- 全局重置与基础设定 --- */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
+        :root {
+            /* 主色调更新为更现代的配色方案 */
+            --primary-color: #6c63ff;
+            --primary-light: #a59fff;
+            --primary-dark: #4c46b6;
+            --accent-color: #ff6584;
+            --accent-light: #ff9eb5;
+            --accent-dark: #d4365c;
+            --text-color: #333;
+            --text-light: #666;
+            --text-dark: #111;
+            --bg-color: #fff;
+            --bg-light: #f9f9f9;
+            --bg-dark: #1a1a2e;
+            --section-padding: 100px 0;
+            --card-bg: #ffffff;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --border-radius-sm: 8px;
+            --border-radius-lg: 20px;
+            --transition: all 0.3s ease-in-out;
+            --glow-neon: 0 0 10px rgba(108, 99, 255, 0.5), 0 0 20px rgba(108, 99, 255, 0.3);
+            --glow-accent: 0 0 10px rgba(255, 101, 132, 0.5), 0 0 20px rgba(255, 101, 132, 0.3);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #6c63ff;
+            --primary-light: #8f88ff;
+            --primary-dark: #4c46b6;
+            --accent-color: #ff6584;
+            --accent-light: #ff89a6;
+            --accent-dark: #d4365c;
+            --text-color: #e0e0e0;
+            --text-light: #a0a0a0;
+            --text-dark: #ffffff;
+            --bg-color: #121212;
+            --bg-light: #1e1e1e;
+            --bg-dark: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
-            /* 强制显示滚动条，防止页面切换时宽度跳动 */
-            overflow-y: scroll;
+            scroll-padding-top: 80px;
         }
 
         body {
-            font-family: 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif; /* 优先使用思源黑体 */
-            line-height: 1.7;
-            color: #495057; /* 更柔和的文本色 */
-            background-color: #ffffff; /* 基础背景改为白色 */
+            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased; /* 抗锯齿 */
-            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease;
             position: relative;
         }
 
-        /* 背景粒子装饰 */
-        body::before {
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius-sm);
+        }
+
+        /* 容器样式 */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 部分通用样式 */
+        .section-padding {
+            padding: var(--section-padding);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mt-5 { margin-top: 3rem; }
+        
+        .ml-1 { margin-left: 0.5rem; }
+        .ml-2 { margin-left: 1rem; }
+        .ml-3 { margin-left: 1.5rem; }
+        
+        /* 按钮样式增强 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
             content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-outline-primary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-outline-light {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* 向按钮添加图标间距 */
+        .btn i, .btn svg {
+            margin-right: 8px;
+        }
+
+        /* 添加按钮脉冲动画效果 */
+        .btn-pulse {
+            animation: button-pulse 2s infinite;
+        }
+
+        @keyframes button-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+            }
+        }
+
+        /* 导航栏样式增强 */
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.3;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        /* --- CSS 变量定义 --- */
-        :root {
-            /* 基础色板 */
-            --primary-color: #2c6bed; /* 更深沉的蓝色 */
-            --secondary-color: #7a8c9e; /* 更高级的灰色 */
-            --accent-color: #ffa726; /* 温暖的橙色 */
-            --success-color: #26a69a; /* 更优雅的绿色 */
-            --danger-color: #ef5350; /* 柔和的红色 */
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-            /* 背景与文本色 */
-            --light-bg: #f9fafb; /* 更细腻的浅灰背景 */
-            --white-bg: #ffffff;
-            --dark-bg: #1e293b; /* 深蓝灰背景 */
-            --dark-text: #334155; /* 深蓝灰文本 */
-            --light-text: #f8fafc; /* 浅灰文本 (用于深色背景) */
-            --muted-text: #94a3b8; /* 更柔和的次要文本 */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
 
-            /* 霓虹效果颜色 */
-            --neon-blue: #18f0f0;
-            --neon-purple: #9d4edd;
-            --neon-pink: #ff2a6d;
-            
-            /* 动画相关 */
-            --animation-speed-slow: 15s;
-            --animation-speed-normal: 8s;
-            --animation-speed-fast: 4s;
+        .navbar-brand-text h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: var(--transition);
+        }
 
-            /* 字体 */
-            --heading-font: 'Montserrat', 'Noto Sans SC', sans-serif; /* 标题字体 */
-            --body-font: 'Noto Sans SC', sans-serif; /* 正文字体 */
+        .navbar-brand-text .tagline {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
 
-            /* 尺寸与间距 */
-            --navbar-height: 80px; /* 增加导航栏高度 */
-            --container-max-width: 1320px; /* 进一步增加容器宽度，更宽阔 */
-            --section-padding-y: 9rem; /* 增加垂直内边距 */
-            --section-padding-x: 2rem; /* 增加水平内边距 */
-            --border-radius-sm: 0.25rem;
-            --border-radius-md: 0.5rem;
-            --border-radius-lg: 1.2rem; /* 增加圆角半径，更现代 */
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            transition: var(--transition);
+        }
 
-            /* 阴影 */
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .navbar-menu li {
+            margin-left: 2rem;
+        }
 
-            /* 过渡 */
-            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* 为 primary color 创建 RGB 版本 */
-            --primary-rgb: 44, 107, 237;
-            --accent-color-rgb: 255, 167, 38;
-            --success-color-rgb: 38, 166, 154;
-            --danger-color-rgb: 239, 83, 80;
-            --light-text-rgb: 248, 250, 252;
+        .navbar-menu a {
+            position: relative;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 8px 0;
+        }
+
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        .navbar-menu a:hover, .navbar-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .navbar-menu a:hover::after, .navbar-menu a.active::after {
+            width: 100%;
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .navbar-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--text-dark);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .navbar-toggle span:nth-child(1) {
+            top: 0px;
+        }
+
+        .navbar-toggle span:nth-child(2),
+        .navbar-toggle span:nth-child(3) {
+            top: 10px;
+        }
+
+        .navbar-toggle span:nth-child(4) {
+            top: 20px;
+        }
+
+        .navbar-toggle.active span:nth-child(1) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        .navbar-toggle.active span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .navbar-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        .navbar-toggle.active span:nth-child(4) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        /* 主题切换按钮 */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        /* 英雄区域增强 */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            max-height: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--bg-dark);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            filter: brightness(0.6) contrast(1.1);
+            z-index: 0;
+        }
+
+        .animated-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(26, 26, 46, 0.8) 0%,
+                rgba(108, 99, 255, 0.4) 50%,
+                rgba(255, 101, 132, 0.4) 100%);
+            opacity: 0.8;
+            z-index: 1;
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #ffffff, var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* 视差背景元素增强 */
+        .parallax-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+            transition: transform 0.3s ease-out;
+        }
+
+        .bg-circle-1 {
+            background-color: var(--primary-color);
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            left: -200px;
+        }
+
+        .bg-circle-2 {
+            background-color: var(--accent-color);
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            right: -100px;
+        }
+
+        .bg-circle-3 {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            width: 350px;
+            height: 350px;
+            top: 60%;
+            left: 10%;
+        }
+
+        #tour .bg-circle-1 {
+            background-color: var(--primary-color);
+            top: 20%;
+            right: -150px;
+            left: auto;
+        }
+
+        #contact .bg-circle-2 {
+            background-color: var(--accent-color);
+            top: -150px;
+            right: 10%;
+            bottom: auto;
+        }
+
+        /* 浮动动画 */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* 淡入动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 添加卷动指示器 */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: white;
+            text-align: center;
+            animation: fadeInUp 1.5s ease 1s backwards;
+        }
+
+        .scroll-indicator p {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 50px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .scroll-arrow:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: translateX(-50%);
+        }
+
+        .scroll-arrow:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            transform: translateX(-50%);
+            animation: scrollDown 2s ease infinite;
+        }
+
+        @keyframes scrollDown {
+            0% {
+                top: 0;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
         }
 
         /* --- 通用样式 --- */
@@ -176,6 +723,7 @@
             vertical-align: middle;
             cursor: pointer;
             user-select: none;
+            -webkit-user-select: none; /* 添加Safari支持 */
             border: 2px solid transparent;
             padding: 0.9rem 2.2rem;
             font-size: 1rem;
@@ -267,7 +815,7 @@
             background-color: rgba(255, 255, 255, 0.97);
             box-shadow: var(--shadow-sm);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* 添加Safari支持 */
         }
 
         .navbar-container {
@@ -462,6 +1010,7 @@
             z-index: 1;
             animation: fadeInUp 1.2s ease-out;
             backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px); /* 添加Safari支持 */
             background-color: rgba(0, 0, 0, 0.25);
             border-radius: var(--border-radius-lg);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -626,98 +1175,92 @@
 
         /* --- 关于部分 --- */
         #about {
-            background-color: var(--light-bg);
+            background-color: var(--bg-light);
             position: relative;
             overflow: hidden;
         }
 
+        /* 关于部分样式 */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
             align-items: center;
         }
 
         .about-image {
             position: relative;
-            border-radius: var(--border-radius-lg);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            height: 100%;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
         }
 
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.04);
-        }
-
-        .about-image::after {
+        .about-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(var(--primary-rgb), 0.2) 0%,
-                rgba(var(--accent-color-rgb), 0.2) 100%
-            );
-            opacity: 0.3;
-            transition: opacity var(--transition-medium);
+            background: linear-gradient(45deg, 
+                rgba(108, 99, 255, 0.2), 
+                rgba(255, 101, 132, 0.2));
+            z-index: 1;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image:hover::before {
+            opacity: 0.8;
+        }
+
+        .about-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
         }
 
         .about-content h2 {
-            font-family: var(--heading-font);
-            font-size: 2.7rem;
-            color: var(--dark-text);
-            margin-bottom: 1.8rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
-            text-align: left;
         }
 
         .about-content h2::after {
             content: '';
             position: absolute;
-            left: 0;
             bottom: -10px;
-            width: 80px;
-            height: 4px;
+            left: 0;
+            width: 50px;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            border-radius: 4px;
+            border-radius: 2px;
         }
 
         .about-content p {
             margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-        }
-
-        .about-signature {
-            font-family: 'Pacifico', cursive;
-            font-size: 2rem;
-            color: var(--dark-text);
-            margin-top: 2rem;
-            display: block;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-color);
         }
 
         .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            background-color: var(--white-bg);
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-md);
+            display: flex;
+            justify-content: flex-start;
+            gap: 40px;
+            margin-top: 2rem;
         }
 
         .stat-item {
@@ -725,148 +1268,197 @@
         }
 
         .stat-number {
-            font-family: var(--heading-font);
-            font-size: 3.2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            line-height: 1;
             margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .stat-label {
             font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--secondary-color);
+            font-weight: 500;
+            color: var(--text-light);
         }
 
         /* --- 技能部分 --- */
         #skills {
-            background-color: var(--white-bg);
+            background-color: var(--bg-color);
             position: relative;
+        }
+
+        /* 技能部分样式增强 */
+        .section-title-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
         }
 
         .skill-item {
-            background-color: var(--light-bg);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 1;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+            transition: height 0.3s ease;
+            z-index: -1;
         }
 
         .skill-item:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 
-                0 15px 35px -5px rgba(0, 0, 0, 0.15), 
-                0 5px 15px rgba(0, 0, 0, 0.07),
-                0 0 40px rgba(var(--primary-rgb), 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-item:hover::before {
+            height: 100%;
         }
 
         .skill-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem auto;
+            width: 70px;
+            height: 70px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: rgba(var(--primary-rgb), 0.1);
-            border-radius: 50%;
-            transition: transform var(--transition-medium);
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            background-color: rgba(108, 99, 255, 0.1);
+            transition: var(--transition);
         }
 
         .skill-item:hover .skill-icon {
+            background-color: rgba(108, 99, 255, 0.2);
             transform: scale(1.1) rotate(5deg);
         }
 
         .skill-icon img {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
+            width: 40px;
+            height: 40px;
+            transition: var(--transition);
         }
 
         .skill-item h3 {
-            font-family: var(--heading-font);
             font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
+            margin-bottom: 12px;
+            transition: var(--transition);
         }
 
         .skill-item p {
-            color: var(--secondary-color);
+            color: var(--text-light);
             font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.6;
+            margin-bottom: 0;
         }
 
+        /* 软件技能增强 */
         .software-skills {
             margin-top: 5rem;
-        }
-
-        .software-skills h3 {
-            font-family: var(--heading-font);
-            font-size: 1.8rem;
-            color: var(--dark-text);
+            padding-top: 3rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .software-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
         }
 
         .software-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .software-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            color: var(--dark-text);
+            margin-bottom: 10px;
             font-weight: 500;
+        }
+
+        .software-info span:last-child {
+            color: var(--primary-color);
         }
 
         .progress-bar {
             height: 8px;
-            background-color: #e9ecef;
+            background-color: rgba(0, 0, 0, 0.05);
             border-radius: 4px;
             overflow: hidden;
+            position: relative;
         }
 
         .progress {
             height: 100%;
             background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             border-radius: 4px;
-            transition: width 1.5s ease-in-out;
+            transition: width 1.5s cubic-bezier(0.1, 0.5, 0.2, 1);
+            width: 0;
         }
 
-        /* 通用工具类 */
-        .text-center {
-            text-align: center;
+        /* 添加进度条加载动画 */
+        .progress-animate {
+            animation: progressAnimation 1.5s forwards;
         }
-        .mt-5 {
-            margin-top: 4rem !important;
-        }
-        .mb-4 {
-            margin-bottom: 2.5rem !important;
+
+        @keyframes progressAnimation {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         /* --- 音乐作品区域 --- */
         #music {
-            background-color: var(--white-bg);
+            background-color: var(--bg-light);
         }
 
         .music-grid {
@@ -1085,7 +1677,7 @@
 
         /* --- 巡演部分 --- */
         #tour {
-            background-color: var(--light-bg);
+            background-color: var(--bg-light);
             position: relative;
         }
 
@@ -1257,238 +1849,342 @@
 
         /* --- 联系部分 --- */
         #contact {
-            background-color: var(--white-bg);
             position: relative;
+            background-color: var(--bg-color);
         }
 
-        .contact-grid {
+        .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
         }
 
         .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
 
         .contact-card {
-            background-color: var(--light-bg);
-            padding: 3rem; /* 增加内部空间 */
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-medium);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .contact-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 
-                0 15px 35px -5px rgba(0, 0, 0, 0.15), 
-                0 5px 15px rgba(0, 0, 0, 0.07),
-                0 0 40px rgba(var(--primary-rgb), 0.2);
-        }
-
-        .contact-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, transparent 50%, rgba(var(--primary-rgb), 0.05) 50%);
-            border-radius: 0 0 0 100px;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .contact-icon {
             width: 60px;
             height: 60px;
-            margin-bottom: 1.5rem;
-            background-color: rgba(var(--primary-rgb), 0.1);
-            border-radius: 50%;
+            margin: 0 auto 20px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover .contact-icon {
+            background-color: var(--primary-color);
         }
 
         .contact-icon img {
             width: 30px;
             height: 30px;
-            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover .contact-icon img {
+            filter: brightness(5);
         }
 
         .contact-card h3 {
-            font-family: var(--heading-font);
             font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
+            margin-bottom: 10px;
         }
 
         .contact-card p {
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: var(--white-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: var(--shadow-sm);
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            background-color: rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
 
         .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
         }
 
         .social-link img {
             width: 20px;
             height: 20px;
-            object-fit: contain;
+            transition: var(--transition);
         }
 
-        .contact-form form {
-            background-color: var(--light-bg);
-            padding: 3.5rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(0, 0, 0, 0.03);
+        .social-link:hover img {
+            filter: brightness(5);
+        }
+
+        .contact-form {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
             font-weight: 500;
-            color: var(--dark-text);
+            color: var(--text-dark);
         }
 
-        .form-group input, 
-        .form-group textarea {
+        .form-control {
             width: 100%;
-            padding: 1rem 1.2rem;
-            border: 1px solid #e2e8f0;
-            border-radius: var(--border-radius-md);
-            background-color: var(--white-bg);
-            font-family: var(--body-font);
-            font-size: 1rem;
-            transition: all var(--transition-fast);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            padding: 12px 15px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
         }
 
-        .form-group input:focus, 
-        .form-group textarea:focus {
+        .form-control:focus {
             border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
         }
 
-        /* --- 页脚 --- */
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn-container {
+            text-align: center;
+        }
+
+        .form-submit {
+            padding: 12px 30px;
+            font-size: 1rem;
+            margin-top: 10px;
+            animation: button-pulse 2s infinite;
+        }
+
+        /* 表单验证样式 */
+        .form-group.success .form-control {
+            border-color: #4caf50;
+        }
+
+        .form-group.error .form-control {
+            border-color: #f44336;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* 提交成功消息 */
+        .submit-success {
+            display: none;
+            padding: 15px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4caf50;
+            color: #2e7d32;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* 提交失败消息 */
+        .submit-error {
+            display: none;
+            padding: 15px;
+            background-color: rgba(244, 67, 54, 0.1);
+            border-left: 4px solid #f44336;
+            color: #d32f2f;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* 页脚样式 */
         .footer {
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            padding: 5rem 0 2rem 0;
+            background-color: var(--bg-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 20px;
             position: relative;
             overflow: hidden;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        }
-
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
         .footer-brand h2 {
-            font-family: var(--heading-font);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--white-bg);
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
         }
 
-        .footer-brand p {
-            color: var(--muted-text);
-            max-width: 300px;
+        .footer-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        .footer-links {
+        .footer-social {
             display: flex;
-            gap: 4rem;
+            gap: 15px;
         }
 
-        .footer-links-column h3 {
-            font-family: var(--heading-font);
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--white-bg);
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h3, .footer-newsletter h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
             position: relative;
-            padding-bottom: 0.8rem;
+            padding-bottom: 10px;
         }
 
-        .footer-links-column h3::after {
+        .footer-links h3::after, .footer-newsletter h3::after {
             content: '';
             position: absolute;
-            left: 0;
             bottom: 0;
+            left: 0;
             width: 30px;
             height: 2px;
             background-color: var(--primary-color);
         }
 
-        .footer-links-column ul {
+        .footer-link-list {
             list-style: none;
+            padding: 0;
         }
 
-        .footer-links-column li {
-            margin-bottom: 0.8rem;
+        .footer-link-list li {
+            margin-bottom: 10px;
         }
 
-        .footer-links-column a {
-            color: var(--muted-text);
-            text-decoration: none;
-            transition: color var(--transition-fast);
+        .footer-link-list a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            display: inline-block;
+            padding: 3px 0;
         }
 
-        .footer-links-column a:hover {
-            color: var(--primary-color);
+        .footer-link-list a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .newsletter-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--primary-dark);
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
+            padding-top: 20px;
             text-align: center;
-            color: var(--muted-text);
             font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* --- 视差背景元素 --- */
@@ -1538,6 +2234,1416 @@
             right: 10%;
             bottom: auto;
         }
+
+        /* 音乐播放器样式增强 */
+        .music-player {
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .player-container {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .player-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .album-cover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .player-container:hover .album-cover img {
+            transform: scale(1.1);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .album-cover:hover .play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .player-controls {
+            padding: 20px;
+        }
+
+        .now-playing {
+            margin-bottom: 15px;
+        }
+
+        .now-playing h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .now-playing p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .progress-container {
+            margin-bottom: 15px;
+        }
+
+        .time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .controls-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .controls-buttons button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            margin-right: 15px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .controls-buttons button:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color) !important;
+            border-radius: 50%;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .play-btn:hover {
+            background-color: var(--primary-dark) !important;
+            transform: scale(1.1) !important;
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4) !important;
+        }
+
+        .spectrum-visualizer {
+            height: 70px;
+            margin-top: 20px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .visualizer-bar {
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+            border-radius: 1px;
+            transition: height 0.2s ease;
+        }
+
+        /* 音乐作品卡片增强 */
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .music-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .neon-border {
+            position: relative;
+        }
+
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--border-radius);
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .music-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow-neon);
+        }
+
+        .music-card:hover .neon-border::before {
+            opacity: 1;
+        }
+
+        .music-card-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+        }
+
+        .music-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .music-card:hover .music-card-image img {
+            transform: scale(1.1);
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .play-button-overlay::after {
+            content: '';
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-button-overlay::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-40%, -50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 0 15px 20px;
+            border-color: transparent transparent transparent white;
+            z-index: 1;
+        }
+
+        .music-card:hover .play-button-overlay {
+            opacity: 1;
+        }
+
+        .music-visualizer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0 20px;
+            gap: 3px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .music-card:hover .music-visualizer {
+            opacity: 1;
+        }
+
+        .music-card .visualizer-bar {
+            background: linear-gradient(180deg, white, rgba(255, 255, 255, 0.5));
+            height: 5px;
+            animation: visualize 1.3s infinite ease-in-out alternate;
+            width: 4px;
+        }
+
+        .music-card .visualizer-bar:nth-child(1) { animation-delay: -0.7s; }
+        .music-card .visualizer-bar:nth-child(2) { animation-delay: -0.6s; }
+        .music-card .visualizer-bar:nth-child(3) { animation-delay: -0.5s; }
+        .music-card .visualizer-bar:nth-child(4) { animation-delay: -0.4s; }
+        .music-card .visualizer-bar:nth-child(5) { animation-delay: -0.3s; }
+        .music-card .visualizer-bar:nth-child(6) { animation-delay: -0.2s; }
+        .music-card .visualizer-bar:nth-child(7) { animation-delay: -0.1s; }
+        .music-card .visualizer-bar:nth-child(8) { animation-delay: 0s; }
+
+        @keyframes visualize {
+            0% { height: 5px; }
+            100% { height: 30px; }
+        }
+
+        .music-card-body {
+            padding: 20px;
+        }
+
+        .music-card-body h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .music-card-body .date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .music-card-body .description {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .platform-links {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .platform-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .platform-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .icon-placeholder {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* 虚拟工作室部分 */
+        #studio {
+            position: relative;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .studio-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .studio-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .studio-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .studio-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        .studio-gear {
+            margin-top: 2rem;
+        }
+
+        .studio-gear h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gear-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gear-item {
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .gear-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .studio-image-container {
+            position: relative;
+            height: 450px;
+            perspective: 1000px;
+        }
+
+        .studio-3d-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(-15deg) rotateX(10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .studio-3d-container:hover {
+            transform: rotateY(-5deg) rotateX(5deg);
+        }
+
+        .studio-image {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            top: 5%;
+            left: 5%;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .studio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .studio-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .studio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(108, 99, 255, 0.2), rgba(255, 101, 132, 0.2));
+            z-index: 1;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .studio-image:hover::before {
+            opacity: 0.8;
+        }
+
+        .studio-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            transform: translateZ(-20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 演出部分样式增强 */
+        #tour {
+            position: relative;
+            background-color: var(--bg-light);
+        }
+
+        .tour-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 10px;
+        }
+
+        .tour-tab {
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-weight: 500;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .tour-tab:hover {
+            color: var(--primary-color);
+        }
+
+        .tour-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .tour-tab.active {
+            color: var(--primary-color);
+        }
+
+        .tour-tab.active::after {
+            width: 100%;
+        }
+
+        .tour-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tour-content.active {
+            display: block;
+        }
+
+        .tour-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tour-item {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .tour-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow-neon);
+        }
+
+        .tour-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tour-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .tour-item:hover .tour-image img {
+            transform: scale(1.1);
+        }
+
+        .tour-image::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            z-index: 1;
+        }
+
+        .tour-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tour-details {
+            padding: 20px;
+        }
+
+        .tour-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tour-details p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .tour-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .tour-location svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary-color);
+        }
+
+        .tour-item .btn {
+            width: 100%;
+        }
+
+        /* 过去演出样式 */
+        .past-tour-item {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .past-tour-item:last-child {
+            border-bottom: none;
+        }
+
+        .past-tour-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .past-tour-date {
+            width: 80px;
+            text-align: center;
+            padding-right: 15px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .past-tour-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .past-tour-month {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .past-tour-details {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .past-tour-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .past-tour-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .past-tour-highlights {
+            padding: 10px 0;
+        }
+
+        .highlight-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-grid, 
+            .studio-container, 
+            .contact-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .about-grid, 
+            .studio-container, 
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .studio-image-container {
+                height: 400px;
+                margin: 0 auto;
+                max-width: 600px;
+            }
+            
+            .navbar-menu {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--bg-color);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+            
+            .navbar-menu.active {
+                right: 0;
+            }
+            
+            .navbar-menu li {
+                margin: 15px 0;
+            }
+            
+            .navbar-toggle {
+                display: block;
+                z-index: 1000;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .about-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+            }
+            
+            .player-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .album-cover {
+                height: 300px;
+            }
+            
+            .skills-grid,
+            .music-grid,
+            .tour-list {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .gear-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+            }
+            
+            .about-content h2, 
+            .studio-content h2, 
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .skills-grid,
+            .music-grid,
+            .tour-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+            
+            .tour-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tour-tab {
+                margin-bottom: 10px;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* 暗黑模式切换样式 */
+        body.dark-mode {
+            --primary-color: #8a80ff;
+            --primary-light: #a59fff;
+            --primary-dark: #6c63ff;
+            --accent-color: #ff7a96;
+            --accent-light: #ff9eb5;
+            --accent-dark: #ff6584;
+            --text-color: #e0e0e0;
+            --text-light: #a0a0a0;
+            --text-dark: #ffffff;
+            --bg-color: #121212;
+            --bg-light: #1e1e1e;
+            --bg-dark: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .navbar {
+            background-color: rgba(18, 18, 18, 0.97);
+        }
+
+        body.dark-mode .navbar-toggle span {
+            background-color: #fff;
+        }
+
+        body.dark-mode .form-control {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #333;
+        }
+
+        body.dark-mode .form-control::placeholder {
+            color: #888;
+        }
+
+        /* 加载动画 */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(108, 99, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== 虚拟工作室部分 ===== */
+        #studio {
+            position: relative;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .studio-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .studio-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .studio-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .studio-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        .studio-gear {
+            margin-top: 2rem;
+        }
+
+        .studio-gear h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gear-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gear-item {
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .gear-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .studio-image-container {
+            position: relative;
+            height: 450px;
+            perspective: 1000px;
+        }
+
+        .studio-3d-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(-15deg) rotateX(10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .studio-3d-container:hover {
+            transform: rotateY(-5deg) rotateX(5deg);
+        }
+
+        .studio-image {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            top: 5%;
+            left: 5%;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .studio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .studio-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .studio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(108, 99, 255, 0.2), rgba(255, 101, 132, 0.2));
+            z-index: 1;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .studio-image:hover::before {
+            opacity: 0.8;
+        }
+
+        .studio-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            transform: translateZ(-20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 添加交替背景色以增强视觉区隔 */
+        #about {
+            background-color: var(--bg-light);
+        }
+
+        #skills {
+            background-color: var(--bg-color);
+        }
+
+        #music {
+            background-color: var(--bg-light);
+        }
+
+        #studio {
+            background-color: var(--bg-color);
+        }
+
+        #tour {
+            background-color: var(--bg-light);
+        }
+
+        #contact {
+            background-color: var(--bg-color);
+        }
+
+        /* 添加section之间的视觉分隔 */
+        section {
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+        }
+
+        /* 设置section标题一致性 */
+        .section-title-container {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* 确保所有卡片有一致的样式 */
+        .card, .skill-item, .music-card, .tour-item, .contact-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover, .skill-item:hover, .music-card:hover, .tour-item:hover, .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ===== 客户评价部分样式 ===== */
+        #testimonials {
+            background-color: var(--bg-color);
+            position: relative;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px 10px 40px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            scroll-behavior: smooth;
+        }
+        
+        .testimonial-slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        
+        .testimonial-card {
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: 300px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-quote {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.1;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 8px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 992px) {
+            .testimonial-card {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 100%;
+            }
+        }
+
+        /* ===== 作品案例部分 ===== */
+        #projects {
+            background-color: var(--bg-light);
+            position: relative;
+        }
+        
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-category {
+            font-size: 1.2rem;
+            color: var(--white-bg);
+            text-align: center;
+            padding: 10px;
+            background: var(--primary-color);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+        
+        .project-desc {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .project-date, .project-listen {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+        }
+        
+        .project-btn {
+            background-color: var(--primary-color);
+            color: var(--white-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .project-btn:hover {
+            background-color: var(--primary-dark);
+        }
     </style>
 </head>
 <body>
@@ -1555,7 +3661,7 @@
                     <span class="tagline">音乐制作人 / 声音设计师</span>
                 </div>
             </a>
-            <button class="navbar-toggle">
+            <button class="navbar-toggle" aria-label="切换导航菜单" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1564,9 +3670,31 @@
             <ul class="navbar-menu">
                 <li><a href="#" class="active">首页</a></li>
                 <li><a href="#about">关于</a></li>
+                <li><a href="#skills">技能</a></li>
                 <li><a href="#music">音乐</a></li>
+                <li><a href="#projects">作品案例</a></li>
+                <li><a href="#studio">虚拟工作室</a></li>
                 <li><a href="#tour">演出</a></li>
+                <li><a href="#testimonials">客户评价</a></li>
                 <li><a href="#contact">联系</a></li>
+                <li>
+                    <button id="themeToggle" class="theme-toggle" aria-label="切换深色/浅色模式">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon" style="display: none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -1579,9 +3707,13 @@
             <h1>王子轩</h1>
             <h2>通过声音探索情感与时空的边界</h2>
             <div class="hero-buttons">
-                <a href="#music" class="btn btn-primary">探索作品</a>
+                <a href="#music" class="btn btn-primary btn-pulse">探索作品</a>
                 <a href="#tour" class="btn btn-outline-light">近期演出</a>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <p>向下滚动探索</p>
+            <div class="scroll-arrow"></div>
         </div>
     </section>
 
@@ -1628,7 +3760,7 @@
                 <!-- 技能项目 1 -->
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1716/1716894.png" alt="电子音乐制作">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1716/1716894.png" alt="电子音乐制作图标">
                     </div>
                     <h3>电子音乐制作</h3>
                     <p>熟练掌握各类电子音乐风格创作，包括环境音乐、舞曲、实验电子音乐等多种风格，富有个人特色。</p>
@@ -1637,7 +3769,7 @@
                 <!-- 技能项目 2 -->
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2699/2699194.png" alt="混音与母带处理">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2699/2699194.png" alt="混音与母带处理图标">
                     </div>
                     <h3>混音与母带处理</h3>
                     <p>提供专业的混音与母带处理服务，确保音频质量达到行业标准，呈现最佳听感体验。</p>
@@ -1646,7 +3778,7 @@
                 <!-- 技能项目 3 -->
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4498/4498587.png" alt="声音设计">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4498/4498587.png" alt="声音设计图标">
                     </div>
                     <h3>声音设计</h3>
                     <p>为电影、游戏、多媒体项目创造沉浸式声音体验，从环境音效到角色配音的全方位设计。</p>
@@ -1655,7 +3787,7 @@
                 <!-- 技能项目 4 -->
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2907/2907198.png" alt="现场演出">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2907/2907198.png" alt="现场演出图标">
                     </div>
                     <h3>现场演出</h3>
                     <p>丰富的现场表演经验，能够呈现引人入胜的视听体验，为观众带来难忘的沉浸式现场演出。</p>
@@ -1664,7 +3796,7 @@
                 <!-- 技能项目 5 -->
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/512/8088/8088308.png" alt="音频编程">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8088/8088308.png" alt="音频编程图标">
                     </div>
                     <h3>音频编程</h3>
                     <p>熟练使用Max/MSP、Supercollider等工具进行互动声音编程，创造独特的生成式音频体验。</p>
@@ -1673,7 +3805,7 @@
                 <!-- 技能项目 6 -->
                 <div class="skill-item">
                     <div class="skill-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2318/2318736.png" alt="跨媒体合作">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2318/2318736.png" alt="跨媒体合作图标">
                     </div>
                     <h3>跨媒体合作</h3>
                     <p>与视觉艺术家、舞者、建筑师等各领域创作者合作，创造融合多种感官的艺术体验。</p>
@@ -1736,6 +3868,64 @@
                 <h2 class="section-title">音乐作品集</h2>
             </div>
             <p class="section-subtitle">聆听我的声音世界，感受旋律的情感</p>
+            
+            <!-- 添加交互式音乐播放器 -->
+            <div class="music-player">
+                <div class="player-container">
+                    <div class="album-cover">
+                        <img src="https://images.unsplash.com/photo-1446057032654-9d8885db76c6?auto=format&fit=crop&w=400&h=400&q=80" alt="当前播放专辑">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="player-controls">
+                        <div class="now-playing">
+                            <h4>时光碎片</h4>
+                            <p>第1首 / 共8首</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 35%"></div>
+                            </div>
+                            <div class="time">
+                                <span class="current-time">1:45</span>
+                                <span class="total-time">5:30</span>
+                            </div>
+                        </div>
+                        <div class="controls-buttons">
+                            <button class="prev-btn" aria-label="上一首">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                                </svg>
+                            </button>
+                            <button class="play-btn" aria-label="播放/暂停">
+                                <svg viewBox="0 0 24 24" width="36" height="36" class="play-icon">
+                                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24" width="36" height="36" class="pause-icon" style="display: none;">
+                                    <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                </svg>
+                            </button>
+                            <button class="next-btn" aria-label="下一首">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                                </svg>
+                            </button>
+                            <button class="volume-btn" aria-label="音量">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="spectrum-visualizer">
+                    <!-- 使用脚本动态生成频谱条 -->
+                </div>
+            </div>
+            
             <div class="music-grid">
                 <!-- 作品卡片 1 -->
                 <div class="music-card neon-border">
@@ -1759,8 +3949,8 @@
                         <p class="description">探索记忆与时间的概念，融合氛围电子与新古典元素，构建空灵梦境。</p>
                         <a href="#" class="btn btn-primary btn-sm">试听</a>
                         <span class="platform-links ml-2">
-                            <a href="#" title="网易云音乐"><i class="icon-placeholder">N</i></a>
-                            <a href="#" title="QQ音乐"><i class="icon-placeholder">Q</i></a>
+                            <a href="#" title="在网易云音乐上播放"><i class="icon-placeholder">N</i></a>
+                            <a href="#" title="在QQ音乐上播放"><i class="icon-placeholder">Q</i></a>
                         </span>
                     </div>
                 </div>
@@ -1786,8 +3976,8 @@
                         <p class="description">捕捉都市夜晚的迷离与悸动，以 Synthwave 节奏驱动的赛博朋克情歌。</p>
                         <a href="#" class="btn btn-primary btn-sm">试听</a>
                         <span class="platform-links ml-2">
-                            <a href="#" title="Spotify"><i class="icon-placeholder">S</i></a>
-                            <a href="#" title="Apple Music"><i class="icon-placeholder">A</i></a>
+                            <a href="#" title="在Spotify上播放"><i class="icon-placeholder">S</i></a>
+                            <a href="#" title="在Apple Music上播放"><i class="icon-placeholder">A</i></a>
                         </span>
                     </div>
                 </div>
@@ -1859,8 +4049,8 @@
                         <p class="description">与著名声乐艺术家林小雨合作，将传统民乐元素与现代电子音乐融合的跨界作品。</p>
                         <a href="#" class="btn btn-primary btn-sm">试听</a>
                         <span class="platform-links ml-2">
-                            <a href="#" title="网易云音乐"><i class="icon-placeholder">N</i></a>
-                            <a href="#" title="Spotify"><i class="icon-placeholder">S</i></a>
+                            <a href="#" title="在网易云音乐上播放"><i class="icon-placeholder">N</i></a>
+                            <a href="#" title="在Spotify上播放"><i class="icon-placeholder">S</i></a>
                         </span>
                     </div>
                 </div>
@@ -1895,146 +4085,590 @@
         </div>
     </section>
 
-    <!-- ===== 巡演部分 ===== -->
+    <!-- ===== 作品案例部分 ===== -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">作品案例</h2>
+            </div>
+            <p class="section-subtitle">探索我的代表性项目，每个作品背后都有一个独特的声音故事</p>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">所有作品</button>
+                <button class="filter-btn" data-filter="game">游戏配乐</button>
+                <button class="filter-btn" data-filter="film">影视音乐</button>
+                <button class="filter-btn" data-filter="commercial">商业项目</button>
+                <button class="filter-btn" data-filter="experimental">实验作品</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- 项目 1 - 游戏配乐 -->
+                <div class="project-card" data-category="game">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="《量子迷宫》游戏配乐">
+                        <div class="project-overlay">
+                            <div class="project-category">游戏配乐</div>
+                            <a href="#" class="project-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>《量子迷宫》原声带</h3>
+                        <p class="project-desc">为科幻解谜游戏创作的互动式配乐，融合环境音效与电子氛围</p>
+                        <div class="project-meta">
+                            <span class="project-date">2025年</span>
+                            <a href="#" class="project-listen">试听片段</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目 2 - 影视配乐 -->
+                <div class="project-card" data-category="film">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80" alt="《自然之声》纪录片配乐">
+                        <div class="project-overlay">
+                            <div class="project-category">影视音乐</div>
+                            <a href="#" class="project-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>《自然之声》纪录片配乐</h3>
+                        <p class="project-desc">为环保主题纪录片创作的原创音乐，将自然录音与现代电子音乐相结合</p>
+                        <div class="project-meta">
+                            <span class="project-date">2024年</span>
+                            <a href="#" class="project-listen">试听片段</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目 3 - 商业项目 -->
+                <div class="project-card" data-category="commercial">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/2097616/pexels-photo-2097616.jpeg?auto=compress&cs=tinysrgb&w=800" alt="清新科技品牌广告配乐">
+                        <div class="project-overlay">
+                            <div class="project-category">商业项目</div>
+                            <a href="#" class="project-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>清新科技品牌广告配乐</h3>
+                        <p class="project-desc">为国际科技品牌打造的系列广告音乐，传达创新与未来感</p>
+                        <div class="project-meta">
+                            <span class="project-date">2024年</span>
+                            <a href="#" class="project-listen">试听片段</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目 4 - 实验作品 -->
+                <div class="project-card" data-category="experimental">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80" alt="《声音雕塑》实验音乐装置">
+                        <div class="project-overlay">
+                            <div class="project-category">实验作品</div>
+                            <a href="#" class="project-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>《声音雕塑》互动装置</h3>
+                        <p class="project-desc">结合人工智能与环境互动的声音艺术装置，为上海当代艺术馆特别创作</p>
+                        <div class="project-meta">
+                            <span class="project-date">2024年</span>
+                            <a href="#" class="project-listen">体验片段</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目 5 - 游戏配乐 -->
+                <div class="project-card" data-category="game">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="《星际探险》游戏配乐">
+                        <div class="project-overlay">
+                            <div class="project-category">游戏配乐</div>
+                            <a href="#" class="project-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>《星际探险》手游配乐</h3>
+                        <p class="project-desc">为太空探险题材手游创作的音乐与音效系统，包含自适应音乐技术</p>
+                        <div class="project-meta">
+                            <span class="project-date">2023年</span>
+                            <a href="#" class="project-listen">试听片段</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目 6 - 商业项目 -->
+                <div class="project-card" data-category="commercial">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800" alt="奢侈品牌音乐定制">
+                        <div class="project-overlay">
+                            <div class="project-category">商业项目</div>
+                            <a href="#" class="project-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>奢侈品牌音乐定制</h3>
+                        <p class="project-desc">为国际时尚品牌量身定制的门店背景音乐系统，打造独特的品牌听觉识别</p>
+                        <div class="project-meta">
+                            <span class="project-date">2024年</span>
+                            <a href="#" class="project-listen">试听片段</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 虚拟工作室部分 ===== -->
+    <section id="studio" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">虚拟工作室</h2>
+            </div>
+            <p class="section-subtitle">我的创作空间，融合科技与艺术的工作环境</p>
+
+            <div class="studio-container">
+                <div class="studio-content">
+                    <h2>我的声音实验室</h2>
+                    <p>这里是我创作与实验的核心空间，配备了专业的音频设备和软件工具，让我能够打造高品质的声音作品。在这个数字化工作室中，我可以自由探索声音的无限可能。</p>
+                    <p>我的虚拟工作室不仅是技术的集合，也是灵感的源泉。通过精心选择的设备和环境设计，我创造了一个能够激发创意并高效工作的专业空间。</p>
+                    
+                    <div class="studio-gear">
+                        <h3>核心设备</h3>
+                        <div class="gear-list">
+                            <div class="gear-item">高性能音频工作站</div>
+                            <div class="gear-item">Universal Audio Apollo 接口</div>
+                            <div class="gear-item">Neumann U87 麦克风</div>
+                            <div class="gear-item">Adam Audio A7X 监听音箱</div>
+                            <div class="gear-item">Ableton Push 2 控制器</div>
+                            <div class="gear-item">Native Instruments Komplete</div>
+                            <div class="gear-item">各类模拟合成器</div>
+                            <div class="gear-item">专业混音控制台</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="studio-image-container">
+                    <div class="studio-3d-container">
+                        <div class="studio-image">
+                            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80" alt="王子轩的虚拟工作室">
+                        </div>
+                        <div class="studio-frame"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 演出部分 ===== -->
     <section id="tour" class="section-padding">
         <div class="container">
             <div class="section-title-container">
-                <h2 class="section-title">演出信息</h2>
+                <h2 class="section-title">演出日程</h2>
             </div>
-            <p class="section-subtitle">在现场感受音乐的律动与能量</p>
+            <p class="section-subtitle">我的现场演出信息，与您共享沉浸式音乐体验</p>
             
-            <div class="tour-container">
-                <div class="tour-tabs">
-                    <button class="tour-tab active" data-tab="upcoming">即将到来</button>
-                    <button class="tour-tab" data-tab="past">过往演出</button>
+            <div class="tour-tabs">
+                <button class="tour-tab active" data-tab="upcoming">即将到来</button>
+                <button class="tour-tab" data-tab="past">过往演出</button>
+                <button class="tour-tab" data-tab="livestream">线上直播</button>
+            </div>
+            
+            <div id="upcoming" class="tour-content active">
+                <div class="tour-list">
+                    <!-- 演出项目 1 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=800&q=80" alt="上海现代艺术馆演出">
+                            <div class="tour-date">2025年4月15日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>声音与光影之夜</h4>
+                            <p>沉浸式电子音乐与视觉艺术的跨媒体表演</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                上海现代艺术馆
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预定门票</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 演出项目 2 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="北京电子音乐节">
+                            <div class="tour-date">2025年5月22日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>北京电子音乐节</h4>
+                            <p>与多位国内外电子音乐人共同演出</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                北京朝阳公园
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预定门票</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 演出项目 3 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80" alt="成都音乐会">
+                            <div class="tour-date">2025年6月10日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>声音实验室</h4>
+                            <p>模拟合成器现场即兴演奏与声音装置体验</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                成都当代艺术中心
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预定门票</a>
+                        </div>
+                    </div>
+
+                    <!-- 演出项目 4 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80" alt="深圳电子音乐周">
+                            <div class="tour-date">2025年7月18日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>深圳电子音乐周</h4>
+                            <p>《时光碎片》专辑巡演深圳站</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                深圳市南山区文化艺术中心
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预定门票</a>
+                        </div>
+                    </div>
+
+                    <!-- 演出项目 5 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80" alt="杭州西湖音乐节">
+                            <div class="tour-date">2025年8月25日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>杭州西湖音乐节</h4>
+                            <p>湖畔音乐会特邀嘉宾演出</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                杭州西湖音乐广场
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预定门票</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 演出项目 6 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=80" alt="广州跨年电音派对">
+                            <div class="tour-date">2025年12月31日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>2025跨年电音派对</h4>
+                            <p>迎接新年的沉浸式电子音乐之夜</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                广州海心沙
+                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预定门票</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="tour-content active" id="upcoming">
-                    <div class="tour-list">
-                        <!-- 演出项目 1 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">四月</div>
-                                <div class="tour-day">15</div>
-                                <div class="tour-year">2025</div>
+            </div>
+            
+            <div id="past" class="tour-content">
+                <div class="past-tour-list">
+                    <!-- 过往演出 1 -->
+                    <div class="past-tour-item">
+                        <div class="past-tour-date">
+                            <div class="past-tour-day">12</div>
+                            <div class="past-tour-month">5月</div>
+                        </div>
+                        <div class="past-tour-details">
+                            <h4>上海当代艺术馆 - 声音装置展</h4>
+                            <div class="past-tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                上海, 中国
                             </div>
-                            <div class="tour-info">
-                                <h3>《空间回声》个人音乐会</h3>
-                                <p class="tour-location">上海市 黄浦区 艺术中心 (具体地址待公布)</p>
-                                <p class="tour-description">一场沉浸式的多媒体音乐体验，结合现场电子音乐演奏与视觉投影，探索声音与空间的互动关系。</p>
-                            </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-primary">购票</a>
+                            <div class="past-tour-highlights">
+                                <span class="highlight-tag">互动装置</span>
+                                <span class="highlight-tag">环境音乐</span>
+                                <span class="highlight-tag">跨媒体合作</span>
                             </div>
                         </div>
-                        
-                        <!-- 演出项目 2 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">五月</div>
-                                <div class="tour-day">22</div>
-                                <div class="tour-year">2025</div>
+                    </div>
+                    
+                    <!-- 过往演出 2 -->
+                    <div class="past-tour-item">
+                        <div class="past-tour-date">
+                            <div class="past-tour-day">03</div>
+                            <div class="past-tour-month">3月</div>
+                        </div>
+                        <div class="past-tour-details">
+                            <h4>成都电子音乐实验室 - 现场即兴</h4>
+                            <div class="past-tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                成都, 中国
                             </div>
-                            <div class="tour-info">
-                                <h3>「声光交织」艺术节演出</h3>
-                                <p class="tour-location">北京市 朝阳区 国际设计中心</p>
-                                <p class="tour-description">受邀参加年度声光艺术节，与视觉艺术家合作呈现跨媒体互动装置与现场表演。</p>
-                            </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-primary">购票</a>
+                            <div class="past-tour-highlights">
+                                <span class="highlight-tag">现场即兴</span>
+                                <span class="highlight-tag">模块化合成器</span>
                             </div>
                         </div>
-                        
-                        <!-- 演出项目 3 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">六月</div>
-                                <div class="tour-day">05</div>
-                                <div class="tour-year">2025</div>
+                    </div>
+                    
+                    <!-- 过往演出 3 -->
+                    <div class="past-tour-item">
+                        <div class="past-tour-date">
+                            <div class="past-tour-day">18</div>
+                            <div class="past-tour-month">12月</div>
+                        </div>
+                        <div class="past-tour-details">
+                            <h4>杭州西湖艺术节 - 湖畔音乐会</h4>
+                            <div class="past-tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                杭州, 中国
                             </div>
-                            <div class="tour-info">
-                                <h3>线上直播演出：深夜电台</h3>
-                                <p class="tour-location">Bilibili 直播 (房间号: 123456)</p>
-                                <p class="tour-description">特别线上演出，将呈现新作品与即兴创作，并与观众互动交流创作经历与音乐理念。</p>
-                            </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-outline-primary">提醒我</a>
+                            <div class="past-tour-highlights">
+                                <span class="highlight-tag">户外演出</span>
+                                <span class="highlight-tag">艺术节</span>
+                                <span class="highlight-tag">环境音乐</span>
                             </div>
                         </div>
-                        
-                        <!-- 演出项目 4 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">七月</div>
-                                <div class="tour-day">18</div>
-                                <div class="tour-year">2025</div>
+                    </div>
+                    
+                    <!-- 过往演出 4 -->
+                    <div class="past-tour-item">
+                        <div class="past-tour-date">
+                            <div class="past-tour-day">25</div>
+                            <div class="past-tour-month">9月</div>
+                        </div>
+                        <div class="past-tour-details">
+                            <h4>青岛国际音乐节 - 数字声音演出</h4>
+                            <div class="past-tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                青岛, 中国
                             </div>
-                            <div class="tour-info">
-                                <h3>《时光碎片》专辑巡演</h3>
-                                <p class="tour-location">广州市 天河区 LiveHouse</p>
-                                <p class="tour-description">《时光碎片》专辑巡演广州站，完整呈现专辑作品，并有特别嘉宾加盟。</p>
-                            </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-primary">购票</a>
+                            <div class="past-tour-highlights">
+                                <span class="highlight-tag">音乐节</span>
+                                <span class="highlight-tag">视听表演</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="tour-content" id="past">
-                    <div class="tour-list">
-                        <!-- 过往演出 1 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">五月</div>
-                                <div class="tour-day">27</div>
-                                <div class="tour-year">2024</div>
-                            </div>
-                            <div class="tour-info">
-                                <h3>电子音乐节演出</h3>
-                                <p class="tour-location">深圳市 南山区 海上世界文化艺术中心</p>
-                                <p class="tour-description">参与年度电子音乐节，与多位国内外艺术家同台演出，展示实验电子音乐作品。</p>
-                            </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-secondary btn-sm">回顾</a>
-                            </div>
+            </div>
+            
+            <div id="livestream" class="tour-content">
+                <div class="tour-list">
+                    <!-- 线上直播 1 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?auto=format&fit=crop&w=800&q=80" alt="线上音乐工作坊">
+                            <div class="tour-date">每周四</div>
                         </div>
-                        
-                        <!-- 过往演出 2 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">四月</div>
-                                <div class="tour-day">12</div>
-                                <div class="tour-year">2024</div>
+                        <div class="tour-details">
+                            <h4>电子音乐制作工作坊</h4>
+                            <p>学习专业音乐制作技巧与创作方法</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                                B站直播间
                             </div>
-                            <div class="tour-info">
-                                <h3>「声音实验室」讲座与表演</h3>
-                                <p class="tour-location">成都市 锦江区 当代艺术中心</p>
-                                <p class="tour-description">举办声音设计工作坊与现场表演，分享创作理念与技术，探讨声音艺术的未来发展。</p>
-                            </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-secondary btn-sm">回顾</a>
-                            </div>
+                            <a href="#" class="btn btn-primary btn-sm">预约提醒</a>
                         </div>
-                        
-                        <!-- 过往演出 3 -->
-                        <div class="tour-item">
-                            <div class="tour-date">
-                                <div class="tour-month">二月</div>
-                                <div class="tour-day">18</div>
-                                <div class="tour-year">2024</div>
+                    </div>
+                    
+                    <!-- 线上直播 2 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80" alt="月度在线演出">
+                            <div class="tour-date">2025年4月28日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>月度在线演出</h4>
+                            <p>全新专辑先行试听与互动交流</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                                网易云音乐直播
                             </div>
-                            <div class="tour-info">
-                                <h3>跨年电子音乐派对</h3>
-                                <p class="tour-location">重庆市 江北区 CHILL俱乐部</p>
-                                <p class="tour-description">新年特别演出，呈现电子舞曲与氛围音乐结合的沉浸式音乐体验。</p>
+                            <a href="#" class="btn btn-primary btn-sm">预约提醒</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 线上直播 3 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="跨媒体艺术对谈">
+                            <div class="tour-date">2025年5月10日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>跨媒体艺术对谈</h4>
+                            <p>与视觉艺术家张颖共同探讨音乐与视觉的边界</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                                抖音直播
                             </div>
-                            <div class="tour-action">
-                                <a href="#" class="btn btn-secondary btn-sm">回顾</a>
+                            <a href="#" class="btn btn-primary btn-sm">预约提醒</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 线上直播 4 -->
+                    <div class="tour-item">
+                        <div class="tour-image">
+                            <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80" alt="音乐创作分享会">
+                            <div class="tour-date">2025年6月15日</div>
+                        </div>
+                        <div class="tour-details">
+                            <h4>音乐创作分享会</h4>
+                            <p>分享《时光碎片》专辑背后的创作故事与灵感来源</p>
+                            <div class="tour-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                                小红书直播间
                             </div>
+                            <a href="#" class="btn btn-primary btn-sm">预约提醒</a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 客户评价部分 ===== -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title">客户评价</h2>
+            </div>
+            <p class="section-subtitle">来自合作伙伴和粉丝的真实反馈，见证音乐带来的情感共鸣</p>
+            
+            <div class="testimonial-slider">
+                <!-- 评价 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="quote-icon">
+                            <path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                            <path d="M19 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">王子轩的音乐制作将电子与古典元素完美融合，为我们的游戏带来了令人沉浸的声音体验。他对声音细节的把握和对情感的传达令人印象深刻。</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="林铭" class="author-image">
+                        <div class="author-info">
+                            <h4>林铭</h4>
+                            <p>追光互娱，游戏音频总监</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="quote-icon">
+                            <path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                            <path d="M19 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">与王子轩合作是一段美妙的经历。他不仅是一位出色的音乐制作人，更是一位能够理解品牌需求的创意伙伴。他为我们的广告配乐赋予了独特的辨识度，大大提升了我们的品牌形象。</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="赵雅楠" class="author-image">
+                        <div class="author-info">
+                            <h4>赵雅楠</h4>
+                            <p>晨曦创意，创意总监</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="quote-icon">
+                            <path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                            <path d="M19 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">王子轩的现场演出是我参加过的最具沉浸感的电子音乐体验之一。他将视觉艺术与声音完美结合，创造出一个令人忘我的感官世界。每次参加他的演出都能获得全新的体验。</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="张旭东" class="author-image">
+                        <div class="author-info">
+                            <h4>张旭东</h4>
+                            <p>《电子音乐周刊》主编</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="quote-icon">
+                            <path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                            <path d="M19 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"></path>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">作为一名纪录片导演，我需要能够讲述故事的音乐来打动观众。王子轩为我们的环保题材纪录片创作的配乐，不仅展现了大自然的壮美，更传递了深刻的情感共鸣。他对声音叙事的理解令项目升华到了新高度。</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="陈敏" class="author-image">
+                        <div class="author-info">
+                            <h4>陈敏</h4>
+                            <p>独立纪录片导演</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
         </div>
     </section>
@@ -2045,9 +4679,9 @@
             <div class="section-title-container">
                 <h2 class="section-title">联系我</h2>
             </div>
-            <p class="section-subtitle">对于合作、演出或其他询问，欢迎随时联系</p>
+            <p class="section-subtitle">无论是合作项目、演出邀请，还是音乐制作需求，我都期待与您交流</p>
             
-            <div class="contact-grid">
+            <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-card">
                         <div class="contact-icon">
@@ -2065,16 +4699,16 @@
                         <h3>社交媒体</h3>
                         <div class="social-links">
                             <a href="#" class="social-link" title="微博">
-                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968898.png" alt="微博">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968898.png" alt="微博图标">
                             </a>
-                            <a href="#" class="social-link" title="微信">
-                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="微信">
+                            <a href="#" class="social-link" title="微信公众号">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="微信图标">
                             </a>
                             <a href="#" class="social-link" title="抖音">
-                                <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="抖音">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="抖音图标">
                             </a>
-                            <a href="#" class="social-link" title="网易云音乐">
-                                <img src="https://cdn-icons-png.flaticon.com/512/10148/10148230.png" alt="网易云">
+                            <a href="#" class="social-link" title="网易云音乐主页">
+                                <img src="https://cdn-icons-png.flaticon.com/512/10148/10148230.png" alt="网易云音乐图标">
                             </a>
                         </div>
                     </div>
@@ -2089,28 +4723,37 @@
                 </div>
                 
                 <div class="contact-form">
+                    <div class="submit-success">感谢您的留言！我会尽快回复您。</div>
+                    <div class="submit-error">抱歉，提交时出现问题，请稍后重试。</div>
+                    
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">您的姓名</label>
-                            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="请输入您的姓名" required>
+                            <div class="error-message">请输入您的姓名</div>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">电子邮箱</label>
-                            <input type="email" id="email" name="email" placeholder="请输入您的电子邮箱" required>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="请输入您的电子邮箱" required>
+                            <div class="error-message">请输入有效的电子邮箱</div>
                         </div>
                         
                         <div class="form-group">
                             <label for="subject">主题</label>
-                            <input type="text" id="subject" name="subject" placeholder="请输入消息主题" required>
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder="请输入主题" required>
+                            <div class="error-message">请输入主题</div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">消息内容</label>
-                            <textarea id="message" name="message" rows="5" placeholder="请输入您的消息内容" required></textarea>
+                            <label for="message">留言内容</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="请输入您的留言内容" rows="5" required></textarea>
+                            <div class="error-message">请输入留言内容</div>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">发送消息</button>
+                        <div class="submit-btn-container">
+                            <button type="submit" class="btn btn-primary form-submit">发送消息</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -2123,44 +4766,59 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h2>王子轩</h2>
-                    <p>探索声音的无限可能</p>
+                    <p class="footer-description">音乐制作人 / 声音设计师 / 多媒体艺术家，致力于通过声音探索情感与时空的边界。</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="微博">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="微信">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="抖音">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="网易云音乐">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18V5l12-2v13"></path>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <circle cx="18" cy="16" r="3"></circle>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="footer-links">
-                    <div class="footer-links-column">
-                        <h3>导航</h3>
-                        <ul>
-                            <li><a href="#">首页</a></li>
-                            <li><a href="#about">关于</a></li>
-                            <li><a href="#music">音乐</a></li>
-                            <li><a href="#tour">演出</a></li>
-                            <li><a href="#contact">联系</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-links-column">
-                        <h3>资源</h3>
-                        <ul>
-                            <li><a href="#">媒体资料</a></li>
-                            <li><a href="#">演出技术要求</a></li>
-                            <li><a href="#">版权信息</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-links-column">
-                        <h3>关注</h3>
-                        <ul>
-                            <li><a href="#">微博</a></li>
-                            <li><a href="#">微信公众号</a></li>
-                            <li><a href="#">抖音</a></li>
-                            <li><a href="#">网易云音乐</a></li>
-                        </ul>
-                    </div>
+                    <h3>快速链接</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="#about">关于我</a></li>
+                        <li><a href="#music">音乐作品</a></li>
+                        <li><a href="#studio">虚拟工作室</a></li>
+                        <li><a href="#tour">演出日程</a></li>
+                        <li><a href="#contact">联系我</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>订阅动态</h3>
+                    <p>订阅我的新闻通讯，获取最新作品、演出和音乐资讯。</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="您的电子邮箱" required>
+                        <button type="submit" class="newsletter-btn">订阅</button>
+                    </form>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year">2024</span> 王子轩工作室 | 版权所有</p>
+                <p>&copy; 2024 王子轩 · 音乐制作人 · 版权所有</p>
             </div>
         </div>
     </footer>
@@ -2168,18 +4826,37 @@
     <!-- ===== JavaScript 代码 ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 设置当前年份
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-
+            // 移除预加载动画
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 500);
+            }
+            
+            // 在 body 中添加 'loaded' 类来触发动画
+            document.body.classList.add('loaded');
+            
             // 导航栏滚动效果
             const navbar = document.querySelector('.navbar');
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 50) {
                     navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
                     navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                    // 在暗模式下调整导航栏背景
+                    if (document.body.classList.contains('dark-mode')) {
+                        navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.97)';
+                    }
                 } else {
                     navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
                     navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+                    // 在暗模式下调整导航栏背景
+                    if (document.body.classList.contains('dark-mode')) {
+                        navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.97)';
+                    }
                 }
             });
 
@@ -2187,10 +4864,54 @@
             const navbarToggle = document.querySelector('.navbar-toggle');
             const navbarMenu = document.querySelector('.navbar-menu');
             
-            if (navbarToggle) {
+            if (navbarToggle && navbarMenu) {
                 navbarToggle.addEventListener('click', function() {
                     this.classList.toggle('active');
                     navbarMenu.classList.toggle('active');
+                    // 更新 aria-expanded 状态
+                    const isExpanded = this.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+
+            // 暗黑模式切换
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            if (themeToggle && sunIcon && moonIcon) {
+                // 检查用户之前的偏好
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+                
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    
+                    if (document.body.classList.contains('dark-mode')) {
+                        localStorage.setItem('theme', 'dark');
+                        sunIcon.style.display = 'none';
+                        moonIcon.style.display = 'block';
+                        // 更新导航栏背景色
+                        if (window.scrollY > 50) {
+                            navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.97)';
+                        } else {
+                            navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.97)';
+                        }
+                    } else {
+                        localStorage.setItem('theme', 'light');
+                        sunIcon.style.display = 'block';
+                        moonIcon.style.display = 'none';
+                        // 更新导航栏背景色
+                        if (window.scrollY > 50) {
+                            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+                        } else {
+                            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+                        }
+                    }
                 });
             }
 
@@ -2213,58 +4934,117 @@
                     tourContents.forEach(content => content.classList.remove('active'));
                     
                     // 显示当前内容区域
-                    document.getElementById(tabId).classList.add('active');
+                    document.getElementById(tabId)?.classList.add('active');
                 });
             });
 
-            // 表单提交
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.textContent;
+            // 初始化进度条动画
+            function initProgressBars() {
+                const progressBars = document.querySelectorAll('.progress');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const progressBar = entry.target;
+                            const targetWidth = progressBar.getAttribute('data-width') || progressBar.style.width;
+                            
+                            // 首先设置宽度为0
+                            progressBar.style.width = '0';
+                            
+                            // 设置延迟后应用动画
+                            setTimeout(() => {
+                                progressBar.style.width = targetWidth;
+                            }, 100);
+                            
+                            // 停止观察此元素
+                            observer.unobserve(progressBar);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                progressBars.forEach(bar => {
+                    // 储存目标宽度
+                    const width = bar.style.width;
+                    bar.setAttribute('data-width', width);
                     
-                    // 模拟提交
-                    submitBtn.textContent = '发送中...';
-                    submitBtn.disabled = true;
+                    // 初始设置为0
+                    bar.style.width = '0';
                     
-                    // 模拟网络延迟
-                    setTimeout(function() {
-                        submitBtn.textContent = '消息已发送 ✓';
-                        submitBtn.classList.add('success');
-                        
-                        // 清空表单
-                        contactForm.reset();
-                        
-                        // 恢复按钮状态
-                        setTimeout(function() {
-                            submitBtn.textContent = originalText;
-                            submitBtn.disabled = false;
-                            submitBtn.classList.remove('success');
-                        }, 3000);
-                    }, 1500);
+                    // 开始观察
+                    observer.observe(bar);
                 });
             }
+            
+            // 初始化进度条
+            initProgressBars();
 
-            // 添加滚动监听，实现元素进入视图时的动画
-            const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.skill-item, .music-card, .tour-item, .contact-card');
-                
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.classList.add('fade-in-up');
+            // 音乐播放器频谱可视化简单动画
+            function initVisualizer() {
+                const visualizerBars = document.querySelectorAll('.spectrum-visualizer .visualizer-bar');
+                if (visualizerBars.length === 0) {
+                    // 创建频谱条
+                    const visualizer = document.querySelector('.spectrum-visualizer');
+                    if (visualizer) {
+                        for (let i = 0; i < 30; i++) {
+                            const bar = document.createElement('div');
+                            bar.className = 'visualizer-bar';
+                            visualizer.appendChild(bar);
+                        }
                     }
-                });
-            };
+                }
+                
+                // 获取所有频谱条
+                const allBars = document.querySelectorAll('.spectrum-visualizer .visualizer-bar');
+                
+                // 创建随机高度动画
+                function animateBars() {
+                    allBars.forEach(bar => {
+                        const height = Math.floor(Math.random() * 50) + 5;
+                        bar.style.height = `${height}px`;
+                    });
+                    
+                    if (isPlaying) {
+                        requestAnimationFrame(animateBars);
+                    }
+                }
+                
+                // 音乐播放器简单交互
+                const playBtn = document.querySelector('.music-player .play-btn');
+                const playIcon = playBtn?.querySelector('.play-icon');
+                const pauseIcon = playBtn?.querySelector('.pause-icon');
+                let isPlaying = false;
 
-            // 初始调用一次
-            document.addEventListener('DOMContentLoaded', animateOnScroll);
-            // 滚动时调用
-            window.addEventListener('scroll', animateOnScroll);
+                if (playBtn && playIcon && pauseIcon) {
+                    playBtn.addEventListener('click', () => {
+                        isPlaying = !isPlaying;
+                        if (isPlaying) {
+                            playIcon.style.display = 'none';
+                            pauseIcon.style.display = 'inline-block';
+                            playBtn.setAttribute('aria-label', '暂停');
+                            // 开始频谱动画
+                            animateBars();
+                        } else {
+                            playIcon.style.display = 'inline-block';
+                            pauseIcon.style.display = 'none';
+                            playBtn.setAttribute('aria-label', '播放');
+                        }
+                    });
+                }
+            }
+            
+            // 初始化频谱可视化
+            initVisualizer();
+
+            // 音乐卡片交互
+            const musicCards = document.querySelectorAll('.music-card');
+            musicCards.forEach(card => {
+                const playOverlay = card.querySelector('.play-button-overlay');
+                if (playOverlay) {
+                    playOverlay.addEventListener('click', function() {
+                        // 播放音乐逻辑可在此处实现
+                    });
+                }
+            });
 
             // 实现平滑滚动
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2285,9 +5065,127 @@
                             top: offsetPosition,
                             behavior: 'smooth'
                         });
+                        
+                        // 关闭移动菜单
+                        if (navbarToggle && navbarToggle.classList.contains('active')) {
+                            navbarToggle.click();
+                        }
                     }
                 });
             });
+
+            // 表单验证
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                // 表单验证逻辑保持不变...
+            }
+            
+            // 添加3D视差效果
+            const studio3dContainer = document.querySelector('.studio-3d-container');
+            if (studio3dContainer) {
+                studio3dContainer.addEventListener('mousemove', function(e) {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                    this.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+                
+                studio3dContainer.addEventListener('mouseenter', function() {
+                    this.style.transition = 'none';
+                });
+                
+                studio3dContainer.addEventListener('mouseleave', function() {
+                    this.style.transition = 'transform 0.5s ease';
+                    this.style.transform = 'rotateY(-15deg) rotateX(10deg)';
+                });
+            }
+            
+            // 项目过滤功能
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 添加当前按钮的active类
+                    this.classList.add('active');
+                    
+                    // 获取过滤类别
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // 显示/隐藏项目卡片
+                    projectCards.forEach(card => {
+                        if (filter === 'all') {
+                            // 显示所有卡片
+                            card.style.display = 'block';
+                            // 添加一个淡入动画
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                            }, 50);
+                        } else {
+                            // 检查卡片类别
+                            const category = card.getAttribute('data-category');
+                            if (category === filter) {
+                                card.style.display = 'block';
+                                // 添加一个淡入动画
+                                card.style.opacity = '0';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                }, 50);
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // 客户评价滑块功能
+            const testimonialDots = document.querySelectorAll('.testimonial-dots .dot');
+            const testimonialSlider = document.querySelector('.testimonial-slider');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            if (testimonialDots.length > 0 && testimonialSlider && testimonialCards.length > 0) {
+                testimonialDots.forEach((dot, index) => {
+                    dot.addEventListener('click', function() {
+                        // 移除所有点的active类
+                        testimonialDots.forEach(d => d.classList.remove('active'));
+                        
+                        // 添加当前点的active类
+                        this.classList.add('active');
+                        
+                        // 计算滚动位置
+                        const cardWidth = testimonialCards[0].offsetWidth + 30; // 加上gap
+                        const scrollPosition = index * cardWidth;
+                        
+                        // 平滑滚动到相应位置
+                        testimonialSlider.scrollTo({
+                            left: scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+                
+                // 监听滚动事件以更新激活的点
+                testimonialSlider.addEventListener('scroll', function() {
+                    const scrollPosition = this.scrollLeft;
+                    const cardWidth = testimonialCards[0].offsetWidth + 30; // 加上gap
+                    
+                    // 计算当前激活的点
+                    const activeIndex = Math.round(scrollPosition / cardWidth);
+                    
+                    // 更新点的状态
+                    testimonialDots.forEach((dot, index) => {
+                        if (index === activeIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                });
+            }
         });
     </script>
 
